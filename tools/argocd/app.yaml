@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+spec:
+  destination:
+    name: ''
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: 'https://argoproj.github.io/argo-helm'
+    targetRevision: 3.26.3
+    chart: argo-cd
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: server.ingress.enabled
+          value: 'true'
+        - name: server.ingress.https
+          value: 'true'
+        - name: server.ingress.ingressClassName
+          value: nginx
+        - name: server.ingressGrpc.enabled
+          value: 'true'
+        - name: server.ingressGrpc.https
+          value: 'true'
+        - name: server.ingressGrpc.ingressClassName
+          value: nginx
+        - name: server.route.hostname
+          value: mk.local
+  project: tools
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - PrunePropagationPolicy=orphan
