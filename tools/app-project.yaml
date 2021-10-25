@@ -8,8 +8,8 @@ spec:
   - group: '*'
     kind: '*'
   destinations:
-  - namespace: tools
-    server: https://kubernetes.default.svc
+  - namespace: '*'
+    server: '*'
   orphanedResources:
     warn: false
   sourceRepos:
