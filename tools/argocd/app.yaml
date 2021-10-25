@@ -29,7 +29,7 @@ spec:
         - name: server.ingressGrpc.ingressClassName
           value: nginx
         - name: server.route.hostname
-          value: mk.local
+          value: argocd.mk.local
   project: tools
   syncPolicy:
     automated:
