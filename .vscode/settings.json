@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "file:///Users/nsearch-logamani/.vscode/extensions/atlassian.atlascode-2.10.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+        "https://json.schemastore.org/yamllint.json": "file:///Users/nsearch-logamani/repos/GitHub/sample-argocd-apps/argocd/projects/tools/tools-argocd-project.yaml"
+    }
+}
