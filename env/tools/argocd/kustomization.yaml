@@ -1,0 +1,5 @@
+kind: Kustmization
+
+resources:
+  - ./base/argocd-install.yaml
+  - ./base/ingress.yaml
