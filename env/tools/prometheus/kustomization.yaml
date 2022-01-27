@@ -9,3 +9,4 @@ helmCharts:
   - name: prometheus
     repo: prometheus
     version: 15.1.1
+    releaseName: prometheus
