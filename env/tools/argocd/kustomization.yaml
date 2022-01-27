@@ -1,4 +1,5 @@
 kind: Kustomization
+namespace: argocd
 
 resources:
   - ./base/argocd-install.yaml
