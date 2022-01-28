@@ -5,5 +5,5 @@ resources:
   - ./base/argocd-install.yaml
   - ./base/ingress.yaml
 
-patchesStrategicMerge:
-  - ./overlays/argocd-cm.yaml
+# patchesStrategicMerge:
+#   - ./overlays/argocd-cm.yaml
