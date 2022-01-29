@@ -18,8 +18,7 @@ skipTlsVerify: true
 persistence:
   enabled: true
   type: statefulset
-  size: 10Gi
-  storageClassName: manual
+  size: 2Gi
 
 initChownData:
   enabled: false
