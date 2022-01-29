@@ -1,0 +1,155 @@
+prometheus:
+  nodeExporter:
+    enabled: false
+  pushgateway:
+    enabled: false
+
+  alertmanager:
+    enabled: true
+    persistentVolume:
+      enabled: true
+      storageClass: manual
+    statefulSet:
+      enabled: true
+    resources:
+      limits:
+        memory: 1Gi
+        cpu: 0.5
+      requests:
+        memory: 256Mi
+        cpu: 0.5
+    ingress:
+      enabled: true
+      hosts:
+        - mk.alertmanager.local
+      extraPaths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: ssl-redirect
+              port:
+                name: use-annotation
+        - path: /*
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: prometheus-central-alertmanager
+              port:
+                number: 80
+    baseURL: "https://mk.alertmanager.local"
+  
+  alertmanagerFiles:
+    alertmanager.yml:
+      global:
+        slack_api_url: '<slack_hook_url>'
+      route:
+        receiver: '<slack change name>'
+      receivers:
+        - name: '<slack channel name>'
+          slack_configs:
+            - channel: '#<slack channel name>'
+              send_resolved: true
+              title: '[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] Monitoring Event Notification'
+              text: |-
+                {{ range .Alerts }}
+                *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+                *Description:* {{ .Annotations.description }}
+                *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:> *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
+                *Details:*
+                {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+                {{ end }}
+                {{ end }}
+
+  configmapReload:
+    prometheus:
+      enabled: true
+      image:
+        repository: nexus-docker.ship.gov.sg/jimmidyson/configmap-reload
+        tag: v0.5.0
+        pullPolicy: IfNotPresent
+    alertmanager:
+      enabled: true
+      image:
+        repository: nexus-docker.ship.gov.sg/jimmidyson/configmap-reload
+        tag: v0.5.0
+        pullPolicy: IfNotPresent
+
+  kubeStateMetrics:
+    enabled: true
+  kube-state-metrics:
+    image:
+      repository: 801475574804.dkr.ecr.ap-southeast-1.amazonaws.com/kube-state-metrics/kube-state-metrics
+      tag: v2.2.0
+      pullPolicy: IfNotPresent
+
+  server:
+    enabled: true
+    statefulSet:
+      enabled: true
+    resources:
+      limits:
+        memory: 512Mi
+        cpu: 1
+      requests:
+        memory: 512Mi
+        cpu: 0.5
+    persistentVolume:
+      enabled: true
+      storageClass: manual
+    ingress:
+      enabled: true
+      hosts:
+        - mk.prometheus.local
+      extraPaths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: ssl-redirect
+              port:
+                name: use-annotation
+        - path: /*
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: prometheus-central-server
+              port:
+                number: 80
+    baseURL: "https://mk.prometheus.local"
+    alertmanagers:
+      - static_configs:
+        - targets:
+          - prometheus-alertmanager
+
+  serverFiles:
+    alerting_rules.yml:
+      groups:
+        - name: K8S Cluster Deployment
+          rules:
+          - alert: PodCPUUsageWarning
+            expr: sum(rate(container_cpu_usage_seconds_total{container!="POD",container!="",pod!=""}[5m]))by(pod, namespace)/sum(kube_pod_container_resource_requests{resource="cpu"})by(pod, namespace)*100 > 80
+            for: 0m
+            labels:
+              severity: warning
+              usage: "{{ $value }}"
+              cluster: <cluster_name>
+              namespace: "{{ $labels.namespace}}"
+              pod: "{{ $labels.pod }}"
+            annotations:
+              summary: Pod CPU Usage Warning
+              description: Kubernetes Pod CPU usage is nearing limit (>80%)
+          - alert: PodMemoryUsageWarning
+            expr: sum(container_memory_working_set_bytes{container!="POD",container!="",pod!=""})by(pod, namespace)/sum(kube_pod_container_resource_requests{resource="memory"}+262144000)by(pod, namespace)*100 > 80
+            for: 0m
+            labels:
+              severity: warning
+              usage: "{{ $value }}"
+              cluster: <cluster_name>
+              namespace: "{{ $labels.namespace}}"
+              pod: "{{ $labels.pod }}"
+            annotations: 
+              summary: Pod Memory Usage Warning
+              description: Kubernetes Pod memory usage is nearing limit (>80%)
+
+
