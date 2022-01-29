@@ -3,6 +3,6 @@ kind: Kustomization
 helmCharts:
   - name: kubernetes-external-secrets
     repo: https://external-secrets.github.io/kubernetes-external-secrets/
-    version: 15.1.1
+    version: 8.5.1
     releaseName: kubernetes-external-secrets
     valuesFile: ./values.yaml
