@@ -5,4 +5,4 @@ helmCharts:
     repo: https://grafana.github.io/helm-charts
     version: 6.21.1
     releaseName: grafana
-    valuesFile: env/tools/grafana/values.yaml
+    valuesFile: values.yaml
