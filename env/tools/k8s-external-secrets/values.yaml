@@ -1,0 +1,4 @@
+scopedNamespace: "tools, monitoring"
+
+prometheus:
+  enabled: true
