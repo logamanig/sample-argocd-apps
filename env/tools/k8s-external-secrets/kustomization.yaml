@@ -5,4 +5,4 @@ helmCharts:
     repo: https://external-secrets.github.io/kubernetes-external-secrets/
     version: 8.5.1
     releaseName: kubernetes-external-secrets
-    valuesFile: ./values.yaml
+    valuesFile: env/tools/k8s-external-secrets/values.yaml
