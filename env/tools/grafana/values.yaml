@@ -2,6 +2,9 @@ ingress:
   enabled: true
   hosts:
     - mk.grafana.local
+  tls:
+    - hosts:
+      - mk.grafana.local
 
 resources:
   limits:
