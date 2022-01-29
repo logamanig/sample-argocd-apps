@@ -19,6 +19,7 @@ persistence:
   enabled: true
   type: statefulset
   size: 2Gi
+  storageClassName: ''
 
 initChownData:
   enabled: false
