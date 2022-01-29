@@ -34,7 +34,7 @@ prometheus:
           pathType: ImplementationSpecific
           backend:
             service:
-              name: prometheus-central-alertmanager
+              name: prometheus-alertmanager
               port:
                 number: 80
     baseURL: "https://mk.alertmanager.local"
@@ -64,24 +64,11 @@ prometheus:
   configmapReload:
     prometheus:
       enabled: true
-      image:
-        repository: nexus-docker.ship.gov.sg/jimmidyson/configmap-reload
-        tag: v0.5.0
-        pullPolicy: IfNotPresent
     alertmanager:
       enabled: true
-      image:
-        repository: nexus-docker.ship.gov.sg/jimmidyson/configmap-reload
-        tag: v0.5.0
-        pullPolicy: IfNotPresent
 
   kubeStateMetrics:
     enabled: true
-  kube-state-metrics:
-    image:
-      repository: 801475574804.dkr.ecr.ap-southeast-1.amazonaws.com/kube-state-metrics/kube-state-metrics
-      tag: v2.2.0
-      pullPolicy: IfNotPresent
 
   server:
     enabled: true
@@ -113,7 +100,7 @@ prometheus:
           pathType: ImplementationSpecific
           backend:
             service:
-              name: prometheus-central-server
+              name: prometheus-server
               port:
                 number: 80
     baseURL: "https://mk.prometheus.local"

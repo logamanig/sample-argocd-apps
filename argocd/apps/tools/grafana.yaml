@@ -9,13 +9,9 @@ spec:
     server: 'https://kubernetes.default.svc'
 
   source:
-    path: ''
-    repoURL: 'https://grafana.github.io/helm-charts'
-    targetRevision: 6.21.1
-    chart: grafana
-    helm:
-      valueFiles:
-        - "env/tools/grafana/values.yaml"
+    path: env/tools/grafana
+    repoURL: 'https://github.com/logamanig/sample-argocd-apps'
+    targetRevision: master
 
   project: tools
   syncPolicy:

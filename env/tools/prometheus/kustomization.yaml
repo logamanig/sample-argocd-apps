@@ -1,12 +1,8 @@
 kind: Kustomization
 
-resources:
-  - ./base/alert-manager-pv.yaml
-  - ./base/prometheus-pv.yaml
-  - ./base/ingress.yaml
-
 helmCharts:
   - name: prometheus
     repo: https://prometheus-community.github.io/helm-charts
     version: 15.1.1
     releaseName: prometheus
+    valuesFile: values.yaml
