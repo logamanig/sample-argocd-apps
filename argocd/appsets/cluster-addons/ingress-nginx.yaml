@@ -16,9 +16,9 @@ spec:
         path: env/devops/cluster-addons/ingress-nginx
 
       destination:
-        server: {{server}} 
+        server: '{{server}}'
         namespace: ingress-nginx
-        
+
       syncPolicy:
         automated:
           prune: true
