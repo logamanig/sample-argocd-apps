@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
 
   source:
-    path: env/tools/grafana
+    path: env/devops/tools/grafana
     repoURL: 'https://github.com/logamanig/sample-argocd-apps'
     targetRevision: master
 

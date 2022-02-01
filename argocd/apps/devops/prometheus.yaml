@@ -1,16 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: prometheus
 spec:
   destination:
     name: ''
-    namespace: argocd
+    namespace: monitoring
     server: 'https://kubernetes.default.svc'
+
   source:
-    path: env/tools/argocd
     repoURL: 'https://github.com/logamanig/sample-argocd-apps'
     targetRevision: master
+    path: env/devops/tools/prometheus
+
   project: tools
   syncPolicy:
     automated:
@@ -18,3 +20,9 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+    retry:
+      limit: 2
+      backoff:
+        duration: 5s
+        maxDuration: 3m0s
+        factor: 2

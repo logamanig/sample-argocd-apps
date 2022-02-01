@@ -8,7 +8,7 @@ spec:
     namespace: shared
     server: 'https://kubernetes.default.svc'
   source:
-    path: env/shared/keycloak
+    path: env/devops/shared/keycloak
     repoURL: 'https://github.com/logamanig/sample-argocd-apps'
     targetRevision: master
   project: tools
