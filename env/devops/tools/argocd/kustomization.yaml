@@ -10,4 +10,16 @@ patches:
       kind: ConfigMap
       name: argocd-cm
     path: ./overlays/argocd-cm.yaml
-      
+
+# kind: Kustomization
+# namespace: argocd
+
+# helmCharts:
+#   - name: argocd
+#     repo: https://argoproj.github.io/argo-helm
+#     version: 2.3.0
+#     releaseName: argocd
+#     valuesFile: values.yaml
+
+# patchesStrategicMerge:
+#   - ./overlays/argocd-cm.yaml
