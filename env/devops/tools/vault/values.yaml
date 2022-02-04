@@ -1,8 +1,11 @@
 global:
   enabled: true
-  tlsDisabled: true
-  psp:
-    enabled: false
+  readinessProbe:
+      enabled: true
+      path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
+  # tlsDisabled: true
+  # psp:
+  #   enabled: false
 
 injector:
   enabled: false
