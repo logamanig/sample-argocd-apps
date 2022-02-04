@@ -1,7 +1,7 @@
 global:
   enabled: true
   tlsDisabled: false
-  psp: enable
+  psp: disabled
 
 injector:
   enabled: false
