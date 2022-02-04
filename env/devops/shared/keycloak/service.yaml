@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: keycloak
+  namespace: shared
   labels:
     app: keycloak
 spec:

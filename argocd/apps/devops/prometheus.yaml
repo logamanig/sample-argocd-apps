@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: monitoring
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
 
   source:

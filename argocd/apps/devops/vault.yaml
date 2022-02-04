@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: tools
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
     path: env/devops/tools/vault
