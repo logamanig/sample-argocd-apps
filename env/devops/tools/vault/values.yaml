@@ -17,7 +17,7 @@ server:
       nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     ingressClassName: nginx
     hosts:
-      - mk.vault.local
+      - host: mk.vault.local
     tls:
       - hosts:
         - mk.vault.local
