@@ -2,6 +2,7 @@
 # kind: ApplicationSet
 # metadata:
 #   name: ingress-nginx
+#   namespace: argocd
 # spec:
 #   generators:
 #     - clusters: {} # all clusters managed by argocd
