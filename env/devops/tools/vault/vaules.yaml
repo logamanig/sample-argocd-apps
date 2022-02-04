@@ -1,0 +1,20 @@
+global:
+  enabled: true
+  tlsDisabled: false
+  psp: enable
+
+injector:
+  enabled: false
+
+server:
+  enabled: true
+  ingress:
+    enabled: true
+    hosts:
+      - mk.vault.local
+    tls:
+      - hosts:
+        - mk.vault.local
+        
+ui:
+  enabled: true

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+spec:
+  destination:
+    name: ''
+    namespace: tools
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: env/devops/tools/vault
+    repoURL: 'https://github.com/logamanig/sample-argocd-apps'
+    targetRevision: master
+  project: tools
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
