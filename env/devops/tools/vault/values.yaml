@@ -45,7 +45,7 @@ server:
         address = "[::]:8200"
         cluster_address = "[::]:8201"
       }
-      
+
       storage "file" {
         path = "/vault/data"
       }
@@ -62,6 +62,13 @@ server:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     ingressClassName: nginx
+    extraPaths:
+    - path: /*
+      backend:
+        service:
+          name: ssl-redirect
+          port:
+            number: use-annotation
     hosts:
       - host: mk.vault.local
     tls:
