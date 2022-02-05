@@ -64,6 +64,7 @@ server:
     ingressClassName: nginx
     extraPaths:
     - path: /*
+      pathType: ImplementationSpecific
       backend:
         service:
           name: ssl-redirect
