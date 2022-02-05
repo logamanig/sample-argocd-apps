@@ -45,9 +45,10 @@ server:
         address = "[::]:8200"
         cluster_address = "[::]:8201"
       }
-      # storage "file" {
-      #   path = "/vault/data"
-      # }
+      
+      storage "file" {
+        path = "/vault/data"
+      }
 
       seal "awskms" {
           region = "ap-southeast-1"
