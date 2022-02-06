@@ -69,7 +69,7 @@ server:
         service:
           name: ssl-redirect
           port:
-            number: use-annotation
+            number: 8201
     hosts:
       - host: mk.vault.local
     tls:
