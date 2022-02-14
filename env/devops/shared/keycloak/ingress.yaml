@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: keycloak-ingress
   namespace: shared
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   tls:
