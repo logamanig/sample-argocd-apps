@@ -7,21 +7,10 @@ metadata:
   #   nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - mk.sso.local
-    - sso.192.168.64.15.nip.io
+  # tls:
+  # - hosts:
+  #   - sso.192.168.64.15.nip.io
   rules:
-  - host: mk.sso.local
-    http:
-      paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: keycloak
-            port: 
-              name: http
   - host: sso.192.168.64.15.nip.io
     http:
       paths:
