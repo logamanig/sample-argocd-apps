@@ -72,9 +72,9 @@ server:
             name: use-annotation
     hosts:
       - host: mk.vault.local
-    tls:
-      - hosts:
-        - mk.vault.local
+    # tls:
+    #   - hosts:
+    #     - mk.vault.local
         
 ui:
   enabled: true
