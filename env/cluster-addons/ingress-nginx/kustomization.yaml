@@ -1,5 +1,8 @@
 kind: Kustomization
 namespace: ingress-nginx
+metadata:
+  labels:
+    argocd-project: tools
 
 helmCharts:
   - name: ingress-nginx

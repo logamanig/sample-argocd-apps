@@ -1,5 +1,8 @@
 kind: Kustomization
 namespace: tools
+metadata:
+  labels:
+    argocd-project: tools
 
 helmCharts:
   - name: external-secrets
