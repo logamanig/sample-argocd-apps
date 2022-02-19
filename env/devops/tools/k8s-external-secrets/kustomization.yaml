@@ -1,9 +1,0 @@
-kind: Kustomization
-namespace: tools
-
-helmCharts:
-  - name: kubernetes-external-secrets
-    repo: https://external-secrets.github.io/kubernetes-external-secrets/
-    version: 8.5.1
-    releaseName: kubernetes-external-secrets
-    valuesFile: values.yaml

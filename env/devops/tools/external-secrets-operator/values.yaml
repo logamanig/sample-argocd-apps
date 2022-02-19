@@ -1,0 +1,21 @@
+podSecurityContext: # {}
+  fsGroup: 2000
+
+securityContext: # {}
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+
+resources: # {}
+  requests:
+    cpu: 10m
+    memory: 32Mi
+
+prometheus:
+  # -- Specifies whether to expose Service resource for collecting Prometheus metrics
+  enabled: true
+  service:
+    port: 8080
