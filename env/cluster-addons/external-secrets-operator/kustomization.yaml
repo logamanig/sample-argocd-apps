@@ -1,6 +1,9 @@
 kind: Kustomization
 namespace: external-secrets-operator
 
+resources:
+  - "./base/cluster-secret-store.yaml"
+  
 helmCharts:
   - name: external-secrets
     repo: https://charts.external-secrets.io
