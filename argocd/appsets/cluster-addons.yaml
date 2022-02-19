@@ -23,6 +23,7 @@ spec:
   template:
     metadata:
       name: '{{path.basename}}-{{name}}'
+      namespace: argocd
     spec:
       project: cluster-addons
       source:
@@ -31,7 +32,7 @@ spec:
         path: '{{path}}'
       destination:
         server: '{{server}}'
-        # namespace: '{{path.basename}}' # Comment out to use namespace specified in the deployed resource yaml/helm/kustomize
+        namespace: '{{path.basename}}' # Comment out to use namespace specified in the deployed resource yaml/helm/kustomize
       syncPolicy:
         automated:
           prune: true

@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: linkerd
 
 helmCharts:
   - name: linkerd2

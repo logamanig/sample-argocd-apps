@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: tools
 
 helmCharts:
   - name: external-secrets

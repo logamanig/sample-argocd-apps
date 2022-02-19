@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: cert-manager
 
 helmCharts:
   - name: cert-manager

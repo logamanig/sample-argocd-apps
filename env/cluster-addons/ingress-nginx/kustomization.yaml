@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: ingress-nginx
 
 helmCharts:
   - name: ingress-nginx
