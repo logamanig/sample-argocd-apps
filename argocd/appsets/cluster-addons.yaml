@@ -24,7 +24,7 @@ spec:
     metadata:
       name: '{{path.basename}}-{{name}}'
     spec:
-      project: '{{metadata.labels.argocd-project}}'
+      project: tools
       source:
         repoURL: https://github.com/logamanig/sample-argocd-apps
         targetRevision: master
