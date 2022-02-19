@@ -1,8 +1,5 @@
 kind: Kustomization
 namespace: linkerd
-metadata:
-  labels:
-    argocd-project: tools
 
 helmCharts:
   - name: linkerd2

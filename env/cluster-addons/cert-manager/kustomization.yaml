@@ -1,10 +1,10 @@
 kind: Kustomization
-namespace: tools
+namespace: cert-manager
 
 helmCharts:
-  - name: external-secrets
-    repo: https://charts.external-secrets.io
-    version: 0.4.3
+  - name: cert-manager
+    repo: https://charts.jetstack.io
+    version: 1.7.1
     releaseName: external-secrets
     valuesFile: values.yaml
     includeCRDs: true
