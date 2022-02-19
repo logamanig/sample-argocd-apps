@@ -1,0 +1,12 @@
+kind: Kustomization
+namespace: linkerd
+metadata:
+  labels:
+    argocd-project: tools
+
+helmCharts:
+  - name: linkerd2
+    repo: https://helm.linkerd.io/stable
+    version: 2.11.1
+    releaseName: linkerd
+    valuesFile: values.yaml
