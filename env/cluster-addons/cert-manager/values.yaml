@@ -1,2 +1,4 @@
 prometheus:
   enabled: true
+
+installCRDs: true
