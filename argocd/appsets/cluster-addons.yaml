@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons-appset
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/logamanig/sample-argocd-apps
+              revision: master
+              directories:
+                - path: env/cluster-addons/*
+
+                - path: env/cluster-addons/ingress-nginx
+                  exclude: true # ingress excluded as this sample running on minukube with ingress addon enabled
+                  
+          - clusters: {} # all registered clusters in argocd
+              # selector:
+              #   matchLabels:
+              #     argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: '{{path.basename}}-{{name}}'
+    spec:
+      project: '{{metadata.labels.environment}}'
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: '{{path}}'
+      destination:
+        server: '{{server}}'
+        # namespace: '{{path.basename}}' # Comment out to use namespace specified in the deployed resource yaml/helm/kustomize
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
