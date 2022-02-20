@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: external-secrets-operator
 
 resources:
   - "./base/cluster-secret-store.yaml"
