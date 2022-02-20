@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: cert-manager
 
 resources:
   - "./resources/linkerd-cert-issuer.yaml"
