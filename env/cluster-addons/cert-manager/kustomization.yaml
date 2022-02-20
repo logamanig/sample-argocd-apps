@@ -1,8 +1,5 @@
 kind: Kustomization
 
-resources:
-  - "./resources/linkerd-cert-issuer.yaml"
-
 helmCharts:
   - name: cert-manager
     repo: https://charts.jetstack.io
