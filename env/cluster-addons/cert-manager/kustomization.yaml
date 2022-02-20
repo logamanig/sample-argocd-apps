@@ -10,3 +10,9 @@ helmCharts:
     releaseName: cert-manager
     valuesFile: values.yaml
     includeCRDs: true
+
+  - name: cert-manager-trust
+    repo: https://charts.jetstack.io
+    version: 0.1.1
+    releaseName: cert-manager-trust
+    includeCRDs: true
