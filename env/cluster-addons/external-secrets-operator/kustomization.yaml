@@ -1,7 +1,7 @@
 kind: Kustomization
 
 resources:
-  - "./resources"
+  - "./resources/cluster-secret-store.yaml"
 
 helmCharts:
   - name: external-secrets
