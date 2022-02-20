@@ -1,3 +1,9 @@
 identity:
   # -- If the linkerd-identity-trust-roots ConfigMap has already been created
   externalCA: true
+  issuer:
+    scheme: kubernetes.io/tls
+
+# installNamespace -- Set to false when installing Linkerd in a custom namespace. See the
+# [Linkerd documentation](https://linkerd.io/2/tasks/install-helm#customizing-the-namespace) for more information.
+installNamespace: true
