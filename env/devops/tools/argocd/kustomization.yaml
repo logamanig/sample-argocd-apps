@@ -2,8 +2,8 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - ./base/argocd-install.yaml
-  - ./base/ingress.yaml
+  - "./resources/argocd-install.yaml"
+  - "./resources/ingress.yaml"
 
 patches:
   - target:

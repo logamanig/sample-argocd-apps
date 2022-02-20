@@ -1,7 +1,7 @@
 kind: Kustomization
 
 resources:
-  - "./base/linkerd-cert-issuer.yaml"
+  - "./resources"
 
 helmCharts:
   - name: cert-manager

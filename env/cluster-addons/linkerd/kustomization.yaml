@@ -1,5 +1,8 @@
 kind: Kustomization
 
+resources:
+  - "./resources"
+  
 helmCharts:
   - name: linkerd2
     repo: https://helm.linkerd.io/stable
