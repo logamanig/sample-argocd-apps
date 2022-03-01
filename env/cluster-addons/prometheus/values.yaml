@@ -4,7 +4,7 @@ pushgateway:
   enabled: false
 
 alertmanager:
-  enabled: true
+  enabled: false
   persistentVolume:
     enabled: true
   statefulSet:
@@ -63,7 +63,7 @@ configmapReload:
   prometheus:
     enabled: true
   alertmanager:
-    enabled: true
+    enabled: false
 
 kubeStateMetrics:
   enabled: true
