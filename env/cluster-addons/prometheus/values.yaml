@@ -16,11 +16,13 @@ prometheus:
       - mk.prometheus.local
     paths:
       - /
-    tls:
-      - hosts:
-          - mk.prometheus.local
+    # tls:
+    #   - hosts:
+    #       - mk.prometheus.local
 
 prometheus-operator:
+  tls:
+    enabled: false
   admissionWebhooks: 
     enabled: false
   # Use certmanager to generate webhook certs
