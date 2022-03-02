@@ -1,5 +1,5 @@
 nodeExporter:
-  enabled: false
+  enabled: true
 pushgateway:
   enabled: false
 
@@ -106,34 +106,37 @@ server:
       - targets:
         - prometheus-alertmanager
 
-serverFiles:
-  alerting_rules.yml:
-    groups:
-      - name: K8S Cluster Deployment
-        rules:
-        - alert: PodCPUUsageWarning
-          expr: sum(rate(container_cpu_usage_seconds_total{container!="POD",container!="",pod!=""}[5m]))by(pod, namespace)/sum(kube_pod_container_resource_requests{resource="cpu"})by(pod, namespace)*100 > 80
-          for: 0m
-          labels:
-            severity: warning
-            usage: "{{ $value }}"
-            cluster: <cluster_name>
-            namespace: "{{ $labels.namespace}}"
-            pod: "{{ $labels.pod }}"
-          annotations:
-            summary: Pod CPU Usage Warning
-            description: Kubernetes Pod CPU usage is nearing limit (>80%)
-        - alert: PodMemoryUsageWarning
-          expr: sum(container_memory_working_set_bytes{container!="POD",container!="",pod!=""})by(pod, namespace)/sum(kube_pod_container_resource_requests{resource="memory"}+262144000)by(pod, namespace)*100 > 80
-          for: 0m
-          labels:
-            severity: warning
-            usage: "{{ $value }}"
-            cluster: <cluster_name>
-            namespace: "{{ $labels.namespace}}"
-            pod: "{{ $labels.pod }}"
-          annotations: 
-            summary: Pod Memory Usage Warning
-            description: Kubernetes Pod memory usage is nearing limit (>80%)
+grafana:
+  enabled: false
+
+# serverFiles:
+#   alerting_rules.yml:
+#     groups:
+#       - name: K8S Cluster Deployment
+#         rules:
+#         - alert: PodCPUUsageWarning
+#           expr: sum(rate(container_cpu_usage_seconds_total{container!="POD",container!="",pod!=""}[5m]))by(pod, namespace)/sum(kube_pod_container_resource_requests{resource="cpu"})by(pod, namespace)*100 > 80
+#           for: 0m
+#           labels:
+#             severity: warning
+#             usage: "{{ $value }}"
+#             cluster: <cluster_name>
+#             namespace: "{{ $labels.namespace}}"
+#             pod: "{{ $labels.pod }}"
+#           annotations:
+#             summary: Pod CPU Usage Warning
+#             description: Kubernetes Pod CPU usage is nearing limit (>80%)
+#         - alert: PodMemoryUsageWarning
+#           expr: sum(container_memory_working_set_bytes{container!="POD",container!="",pod!=""})by(pod, namespace)/sum(kube_pod_container_resource_requests{resource="memory"}+262144000)by(pod, namespace)*100 > 80
+#           for: 0m
+#           labels:
+#             severity: warning
+#             usage: "{{ $value }}"
+#             cluster: <cluster_name>
+#             namespace: "{{ $labels.namespace}}"
+#             pod: "{{ $labels.pod }}"
+#           annotations: 
+#             summary: Pod Memory Usage Warning
+#             description: Kubernetes Pod memory usage is nearing limit (>80%)
 
 
