@@ -6,3 +6,4 @@ helmCharts:
     version: 6.23.0
     releaseName: grafana
     valuesFile: values.yaml
+    namespace: monitoring
