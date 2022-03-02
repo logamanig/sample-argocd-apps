@@ -1,5 +1,5 @@
 kind: Kustomization
-namespace: tools
+namespace: vault
 
 helmCharts:
   - name: vault
