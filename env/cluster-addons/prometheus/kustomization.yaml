@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: prometheus
 
 helmCharts:
   - name: kube-prometheus-stack
@@ -8,3 +7,4 @@ helmCharts:
     releaseName: prometheus
     valuesFile: values.yaml
     includeCRDs: true
+    namespace: prometheus
