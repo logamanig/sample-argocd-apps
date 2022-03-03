@@ -5,7 +5,7 @@ keepCRDs: false
 
 controller:
   image:
-    tag: 1.2.0-rc2 # comment out if pre-release or other than the chart defined versions not required. Version override to use rc version which is not possible with argo helm chart as it only supports stable version
+    tag: v1.2.0-rc2 # comment out if pre-release or other than the chart defined versions not required. Version override to use rc version which is not possible with argo helm chart as it only supports stable version
 dashboard:
   # -- Deploy dashboard server
   enabled: true
