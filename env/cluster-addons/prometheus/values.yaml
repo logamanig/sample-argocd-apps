@@ -11,8 +11,8 @@ prometheus:
     port: 9090
 
     additionalPorts:
-      - 80
-      - 443
+      - http: 80
+      - https: 443
   
   ingress:
     enabled: true
@@ -34,7 +34,7 @@ prometheus-operator:
         linkerd.io/inject: disabled
   # Use certmanager to generate webhook certs
     certManager:
-      enabled: false
+      enabled: true
       # self-signed root certificate
       rootCert:
         duration: ""  # default to be 5y
