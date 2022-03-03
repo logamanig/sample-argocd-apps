@@ -1,0 +1,45 @@
+# -- Install and upgrade CRDs
+installCRDs: true
+# -- Keep CRD's on helm uninstall
+keepCRDs: false
+
+dashboard:
+  # -- Deploy dashboard server
+  enabled: true
+  ingress:
+    enabled: true
+    annotations: {}
+    labels: {}
+    ingressClassName: "nginx"
+
+    hosts:
+      - mk.rollouts.local
+
+    paths:
+      - /
+    pathType: Prefix
+    extraPaths:
+      - path: /*
+        pathType: Prefix
+        backend:
+          service:
+            name: ssl-redirect
+            port:
+              name: use-annotation
+
+    # -- Dashboard ingress tls
+    tls:
+    # - secretName: argorollouts-example-tls
+      - hosts:
+          - mk.rollouts.local
+
+metrics:
+    # -- Deploy metrics service
+    enabled: true
+    serviceMonitor:
+      # -- Enable a prometheus ServiceMonitor
+      enabled: true
+      # -- Labels to be added to the ServiceMonitor
+      additionalLabels: {}
+      # -- Annotations to be added to the ServiceMonitor
+      additionalAnnotations: {}

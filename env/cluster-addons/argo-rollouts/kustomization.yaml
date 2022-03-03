@@ -1,0 +1,10 @@
+kind: Kustomization
+
+helmCharts:
+  - name: argo-rollouts
+    repo: https://argoproj.github.io/argo-helm
+    version: 2.10.0
+    releaseName: argo-rollouts
+    valuesFile: values.yaml
+    includeCRDs: true
+    namespace: argo-rollouts
