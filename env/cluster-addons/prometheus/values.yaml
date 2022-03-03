@@ -8,7 +8,11 @@ prometheus:
   enabled: true
 
   service:
-    port: 80
+    port: 9090
+
+    additionalPorts:
+      - 80
+      - 443
   
   ingress:
     enabled: true
@@ -25,9 +29,9 @@ prometheus-operator:
     enabled: true
   admissionWebhooks: 
     enabled: true
-    # patch:
-    #   podAnnotations:
-    #     linkerd.io/inject: disabled
+    patch:
+      podAnnotations:
+        linkerd.io/inject: disabled
   # Use certmanager to generate webhook certs
     certManager:
       enabled: false
