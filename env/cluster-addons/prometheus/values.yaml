@@ -22,12 +22,12 @@ prometheus:
 
 prometheus-operator:
   tls:
-    enabled: false
+    enabled: true
   admissionWebhooks: 
-    enabled: false
-    patch:
-      podAnnotations:
-        linkerd.io/inject: disabled
+    enabled: true
+    # patch:
+    #   podAnnotations:
+    #     linkerd.io/inject: disabled
   # Use certmanager to generate webhook certs
     certManager:
       enabled: false
