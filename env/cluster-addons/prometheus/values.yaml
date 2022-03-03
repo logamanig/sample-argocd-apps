@@ -25,6 +25,9 @@ prometheus-operator:
     enabled: false
   admissionWebhooks: 
     enabled: false
+    patch:
+      podAnnotations:
+        linkerd.io/inject: disabled
   # Use certmanager to generate webhook certs
     certManager:
       enabled: false
