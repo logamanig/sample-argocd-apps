@@ -1,0 +1,26 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: sidecar-for-my-app
+spec:
+  mode: DaemonSet
+  config: |
+    receivers:
+      jaeger:
+        protocols:
+          grpc:
+      otlp:
+        protocols:
+          grpc:
+          http:
+    processors:
+
+    exporters:
+      logging:
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp, jaeger]
+          processors: []
+          exporters: [logging]

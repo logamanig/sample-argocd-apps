@@ -1,0 +1,10 @@
+kind: Kustomization
+
+helmCharts:
+  - name: opentelemetry-operator
+    repo: https://open-telemetry.github.io/opentelemetry-helm-charts
+    version: 33.1.0
+    releaseName: opentelemetry-operator
+    valuesFile: values.yaml
+    includeCRDs: true
+    namespace: opentelemetry-operator
