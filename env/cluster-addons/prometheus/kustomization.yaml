@@ -8,3 +8,6 @@ helmCharts:
     valuesFile: values.yaml
     includeCRDs: true
     namespace: prometheus
+
+patchesStrategicMerge:
+  - "./overlays/crd-prometheuses.monitoring.coreos.com.yaml"
