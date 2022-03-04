@@ -9,9 +9,9 @@ spec:
   ingressClassName: nginx
   # tls:
   # - hosts:
-  #   - sso.192.168.64.15.nip.io
+  #   - sso.192.168.64.20.nip.io
   rules:
-  - host: sso.192.168.64.17.nip.io
+  - host: sso.192.168.64.20.nip.io
     http:
       paths:
       - pathType: Prefix
