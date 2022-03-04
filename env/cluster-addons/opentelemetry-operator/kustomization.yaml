@@ -1,13 +1,10 @@
 kind: Kustomization
 
-resources:
-  - "./resources/opentelemetry-collector.yaml"
-
 helmCharts:
-  - name: opentelemetry-operator
-    repo: https://open-telemetry.github.io/opentelemetry-helm-charts
-    version: 0.6.3
-    releaseName: opentelemetry-operator
+  - name: keda
+    repo: https://kedacore.github.io/charts
+    version: 2.6.2
+    releaseName: keda
     valuesFile: values.yaml
     includeCRDs: true
-    namespace: opentelemetry-operator
+    namespace: keda
