@@ -6,5 +6,5 @@ helmCharts:
     version: 2.6.2
     releaseName: keda
     valuesFile: values.yaml
-    includeCRDs: true
+    includeCRDs: false
     namespace: keda

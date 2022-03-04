@@ -10,7 +10,7 @@ helmCharts:
     version: 1.7.1
     releaseName: cert-manager
     valuesFile: values.yaml
-    includeCRDs: true
+    includeCRDs: false
     namespace: cert-manager
 
   - name: cert-manager-trust
