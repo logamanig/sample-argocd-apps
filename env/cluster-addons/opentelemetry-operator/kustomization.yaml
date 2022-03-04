@@ -1,5 +1,8 @@
 kind: Kustomization
 
+resources:
+  - "./resources/opentelemetry-collector.yaml"
+
 helmCharts:
   - name: opentelemetry-operator
     repo: https://open-telemetry.github.io/opentelemetry-helm-charts
