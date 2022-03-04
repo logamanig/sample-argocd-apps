@@ -1,37 +1,11 @@
-prometheus:
-  metricServer:
+admissionWebhooks:
+  failurePolicy: Fail
+  enabled: true
+
+  ## Provide the issuer kind and name to do the cert auth job.
+  ## By default, OpenTelemetry Operator will use self-signer issuer.
+  certManager:
     enabled: true
-    port: 9022
-    portName: metrics
-    path: /metrics
-    podMonitor:
-      # Enables PodMonitor creation for the Prometheus Operator
-      enabled: true
-      interval:
-      scrapeTimeout:
-      namespace:
-      additionalLabels: {}
-  operator:
-    enabled: true
-    port: 8080
-    path: /metrics
-    podMonitor:
-      # Enables PodMonitor creation for the Prometheus Operator
-      enabled: true
-      interval:
-      scrapeTimeout:
-      namespace:
-      additionalLabels: {}
-    prometheusRules:
-      # Enables PrometheusRules creation for the Prometheus Operator
-      enabled: true
-      namespace:
-      additionalLabels: {}
-      alerts: #[]
-        - alert: KedaScalerErrors
-          annotations:
-            description: Keda scaledObject {{ $labels.scaledObject }} is experiencing errors with {{ $labels.scaler }} scaler
-            summary: Keda Scaler {{ $labels.scaler }} Errors
-          expr: sum by ( scaledObject , scaler) (rate(keda_metrics_adapter_scaler_errors[2m]))  > 0
-          for: 2m
-          labels:
+    issuerRef: {}
+      # kind:
+      # name:
