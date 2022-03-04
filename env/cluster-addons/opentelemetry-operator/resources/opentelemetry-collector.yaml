@@ -3,7 +3,7 @@ kind: OpenTelemetryCollector
 metadata:
   name: otel-collector-daemonset
 spec:
-  mode: DaemonSet
+  mode: daemonset
   config: |
     receivers:
       jaeger:
