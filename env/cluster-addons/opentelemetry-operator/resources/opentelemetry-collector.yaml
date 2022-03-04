@@ -1,7 +1,7 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: OpenTelemetryCollector
 metadata:
-  name: sidecar-for-my-app
+  name: otel-collector-daemonset
 spec:
   mode: DaemonSet
   config: |
