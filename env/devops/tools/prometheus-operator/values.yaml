@@ -127,7 +127,17 @@ prometheusOperator:
   enabled: false
 
 prometheus:
-  enabled: false
+  enabled: true
 
-prometheus-operator:
-  enabled: false
+  service:
+    port: 9090
+  
+  ingress:
+    enabled: true
+    hosts:
+      - mk.prometheus.local
+    paths:
+      - /
+    tls:
+      - hosts:
+          - mk.prometheus.local
