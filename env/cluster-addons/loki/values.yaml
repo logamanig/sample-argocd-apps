@@ -11,10 +11,11 @@ gateway:
             # Newly added optional property
             pathType: Prefix
 
-# ingester:
-#   persistence: true
-#   size: 2Gi
-#   storageClass: 
+ingester:
+  # persistence: true
+  # size: 2Gi
+  # storageClass: 
+  affinity: 
 
 # ServiceMonitor configuration
 serviceMonitor:
