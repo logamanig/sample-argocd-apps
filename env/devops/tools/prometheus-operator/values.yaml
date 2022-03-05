@@ -6,26 +6,56 @@ defaultRules:
   create: false
 
 alertmanager:
-  enabled: false
-
-grafana:
   enabled: true
 
   ingress:
     enabled: true
 
+    ingressClassName: nginx
+
+    annotations: {}
+
+    labels: {}
+
+    hosts:
+      - mk.alertmanager.local
+
+    paths:
+      - /
+
+    pathType: ImplementationSpecific
+
+    tls:
+      - hosts:
+        - mk.alertmanager.local
+    # - secretName: alertmanager-general-tls
+    #   hosts:
+    #   - mk.alertmanager.local
+
+nodeExporter:
+  enabled: false
+
+grafana:
+  enabled: true
+  
+  ingress:
+    enabled: true
+
+    ingressClassName: nginx
     annotations: {}
     labels: {}
 
-    # hosts:
-    #   - mk.grafana.local
+    hosts:
+      - mk.grafana.local
     
     path: /
 
-    tls: []
-    # - secretName: grafana-general-tls
+    tls:
+      - hosts:
+        - mk.grafana.local
+    # - secretName: grafana-tls
     #   hosts:
-    #   - grafana.example.com
+    #   - mk.grafana.local
 
   sidecar:
     dashboards:

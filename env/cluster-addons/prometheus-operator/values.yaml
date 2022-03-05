@@ -15,11 +15,6 @@ prometheus:
 
   service:
     port: 9090
-
-    additionalPorts:
-      - name: http
-        port: 80
-        targetPort: 9090
   
   ingress:
     enabled: true
@@ -27,9 +22,9 @@ prometheus:
       - mk.prometheus.local
     paths:
       - /
-    # tls:
-    #   - hosts:
-    #       - mk.prometheus.local
+    tls:
+      - hosts:
+          - mk.prometheus.local
 
 prometheus-operator:
   tls:
