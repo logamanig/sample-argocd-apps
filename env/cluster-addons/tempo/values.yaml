@@ -27,6 +27,7 @@ gateway:
 ingester:
   persistence: true
   size: 2Gi
+  storageClass: 
   
 # ServiceMonitor configuration
 serviceMonitor:
