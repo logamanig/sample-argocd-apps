@@ -1,16 +1,3 @@
-global:
-  # image:
-  #   # -- Overrides the Docker registry globally for all images
-  #   registry: null
-  # # -- Overrides the priorityClassName for all pods
-  # priorityClassName: null
-  # # -- configures cluster domain ("cluster.local" by default)
-  # clusterDomain: "cluster.local"
-  # # -- configures DNS service name
-  dnsService: "coredns"
-  # -- configures DNS service namespace
-  # dnsNamespace: "kube-system"
-
 gateway:
   ingress:
     enabled: true
