@@ -128,16 +128,3 @@ prometheusOperator:
 
 prometheus:
   enabled: true
-
-  service:
-    port: 9090
-  
-  ingress:
-    enabled: true
-    hosts:
-      - mk.prometheus.local
-    paths:
-      - /
-    tls:
-      - hosts:
-          - mk.prometheus.local
