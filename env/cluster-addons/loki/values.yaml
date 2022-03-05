@@ -24,6 +24,10 @@ gateway:
             # Newly added optional property
             pathType: Prefix
 
+ingester:
+  persistence: true
+  size: 2Gi
+  
 # ServiceMonitor configuration
 serviceMonitor:
   # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
