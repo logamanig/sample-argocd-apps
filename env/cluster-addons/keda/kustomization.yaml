@@ -1,10 +1,10 @@
 kind: Kustomization
 
 helmCharts:
-  - name: keda
-    repo: https://kedacore.github.io/charts
+  - repo: https://kedacore.github.io/charts
+    name: keda
     version: 2.6.2
-    releaseName: keda
-    valuesFile: values.yaml
     includeCRDs: true
     namespace: keda
+    releaseName: keda
+    valuesFile: values.yaml

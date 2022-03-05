@@ -4,13 +4,13 @@
 kind: Kustomization
 
 helmCharts:
-  - name: kube-prometheus-stack
-    repo: https://prometheus-community.github.io/helm-charts
+  - repo: https://prometheus-community.github.io/helm-charts
+    name: kube-prometheus-stack
     version: 33.1.0
-    releaseName: prometheus-operator
-    valuesFile: values.yaml
     includeCRDs: true
     namespace: prometheus-operator
+    releaseName: prometheus-operator
+    valuesFile: values.yaml
 
 patchesStrategicMerge:
   # to force argocd to replace(create/recreate) instead appling this crd as a workaround for it's name too long issue

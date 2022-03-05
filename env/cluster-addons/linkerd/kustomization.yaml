@@ -5,8 +5,8 @@ resources:
   - "./resources/use-certmanager-cert-as-linkerd-issuer-cert.yaml"
 
 helmCharts:
-  - name: linkerd2
-    repo: https://helm.linkerd.io/stable
+  - repo: https://helm.linkerd.io/stable
+    name: linkerd2
     version: 2.11.1
     releaseName: linkerd
     valuesFile: values.yaml

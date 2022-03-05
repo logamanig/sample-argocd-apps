@@ -2,8 +2,8 @@ kind: Kustomization
 namespace: vault
 
 helmCharts:
-  - name: vault
-    repo: https://helm.releases.hashicorp.com
+  - repo: https://helm.releases.hashicorp.com
+    name: vault
     version: 0.19.0
     releaseName: vault
     valuesFile: values.yaml

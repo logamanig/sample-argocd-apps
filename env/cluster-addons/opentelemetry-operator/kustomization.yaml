@@ -4,10 +4,10 @@ resources:
   - "./resources/opentelemetry-collector.yaml"
 
 helmCharts:
-  - name: opentelemetry-operator
-    repo: https://open-telemetry.github.io/opentelemetry-helm-charts
+  - repo: https://open-telemetry.github.io/opentelemetry-helm-charts
+    name: opentelemetry-operator
     version: 0.6.3
-    releaseName: opentelemetry-operator
-    valuesFile: values.yaml
     includeCRDs: true
     namespace: opentelemetry-operator
+    releaseName: opentelemetry-operator
+    valuesFile: values.yaml

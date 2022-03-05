@@ -5,16 +5,16 @@ resources:
   - "./resources/linkerd-cert-issuer.yaml"
 
 helmCharts:
-  - name: cert-manager
-    repo: https://charts.jetstack.io
+  - repo: https://charts.jetstack.io
+    name: cert-manager
     version: 1.7.1
-    releaseName: cert-manager
-    valuesFile: values.yaml
     includeCRDs: true
     namespace: cert-manager
+    releaseName: cert-manager
+    valuesFile: values.yaml
 
-  - name: cert-manager-trust
-    repo: https://charts.jetstack.io
+  - repo: https://charts.jetstack.io
+    name: cert-manager-trust
     version: 0.1.1
     releaseName: cert-manager-trust
     includeCRDs: true

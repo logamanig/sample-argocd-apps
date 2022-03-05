@@ -2,8 +2,8 @@ kind: Kustomization
 namespace: ingress-nginx
 
 helmCharts:
-  - name: ingress-nginx
-    repo: https://kubernetes.github.io/ingress-nginx
+  - repo: https://kubernetes.github.io/ingress-nginx
+    name: ingress-nginx
     version: 4.0.16
     releaseName: nginx-ingress
     valuesFile: values.yaml

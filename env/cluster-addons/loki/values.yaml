@@ -1,0 +1,51 @@
+global:
+  # image:
+  #   # -- Overrides the Docker registry globally for all images
+  #   registry: null
+  # # -- Overrides the priorityClassName for all pods
+  # priorityClassName: null
+  # # -- configures cluster domain ("cluster.local" by default)
+  # clusterDomain: "cluster.local"
+  # # -- configures DNS service name
+  dnsService: "core-dns"
+  # -- configures DNS service namespace
+  # dnsNamespace: "kube-system"
+
+gateway:
+  ingress:
+    enabled: true
+    # Newly added optional property
+    ingressClassName: nginx
+    hosts:
+      - host: mk.loki.local
+        paths:
+          # New data structure introduced
+          - path: /
+            # Newly added optional property
+            pathType: Prefix
+
+# ServiceMonitor configuration
+serviceMonitor:
+  # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
+  enabled: true
+
+# Rules for the Prometheus Operator
+prometheusRule:
+  # -- If enabled, a PrometheusRule resource for Prometheus Operator is created
+  enabled: true
+  # -- Alternative namespace for the PrometheusRule resource
+  namespace: null
+  # -- PrometheusRule annotations
+  annotations: {}
+  # -- Additional PrometheusRule labels
+  labels: {}
+  # -- Contents of Prometheus rules file
+  groups: # []
+  - name: loki-rules
+    rules:
+      - record: job:loki_request_duration_seconds_bucket:sum_rate
+        expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, job)
+      - record: job_route:loki_request_duration_seconds_bucket:sum_rate
+        expr: sum(rate(loki_request_duration_seconds_bucket[1m])) by (le, job, route)
+      - record: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate
+        expr: sum(rate(container_cpu_usage_seconds_total[1m])) by (node, namespace, pod, container)
