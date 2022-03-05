@@ -17,6 +17,39 @@ ingester:
   # storageClass: 
   affinity: 
 
+distributor:
+  affinity: 
+
+querier:
+  affinity:
+
+queryFrontend:
+  affinity: 
+
+tableManager:
+  affinity:
+
+gateway:
+  affinity:
+
+ruler:
+  affinity:
+
+indexGateway:
+  affinity:
+
+memcachedChunks:
+  affinity:
+
+memcachedFrontend:
+  affinity:
+
+memcachedIndexQueries:
+  affinity:
+
+memcachedIndexWrites:
+  affinity:
+  
 # ServiceMonitor configuration
 serviceMonitor:
   # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
