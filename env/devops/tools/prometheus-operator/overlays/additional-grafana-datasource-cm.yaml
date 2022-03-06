@@ -11,6 +11,16 @@ data:
       version: 1
       jsonData:
         timeInterval: 30s
+
+    - name: Tempo
+      type: tempo
+      url: http://tempo-tempo-distributed-query-frontend.tempo:3100
+      access: proxy
+      isDefault: false
+      editable: false
+      version: 1
+      jsonData:
+        timeInterval: 30s
 kind: ConfigMap
 metadata:
   name: grafana-kube-prometheus-st-grafana-datasource

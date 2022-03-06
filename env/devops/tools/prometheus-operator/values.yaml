@@ -96,17 +96,6 @@ grafana:
       label: grafana_datasource
       labelValue: "1"
 
-    additionalDataSources:
-      - name: loki
-        type: loki
-        access: proxy
-        url: http://loki-loki-distributed-gateway.loki
-
-      - name: tempo
-        type: tempo
-        access: proxy
-        url: http://tempo-tempo-distributed-query-frontend.tempo:3100
-
 kubeApiServer:
   enabled: false
 
