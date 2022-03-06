@@ -27,7 +27,7 @@ alertmanager:
 
     tls:
       - hosts:
-        - mk.alertmanager.local
+          - mk.alertmanager.local
     # - secretName: alertmanager-general-tls
     #   hosts:
     #   - mk.alertmanager.local
@@ -37,7 +37,7 @@ nodeExporter:
 
 grafana:
   enabled: true
-  
+
   ingress:
     enabled: true
 
@@ -47,12 +47,12 @@ grafana:
 
     hosts:
       - mk.grafana.local
-    
+
     path: /
 
     tls:
       - hosts:
-        - mk.grafana.local
+          - mk.grafana.local
     # - secretName: grafana-tls
     #   hosts:
     #   - mk.grafana.local
@@ -95,6 +95,15 @@ grafana:
       createPrometheusReplicasDatasources: false
       label: grafana_datasource
       labelValue: "1"
+
+    additionalDataSources:
+      - name: loki
+        type: loki
+        url: http://loki-loki-distributed-gateway.loki
+
+      - name: tempo
+        type: tempo
+        url: http://tempo-tempo-distributed-query-frontend.tempo:3100
 
 kubeApiServer:
   enabled: false

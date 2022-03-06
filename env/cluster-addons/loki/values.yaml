@@ -27,7 +27,7 @@ queryFrontend:
   affinity: 
 
 tableManager:
-  affinity:
+  affinity: 
 
 gateway:
   affinity:
@@ -49,7 +49,7 @@ memcachedIndexQueries:
 
 memcachedIndexWrites:
   affinity:
-  
+
 # ServiceMonitor configuration
 serviceMonitor:
   # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
