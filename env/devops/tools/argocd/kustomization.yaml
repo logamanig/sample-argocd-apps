@@ -2,10 +2,7 @@ kind: Kustomization
 namespace: argocd
 
 resources:
-  - "./resources/crds/application-crd.yaml"
-  - "./resources/crds/appproject-crd.yaml"
-  # - "./resources/argocd-install.yaml"
-  - "./resources/namespace-install.yaml"
+  - "./resources/argocd-install.yaml"
   - "./resources/ingress.yaml"
 
 patches:
