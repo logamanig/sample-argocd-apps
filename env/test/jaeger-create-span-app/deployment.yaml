@@ -20,4 +20,4 @@ spec:
           image: jaegertracing/vertx-create-span:operator-e2e-tests
           ports:
             - containerPort: 8080
-              protocol: TCP 
+              protocol: TCP

@@ -2,14 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: jaeger-create-tracing-span
+  namespace: argocd
 spec:
   destination:
-    name: ''
+    name: ""
     namespace: test
-    server: 'https://kubernetes.default.svc'
+    server: "https://kubernetes.default.svc"
   source:
     path: env/test/jaeger-create-span-app
-    repoURL: 'https://github.com/logamanig/sample-argocd-apps'
+    repoURL: "https://github.com/logamanig/sample-argocd-apps"
     targetRevision: master
   project: default
   syncPolicy:
