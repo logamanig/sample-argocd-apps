@@ -14,7 +14,7 @@ spec:
       labels:
         app: my-app
       annotations:
-        instrumentation.opentelemetry.io/inject-java: "true"
+        instrumentation.opentelemetry.io/inject-java: auto-instrumentation
     spec:
       containers:
         - name: myapp
