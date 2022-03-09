@@ -97,13 +97,13 @@ grafana:
       labelValue: "1"
 
 kubeApiServer:
-  enabled: false
+  enabled: true
 
 kubelet:
   enabled: false
 
 kubeControllerManager:
-  enabled: false
+  enabled: true
 
 coreDns:
   enabled: false
