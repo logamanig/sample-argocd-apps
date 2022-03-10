@@ -17,3 +17,4 @@ data:
 kind: ConfigMap
 metadata:
   name: grafana
+  namespace: prometheus-operator
