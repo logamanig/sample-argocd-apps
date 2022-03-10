@@ -9,7 +9,7 @@ spec:
     receivers:
       jaeger:
         protocols:
-          thrift_compact:
+          grpc:
       otlp:
         protocols:
           grpc:
