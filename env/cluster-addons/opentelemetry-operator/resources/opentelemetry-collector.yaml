@@ -34,6 +34,22 @@ spec:
         endpoint: mk.tempo.192.168.64.25.nip.io:443
         tls:
           insecure_skip_verify: true
+      loki:
+        endpoint: http://loki-loki-distributed-gateway.loki/loki/api/v1/push
+        # tenant_id: "example"
+        labels:
+          resource:
+            # Allowing 'container.name' attribute and transform it to 'container_name', which is a valid Loki label name.
+            container.name: "container_name"
+            # Allowing 'k8s.cluster.name' attribute and transform it to 'k8s_cluster_name', which is a valid Loki label name.
+            k8s.cluster.name: "k8s_cluster_name"
+          attributes:
+            # Allowing 'severity' attribute and not providing a mapping, since the attribute name is a valid Loki label name.
+            severity: ""
+            http.status_code: "http_status_code" 
+          record:
+            # Adds 'traceID' as a log label, seen as 'traceid' in Loki.
+            traceID: "traceid"
 
     service:
       pipelines:
