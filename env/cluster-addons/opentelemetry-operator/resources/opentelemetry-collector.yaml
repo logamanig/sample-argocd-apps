@@ -31,7 +31,9 @@ spec:
       logging:
         loglevel: debug
       otlp:
-        endpoint: tempo-tempo-distributed-gateway.tempo
+        endpoint: mk.tempo.192.168.64.25.nip.io:443
+        tls:
+          insecure_skip_verify: true
 
     service:
       pipelines:
