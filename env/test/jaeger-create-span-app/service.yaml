@@ -5,7 +5,7 @@ metadata:
   namespace: test
 spec:
   selector:
-    app: m-app
+    app: my-app
   ports:
   - name: http
     port: 8080
