@@ -5,7 +5,7 @@ metadata:
   namespace: test
 spec:
   exporter:
-    endpoint: http://otel-collector-daemonset-collector.opentelemetry-operator:4318
+    endpoint: otel-collector-daemonset-collector.opentelemetry-operator:4317
   propagators:
     - tracecontext
     - baggage
