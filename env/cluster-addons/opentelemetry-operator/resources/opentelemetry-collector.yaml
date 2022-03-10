@@ -31,7 +31,6 @@ spec:
 
     exporters:
       logging:
-        loglevel: debug
       otlp:
         endpoint: mk.tempo.192.168.64.26.nip.io:443
         tls:
