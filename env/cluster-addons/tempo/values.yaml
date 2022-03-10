@@ -9,20 +9,12 @@ gateway:
     ingressClassName: nginx
     annotations:
       nginx.ingress.kubernetes.io/ssl-passthrough: true
-      
+
     hosts:
-      - host: mk.tempo.local
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
       - host: mk.tempo.192.168.64.26.nip.io
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
     tls:
       # - secretName: tempo-gateway-tls
       - hosts:
-        - mk.tempo.local
         - mk.tempo.192.168.64.26.nip.io
 
 # ingester:
