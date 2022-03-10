@@ -12,7 +12,7 @@ grafana:
   forceDeployDatasources: true
 
 nodeExporter:
-  enabled: true
+  enabled: false
 
 prometheus:
   enabled: true
