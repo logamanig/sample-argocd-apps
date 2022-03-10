@@ -53,8 +53,6 @@ spec:
           # record:
           #   # Adds 'traceID' as a log label, seen as 'traceid' in Loki.
           #   traceID: "traceid"
-    extensions:
-      health_check:
 
     service:
       pipelines:
@@ -70,4 +68,3 @@ spec:
           receivers: [otlp]
           processors: []
           exporters: [logging, loki]
-        extensions: [health_check]
