@@ -1,3 +1,7 @@
+search:
+  # -- Enable Tempo search
+  enabled: true
+
 gateway:
   enabled: true
   ingress:
