@@ -24,4 +24,3 @@ data:
 kind: ConfigMap
 metadata:
   name: grafana-kube-prometheus-st-grafana-datasource
-  namespace: prometheus-operator
