@@ -38,3 +38,7 @@ spec:
           receivers: [prometheus, otlp, jaeger]
           processors: []
           exporters: [logging, otlp]
+        metrics:
+          receivers: [prometheus]
+          processors: []
+          exporters: [logging]
