@@ -32,7 +32,7 @@ spec:
     exporters:
       logging:
       otlp:
-        endpoint: mk.tempo.192.168.64.26.nip.io:443
+        endpoint: tempo-tempo-distributed-distributor.tempo:9095
         tls:
           insecure_skip_verify: true
           insecure: true
