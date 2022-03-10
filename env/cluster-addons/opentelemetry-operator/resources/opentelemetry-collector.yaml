@@ -31,7 +31,7 @@ spec:
       logging:
         loglevel: debug
       otlp:
-        endpoint: http://tempo-tempo-distributed-query-frontend.tempo:3100
+        endpoint: tempo-tempo-distributed-gateway.tempo
 
     service:
       pipelines:
