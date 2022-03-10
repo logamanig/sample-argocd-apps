@@ -35,6 +35,7 @@ spec:
         endpoint: mk.tempo.192.168.64.26.nip.io:443
         tls:
           insecure_skip_verify: true
+          insecure: true
       loki:
         endpoint: http://loki-loki-distributed-gateway.loki/loki/api/v1/push
         # tenant_id: "example"
