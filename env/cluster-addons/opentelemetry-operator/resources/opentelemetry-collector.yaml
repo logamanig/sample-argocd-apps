@@ -32,7 +32,7 @@ spec:
     exporters:
       logging:
       otlp:
-        endpoint: tempo-tempo-distributed-gateway
+        endpoint: tempo-tempo-distributed-gateway.temp
         tls:
           insecure: true
           # insecure_skip_verify: true
