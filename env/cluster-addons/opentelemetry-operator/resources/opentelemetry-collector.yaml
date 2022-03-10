@@ -37,6 +37,8 @@ spec:
       loki:
         endpoint: http://loki-loki-distributed-gateway.loki/loki/api/v1/push
         # tenant_id: "example"
+        tls:
+          insecure: true
         labels:
           resource:
             # Allowing 'container.name' attribute and transform it to 'container_name', which is a valid Loki label name.
@@ -61,3 +63,4 @@ spec:
           receivers: [prometheus]
           processors: []
           exporters: [logging]
+        lo
