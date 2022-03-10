@@ -32,9 +32,10 @@ spec:
     exporters:
       logging:
       otlp:
-        endpoint: mk.tempo.192.168.64.26.nip.io:443
+        endpoint: tempo-tempo-distributed-gateway
         tls:
-          insecure_skip_verify: true
+          insecure: true
+          # insecure_skip_verify: true
       loki:
         endpoint: http://loki-loki-distributed-gateway.loki/loki/api/v1/push
         # tenant_id: "example"
