@@ -35,7 +35,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [prometheus, otlp, jaeger]
+          receivers: [otlp, jaeger]
           processors: []
           exporters: [logging, otlp]
         metrics:
