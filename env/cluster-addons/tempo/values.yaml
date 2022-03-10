@@ -9,10 +9,15 @@ gateway:
         paths:
           - path: /
             pathType: ImplementationSpecific
+      - host: mk.tempo.192.168.64.25.nip.io
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
     tls:
       # - secretName: tempo-gateway-tls
       - hosts:
         - mk.tempo.local
+        - mk.tempo.192.168.64.25.nip.io
 
 # ingester:
 #   persistence: true
