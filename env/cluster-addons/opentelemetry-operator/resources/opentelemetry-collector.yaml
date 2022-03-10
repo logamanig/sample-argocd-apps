@@ -31,11 +31,10 @@ spec:
 
     exporters:
       logging:
-      otlp:
-        endpoint: tempo-tempo-distributed-gateway.temp
+      tempo:
+        endpoint: mk.tempo.192.168.64.26.nip.io:443
         tls:
-          insecure: true
-          # insecure_skip_verify: true
+          insecure_skip_verify: true
       loki:
         endpoint: http://loki-loki-distributed-gateway.loki/loki/api/v1/push
         # tenant_id: "example"
@@ -60,7 +59,7 @@ spec:
         traces:
           receivers: [otlp, jaeger]
           processors: [batch]
-          exporters: [logging, otlp]
+          exporters: [logging, tempo]
         metrics:
           receivers: [prometheus]
           processors: [batch]
