@@ -12,6 +12,8 @@ gateway:
 
     hosts:
       - host: mk.tempo.192.168.64.26.nip.io
+        paths:
+          - path: /
     tls:
       # - secretName: tempo-gateway-tls
       - hosts:
