@@ -12,7 +12,8 @@ spec:
           grpc:
           http:
 
-      nop:
+      filelog:
+      journald:
 
       prometheus:
         config:
@@ -26,7 +27,6 @@ spec:
                   regex: '.*grpc_io.*'
                   action: drop
     processors:
-      nop:
       batch:
 
     exporters:
@@ -71,6 +71,6 @@ spec:
           processors: [batch]
           exporters: [logging]
         logs:
-          receivers: [otlp, nop]
-          processors: [nop, batch]
+          receivers: [filelog, journald]
+          processors: [batch]
           exporters: [logging, loki]
