@@ -11,7 +11,9 @@ spec:
         protocols:
           grpc:
           http:
-      
+
+      nop:
+
       prometheus:
         config:
           scrape_configs:
@@ -24,6 +26,7 @@ spec:
                   regex: '.*grpc_io.*'
                   action: drop
     processors:
+      nop:
       batch:
 
     exporters:
@@ -68,6 +71,6 @@ spec:
           processors: [batch]
           exporters: [logging]
         logs:
-          receivers: [otlp]
-          processors: [batch]
+          receivers: [otlp, nop]
+          processors: [nop, batch]
           exporters: [logging, loki]
