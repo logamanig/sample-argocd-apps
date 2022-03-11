@@ -60,7 +60,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlp, jaeger]
+          receivers: [otlp]
           processors: [batch]
           exporters: [logging, otlphttp/tempo]
         metrics:
