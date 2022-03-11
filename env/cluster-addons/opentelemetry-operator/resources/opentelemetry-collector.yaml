@@ -53,7 +53,7 @@ spec:
           attributes:
             # Allowing 'severity' attribute and not providing a mapping, since the attribute name is a valid Loki label name.
             severity: ""
-            http.status_code: "http_status_code" 
+            http.status_code: "http_status_code"
           record:
             # Adds 'traceID' as a log label, seen as 'traceid' in Loki.
             traceID: "traceid"
