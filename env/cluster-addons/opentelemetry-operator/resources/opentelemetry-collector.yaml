@@ -54,9 +54,11 @@ spec:
             # Allowing 'severity' attribute and not providing a mapping, since the attribute name is a valid Loki label name.
             severity: ""
             http.status_code: "http_status_code"
-          record:
-            # Adds 'traceID' as a log label, seen as 'traceid' in Loki.
             traceID: "traceid"
+          # Move traceId to record section once the https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/7569 is released
+          # record:
+          #   # Adds 'traceID' as a log label, seen as 'traceid' in Loki.
+          #   traceID: "traceid"
 
     service:
       pipelines:
