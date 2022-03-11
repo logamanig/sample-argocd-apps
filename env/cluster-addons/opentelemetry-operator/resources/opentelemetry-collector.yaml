@@ -36,8 +36,8 @@ spec:
       otlp/tempo:
         endpoint: tempo-tempo-distributed-gateway.tempo:80
         tls:
-          insecure_skip_verify: true
-          # insecure: true
+          # insecure_skip_verify: true
+          insecure: true
 
       loki:
         endpoint: http://loki-loki-distributed-gateway.loki/loki/api/v1/push
