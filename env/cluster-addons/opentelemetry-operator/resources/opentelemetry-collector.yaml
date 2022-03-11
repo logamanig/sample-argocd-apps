@@ -32,7 +32,7 @@ spec:
     exporters:
       logging:
       otlp:
-        endpoint: http://tempo-tempo-distributed-distributor.tempo.svc.cluster.local:55681
+        endpoint: https://mk.tempo.192.168.64.26.nip.io
         tls:
           # insecure_skip_verify: true
           insecure: true
