@@ -24,7 +24,6 @@ spec:
                   regex: '.*grpc_io.*'
                   action: drop
     processors:
-      k8sprocessor:
       batch:
 
     exporters:
@@ -62,13 +61,13 @@ spec:
       pipelines:
         traces:
           receivers: [otlp, jaeger]
-          processors: [k8sprocessor, batch]
+          processors: [batch]
           exporters: [logging, otlphttp/tempo]
         metrics:
           receivers: [prometheus]
-          processors: [k8sprocessor, batch]
+          processors: [batch]
           exporters: [logging]
         logs:
           receivers: [otlp]
-          processors: [k8sprocessor, batch]
+          processors: [batch]
           exporters: [logging, loki]
