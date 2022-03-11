@@ -7,9 +7,6 @@ spec:
   image: otel/opentelemetry-collector-contrib:latest
   config: |
     receivers:
-      jaeger:
-        protocols:
-          grpc:
       otlp:
         protocols:
           grpc:
@@ -27,6 +24,7 @@ spec:
                   regex: '.*grpc_io.*'
                   action: drop
     processors:
+      k8sprocessor:
       batch:
 
     exporters:
@@ -64,13 +62,13 @@ spec:
       pipelines:
         traces:
           receivers: [otlp, jaeger]
-          processors: [batch]
+          processors: [k8sprocessor, batch]
           exporters: [logging, otlphttp/tempo]
         metrics:
           receivers: [prometheus]
-          processors: [batch]
+          processors: [k8sprocessor, batch]
           exporters: [logging]
         logs:
           receivers: [otlp]
-          processors: [batch]
+          processors: [k8sprocessor, batch]
           exporters: [logging, loki]
