@@ -15,7 +15,6 @@ spec:
       filelog:
         include: 
           - /var/log/pods/*/*/*.log
-      journald:
 
       prometheus:
         config:
@@ -73,6 +72,6 @@ spec:
           processors: [batch]
           exporters: [logging]
         logs:
-          receivers: [filelog, journald]
+          receivers: [filelog]
           processors: [batch]
           exporters: [logging, loki]
