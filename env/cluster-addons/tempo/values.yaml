@@ -23,18 +23,18 @@ gateway:
 traces:
   jaeger:
     # -- Enable Tempo to ingest Jaeger GRPC traces
-    grpc: true
+    grpc: false
     # -- Enable Tempo to ingest Jaeger Thrift Binary traces
-    thriftBinary: true
+    thriftBinary: false
     # -- Enable Tempo to ingest Jaeger Thrift Compact traces
-    thriftCompact: true
+    thriftCompact: false
     # -- Enable Tempo to ingest Jaeger Thrift HTTP traces
-    thriftHttp: true
+    thriftHttp: false
   # -- Enable Tempo to ingest Zipkin traces
   zipkin: false
   otlp:
     # -- Enable Tempo to ingest Open Telemetry HTTP traces
-    http: true
+    http: false
     # -- Enable Tempo to ingest Open Telemetry GRPC traces
     grpc: true
   # -- Enable Tempo to ingest Open Census traces
