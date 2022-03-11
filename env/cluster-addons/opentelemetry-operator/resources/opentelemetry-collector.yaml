@@ -33,7 +33,7 @@ spec:
       logging:
         # logLevel: debug
 
-      otlp/tempo:
+      otlphttp/tempo:
         endpoint: https://mk.tempo.192.168.64.26.nip.io:443/otlp
         tls:
           insecure_skip_verify: true
@@ -63,7 +63,7 @@ spec:
         traces:
           receivers: [otlp, jaeger]
           processors: [batch]
-          exporters: [logging, otlp/tempo]
+          exporters: [logging, otlphttp/tempo]
         metrics:
           receivers: [prometheus]
           processors: [batch]
