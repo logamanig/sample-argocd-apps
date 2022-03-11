@@ -13,6 +13,8 @@ spec:
           http:
 
       filelog:
+        include: 
+          - /var/log/pods/*/*/*.log
       journald:
 
       prometheus:
