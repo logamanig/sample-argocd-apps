@@ -34,7 +34,7 @@ traces:
   zipkin: false
   otlp:
     # -- Enable Tempo to ingest Open Telemetry HTTP traces
-    http: false
+    http: true
     # -- Enable Tempo to ingest Open Telemetry GRPC traces
     grpc: true
   # -- Enable Tempo to ingest Open Census traces
