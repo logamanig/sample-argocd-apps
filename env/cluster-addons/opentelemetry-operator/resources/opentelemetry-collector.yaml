@@ -35,10 +35,11 @@ spec:
         # logLevel: debug
 
       otlphttp/tempo:
-        endpoint: https://mk.tempo.192.168.64.26.nip.io:443/otlp
+        # endpoint: http://mk.tempo.192.168.64.29.nip.io/otlp # Public URL
+        endpoint: http://tempo-tempo-distributed-distributor.tempo:55681
         tls:
-          insecure_skip_verify: true
-          # insecure: true
+          # insecure_skip_verify: true # for HTTPS with invalid cert
+          insecure: true # for http only endpoint
 
       loki:
         endpoint: http://loki-loki-distributed-gateway.loki/loki/api/v1/push
