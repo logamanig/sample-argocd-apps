@@ -23,7 +23,8 @@ spec:
 
       filelog:
         include: 
-          - /var/log/pods/*/*/*.log
+          - /var/log/pods/opentelemetry-operator_otel-collector-daemonset-collector-m26z5_e84bed1c-11ea-4b1e-aea9-5575d200df04/otc-container/*.log
+          # - /var/log/pods/*/*/*.log
         include_file_name: false
         start_at: beginning
         operators:
@@ -31,7 +32,7 @@ spec:
             regex: '^(?P<time>\d{4}-\d{2}-\d{2}) (?P<sev>[A-Z]*) (?P<msg>.*)$'
             timestamp:
               parse_from: time
-              layout: '%Y-%m-%d'
+              layout: '%Y-%m-%d %T'
             severity:
               parse_from: sev
         converter:
