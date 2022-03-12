@@ -23,7 +23,7 @@ spec:
 
       filelog:
         include: 
-          - /var/log/pods/opentelemetry-operator_otel-collector-daemonset-collector-m26z5_e84bed1c-11ea-4b1e-aea9-5575d200df04/otc-container/*.log
+          - /var/log/pods/opentelemetry-operator_otel-collector-daemonset-collector-*/*/*.log
           # - /var/log/pods/*/*/*.log
         include_file_name: false
         start_at: beginning
