@@ -6,7 +6,7 @@ resources:
 helmCharts:
   - repo: https://open-telemetry.github.io/opentelemetry-helm-charts
     name: opentelemetry-operator
-    version: 0.6.3
+    version: 0.6.4
     includeCRDs: true
     namespace: opentelemetry-operator
     releaseName: opentelemetry-operator
