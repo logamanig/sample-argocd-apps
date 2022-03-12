@@ -4,7 +4,7 @@ metadata:
   name: otel-collector-daemonset
 spec:
   mode: daemonset
-  # image: otel/opentelemetry-collector-contrib:latest
+  image: otel/opentelemetry-collector-contrib:latest
   config: |
     receivers:
       otlp:
