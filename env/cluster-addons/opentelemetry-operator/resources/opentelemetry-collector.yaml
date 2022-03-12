@@ -5,6 +5,15 @@ metadata:
 spec:
   mode: daemonset
   image: otel/opentelemetry-collector-contrib:latest
+
+  volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+  volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+          
   config: |
     receivers:
       otlp:
