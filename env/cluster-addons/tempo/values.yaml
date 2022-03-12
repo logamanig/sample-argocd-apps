@@ -11,14 +11,14 @@ gateway:
     #   nginx.ingress.kubernetes.io/ssl-passthrough: true
 
     hosts:
-      - host: mk.tempo.192.168.64.30.nip.io
+      - host: mk.tempo.192.168.64.33.nip.io
         paths:
           - path: /
             pathType: ImplementationSpecific
     tls:
       # - secretName: tempo-gateway-tls
       - hosts:
-        - mk.tempo.192.168.64.30.nip.io
+        - mk.tempo.192.168.64.33.nip.io
 
 traces:
   jaeger:

@@ -21,44 +21,44 @@ spec:
           grpc:
           http:
 
-      filelog:
-        start_at: beginning
-        exclude:
-          - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
-        include:
-          - /var/log/pods/*/*/*.log
-        include_file_name: false
-        operators:
-          - id: parser-docker
-            output: extract_metadata_from_filepath
-            timestamp:
-              layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-              parse_from: time
-            type: json_parser
-          - id: extract_metadata_from_filepath
-            parse_from: $$labels.file_path
-            regex: ^\/var\/log\/pods\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[^\/]+)\/(?P<container_name>[^\._]+)\/(?P<run_id>\d+)\.log$
-            type: regex_parser
-          - attributes:
-              k8s.container.name: EXPR($.container_name)
-              k8s.namespace.name: EXPR($.namespace)
-              k8s.pod.name: EXPR($.pod_name)
-              k8s.pod.uid: EXPR($.uid)
-              run_id: EXPR($.run_id)
-              stream: EXPR($.stream)
-            resource:
-              k8s.pod.uid: EXPR($.uid)
-            type: metadata
-          - id: clean-up-log-record
-            ops:
-              - remove: logtag
-              - remove: stream
-              - remove: container_name
-              - remove: namespace
-              - remove: pod_name
-              - remove: run_id
-              - remove: uid
-            type: restructure
+      # filelog:
+      #   start_at: beginning
+      #   exclude:
+      #     - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
+      #   include:
+      #     - /var/log/pods/*/*/*.log
+      #   include_file_name: false
+      #   operators:
+      #     - id: parser-docker
+      #       output: extract_metadata_from_filepath
+      #       timestamp:
+      #         layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+      #         parse_from: time
+      #       type: json_parser
+      #     - id: extract_metadata_from_filepath
+      #       parse_from: $$labels.file_path
+      #       regex: ^\/var\/log\/pods\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[^\/]+)\/(?P<container_name>[^\._]+)\/(?P<run_id>\d+)\.log$
+      #       type: regex_parser
+      #     - attributes:
+      #         k8s.container.name: EXPR($.container_name)
+      #         k8s.namespace.name: EXPR($.namespace)
+      #         k8s.pod.name: EXPR($.pod_name)
+      #         k8s.pod.uid: EXPR($.uid)
+      #         run_id: EXPR($.run_id)
+      #         stream: EXPR($.stream)
+      #       resource:
+      #         k8s.pod.uid: EXPR($.uid)
+      #       type: metadata
+      #     - id: clean-up-log-record
+      #       ops:
+      #         - remove: logtag
+      #         - remove: stream
+      #         - remove: container_name
+      #         - remove: namespace
+      #         - remove: pod_name
+      #         - remove: run_id
+      #         - remove: uid
+      #       type: restructure
 
       prometheus:
         config:
@@ -79,7 +79,7 @@ spec:
         # logLevel: debug
 
       otlphttp/tempo:
-        # endpoint: http://mk.tempo.192.168.64.30.nip.io/otlp # Public URL
+        # endpoint: http://mk.tempo.192.168.64.33.nip.io/otlp # Public URL
         endpoint: http://tempo-tempo-distributed-distributor.tempo:55681
         tls:
           # insecure_skip_verify: true # for HTTPS with invalid cert
@@ -116,7 +116,7 @@ spec:
           receivers: [prometheus]
           processors: [batch]
           exporters: [logging]
-        logs:
-          receivers: [filelog]
-          processors: [batch]
-          exporters: [logging, loki]
+        # logs:
+        #   receivers: [filelog]
+        #   processors: [batch]
+        #   exporters: [logging, loki]
