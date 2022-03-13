@@ -41,7 +41,7 @@ data:
         serviceMap:
           datasourceUid: loki
         search:
-          hide: false
+          hide: true
 
     - name: Jaeger
       uid: jaeger
