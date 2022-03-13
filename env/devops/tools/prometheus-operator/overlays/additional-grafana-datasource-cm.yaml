@@ -3,7 +3,7 @@ data:
   datasource.yaml: |-
     datasources:
     - name: Loki
-      id: loki
+      uid: loki
       type: loki
       url: http://loki-loki-distributed-gateway.loki
       access: proxy
@@ -17,7 +17,7 @@ data:
 
 
     - name: Tempo
-      id: tempo
+      uid: tempo
       type: tempo
       url: http://tempo-tempo-distributed-query-frontend.tempo:3100
       access: proxy
@@ -37,15 +37,15 @@ data:
           filterBySpanID: true
           lokiSearch: true
           nodeGraph: true
-        # serviceMap:
-        #   datasourceUid: 'prometheus'
+        serviceMap:
+          datasourceUid: 'tempo'
         search:
           hide: false
         nodeGraph:
           enabled: true
 
     - name: Jaeger
-      id: jaeger
+      uid: jaeger
       type: jaeger
       url: http://jaeger-operator-jaeger-query.jaeger-operator:16686
       access: proxy
@@ -65,8 +65,8 @@ data:
           filterBySpanID: true
           lokiSearch: true
           nodeGraph: true
-        # serviceMap:
-        #   datasourceUid: 'tempo'
+        serviceMap:
+          datasourceUid: 'jaeger'
         search:
           hide: false
         nodeGraph:
