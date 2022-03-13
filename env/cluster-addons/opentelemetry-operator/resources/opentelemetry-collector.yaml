@@ -78,6 +78,11 @@ spec:
       logging:
         logLevel: info
 
+      jaeger:
+        endpoint: jaeger-operator-jaeger-collector:14250
+        tls:
+          insecure: true
+
       otlphttp/tempo:
         # endpoint: http://mk.tempo.192.168.64.34.nip.io/otlp # Public URL
         endpoint: http://tempo-tempo-distributed-distributor.tempo:55681
@@ -111,7 +116,7 @@ spec:
         traces:
           receivers: [otlp]
           processors: [batch]
-          exporters: [logging, otlphttp/tempo]
+          exporters: [logging, otlphttp/tempo, jaeger]
         metrics:
           receivers: [prometheus]
           processors: [batch]
