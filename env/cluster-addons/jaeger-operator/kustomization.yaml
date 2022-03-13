@@ -3,7 +3,7 @@ kind: Kustomization
 helmCharts:
   - repo: https://jaegertracing.github.io/helm-charts
     name: jaeger-operator
-    version: 1.32.0
+    version: 1.31.0
     includeCRDs: true
     namespace: jaeger-operator
     releaseName: jaeger-operator
