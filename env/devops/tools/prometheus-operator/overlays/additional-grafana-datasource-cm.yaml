@@ -26,6 +26,8 @@ data:
       version: 1
       jsonData:
         timeInterval: 30s
+        nodeGraph:
+          enabled: true
         tracesToLogs:
           datasourceUid: 'loki'
           tags: ['job', 'instance', 'pod', 'namespace']
@@ -41,8 +43,6 @@ data:
           datasourceUid: 'tempo'
         search:
           hide: false
-        nodeGraph:
-          enabled: true
 
     - name: Jaeger
       uid: jaeger
@@ -54,6 +54,8 @@ data:
       version: 1
       jsonData:
         timeInterval: 30s
+        nodeGraph:
+          enabled: true
         tracesToLogs:
           datasourceUid: 'loki'
           tags: ['job', 'instance', 'pod', 'namespace']
@@ -69,8 +71,6 @@ data:
           datasourceUid: 'jaeger'
         search:
           hide: false
-        nodeGraph:
-          enabled: true
 kind: ConfigMap
 metadata:
   name: grafana-kube-prometheus-st-grafana-datasource
