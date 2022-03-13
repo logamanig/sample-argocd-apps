@@ -22,7 +22,7 @@ data:
       url: http://tempo-tempo-distributed-query-frontend.tempo:3100
       access: proxy
       isDefault: false
-      editable: false
+      editable: true
       version: 1
       jsonData:
         timeInterval: 30s
@@ -50,7 +50,7 @@ data:
       url: http://jaeger-operator-jaeger-query.jaeger-operator:16686
       access: proxy
       isDefault: false
-      editable: false
+      editable: true
       version: 1
       jsonData:
         timeInterval: 30s
