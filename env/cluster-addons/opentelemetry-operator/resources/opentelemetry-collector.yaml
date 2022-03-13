@@ -76,7 +76,7 @@ spec:
 
     exporters:
       logging:
-        # logLevel: debug
+        logLevel: info
 
       otlphttp/tempo:
         # endpoint: http://mk.tempo.192.168.64.34.nip.io/otlp # Public URL
@@ -116,7 +116,7 @@ spec:
           receivers: [prometheus]
           processors: [batch]
           exporters: [logging]
-        # logs:
-        #   receivers: [filelog]
-        #   processors: [batch]
-        #   exporters: [logging, loki]
+        logs:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [logging, loki]

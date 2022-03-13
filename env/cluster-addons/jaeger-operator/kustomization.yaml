@@ -1,0 +1,10 @@
+kind: Kustomization
+
+helmCharts:
+  - repo: https://jaegertracing.github.io/helm-charts
+    name: jaeger-operator
+    version: 2.6.2
+    includeCRDs: true
+    namespace: jaeger-operator
+    releaseName: jaeger-operator
+    valuesFile: values.yaml

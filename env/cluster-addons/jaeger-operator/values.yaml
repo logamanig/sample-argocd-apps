@@ -1,0 +1,10 @@
+image:
+  tag: 1.32.0
+
+jaeger:
+  create: true
+  spec:
+    ingress:
+      enabled: true
+      hosts:
+        - mk.jaeger.local
