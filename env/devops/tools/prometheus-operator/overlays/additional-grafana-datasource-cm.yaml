@@ -29,7 +29,7 @@ data:
         nodeGraph:
           enabled: true
         tracesToLogs:
-          datasourceUid: 'loki'
+          datasourceUid: loki
           tags: ['job', 'instance', 'pod', 'namespace']
           mappedTags: [{ key: 'service.name', value: 'service' }]
           mapTagNamesEnabled: false
@@ -38,9 +38,8 @@ data:
           filterByTraceID: true
           filterBySpanID: true
           lokiSearch: true
-          nodeGraph: true
-        serviceMap:
-          datasourceUid: 'tempo'
+        # serviceMap:
+        #   datasourceUid: 'tempo'
         search:
           hide: false
 
@@ -57,7 +56,7 @@ data:
         nodeGraph:
           enabled: true
         tracesToLogs:
-          datasourceUid: 'loki'
+          datasourceUid: loki
           tags: ['job', 'instance', 'pod', 'namespace']
           mappedTags: [{ key: 'service.name', value: 'service' }]
           mapTagNamesEnabled: false
@@ -67,8 +66,8 @@ data:
           filterBySpanID: true
           lokiSearch: true
           nodeGraph: true
-        serviceMap:
-          datasourceUid: 'jaeger'
+        # serviceMap:
+        #   datasourceUid: 'jaeger'
         search:
           hide: false
 kind: ConfigMap
