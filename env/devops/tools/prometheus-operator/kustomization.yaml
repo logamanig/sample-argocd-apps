@@ -17,4 +17,4 @@ patchesStrategicMerge:
   - "./overlays/crd-prometheuses.monitoring.coreos.com.yaml"
 
   - "./overlays/additional-grafana-datasource-cm.yaml"
-  - "./overlays/grafana-cm.yaml"
+  # - "./overlays/grafana-cm.yaml"
