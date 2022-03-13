@@ -5,6 +5,7 @@ data:
     - name: Loki
       uid: loki
       type: loki
+      orgId: 1
       url: http://loki-loki-distributed-gateway.loki
       access: proxy
       isDefault: false
@@ -17,6 +18,7 @@ data:
     - name: Tempo
       uid: tempo
       type: tempo
+      orgId: 1
       url: http://tempo-tempo-distributed-query-frontend.tempo:3100
       access: proxy
       isDefault: false
@@ -44,6 +46,7 @@ data:
     - name: Jaeger
       uid: jaeger
       type: jaeger
+      orgId: 1
       url: http://jaeger-operator-jaeger-query.jaeger-operator:16686
       access: proxy
       isDefault: false
