@@ -12,8 +12,6 @@ data:
       version: 1
       jsonData:
         timeInterval: 30s
-        search: 
-          hide: false
 
 
     - name: Tempo
@@ -38,8 +36,8 @@ data:
           filterByTraceID: true
           filterBySpanID: true
           lokiSearch: true
-        # serviceMap:
-        #   datasourceUid: 'tempo'
+        serviceMap:
+          datasourceUid: loki
         search:
           hide: false
 
@@ -66,8 +64,8 @@ data:
           filterBySpanID: true
           lokiSearch: true
           nodeGraph: true
-        # serviceMap:
-        #   datasourceUid: 'jaeger'
+        serviceMap:
+          datasourceUid: loki
         search:
           hide: false
 kind: ConfigMap
