@@ -16,7 +16,10 @@ spec:
 
   config: |
     receivers:
-      jaeger:
+      otlp:
+        protocols:
+          grpc:
+          http:
 
       # filelog:
       #   start_at: beginning
@@ -106,7 +109,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [jaeger]
+          receivers: [otlp]
           processors: [batch]
           exporters: [logging, otlphttp/tempo]
         metrics:
