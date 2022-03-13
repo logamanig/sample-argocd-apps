@@ -33,9 +33,9 @@ data:
             mapTagNamesEnabled: false
             spanStartTimeShift: '1h'
             spanEndTimeShift: '1h'
-            filterByTraceID: true
-            filterBySpanID: true
-            lokiSearch: true
+            filterByTraceID: false
+            filterBySpanID: false
+            lokiSearch: false
           serviceMap:
             datasourceUid: loki
           search:
