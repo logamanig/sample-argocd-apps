@@ -21,6 +21,22 @@ data:
       version: 1
       jsonData:
         timeInterval: 30s
+        tracesToLogs:
+          datasourceUid: 'loki'
+          tags: ['job', 'instance', 'pod', 'namespace']
+          mappedTags: [{ key: 'service.name', value: 'service' }]
+          mapTagNamesEnabled: false
+          spanStartTimeShift: '1h'
+          spanEndTimeShift: '1h'
+          filterByTraceID: false
+          filterBySpanID: false
+          lokiSearch: true
+        # serviceMap:
+        #   datasourceUid: 'prometheus'
+        search:
+          hide: false
+        nodeGraph:
+          enabled: true
 kind: ConfigMap
 metadata:
   name: grafana-kube-prometheus-st-grafana-datasource
