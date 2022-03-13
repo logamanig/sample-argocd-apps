@@ -3,6 +3,7 @@ data:
   datasource.yaml: |-
     datasources:
     - name: Loki
+      id: loki
       type: loki
       url: http://loki-loki-distributed-gateway.loki
       access: proxy
@@ -11,8 +12,12 @@ data:
       version: 1
       jsonData:
         timeInterval: 30s
+        search: 
+          hide: false
+
 
     - name: Tempo
+      id: tempo
       type: tempo
       url: http://tempo-tempo-distributed-query-frontend.tempo:3100
       access: proxy
@@ -28,11 +33,40 @@ data:
           mapTagNamesEnabled: false
           spanStartTimeShift: '1h'
           spanEndTimeShift: '1h'
-          filterByTraceID: false
-          filterBySpanID: false
+          filterByTraceID: true
+          filterBySpanID: true
           lokiSearch: true
+          nodeGraph: true
         # serviceMap:
         #   datasourceUid: 'prometheus'
+        search:
+          hide: false
+        nodeGraph:
+          enabled: true
+
+    - name: Jaeger
+      id: jaeger
+      type: jaeger
+      url: http://jaeger-operator-jaeger-query.jaeger-operator:16686
+      access: proxy
+      isDefault: false
+      editable: false
+      version: 1
+      jsonData:
+        timeInterval: 30s
+        tracesToLogs:
+          datasourceUid: 'loki'
+          tags: ['job', 'instance', 'pod', 'namespace']
+          mappedTags: [{ key: 'service.name', value: 'service' }]
+          mapTagNamesEnabled: false
+          spanStartTimeShift: '1h'
+          spanEndTimeShift: '1h'
+          filterByTraceID: true
+          filterBySpanID: true
+          lokiSearch: true
+          nodeGraph: true
+        # serviceMap:
+        #   datasourceUid: 'tempo'
         search:
           hide: false
         nodeGraph:
