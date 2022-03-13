@@ -79,7 +79,7 @@ spec:
         logLevel: info
 
       jaeger:
-        endpoint: http://jaeger-operator-jaeger-collector:14250
+        endpoint: jaeger-operator-jaeger-collector.jaeger-operator:14250
         tls:
           insecure: true
 
