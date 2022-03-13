@@ -10,6 +10,6 @@ spec:
     - tracecontext
     - baggage
     - b3
-  sampler:
-    type: parentbased_traceidratio
-    argument: "0.25"
+  # sampler:
+  #   type: parentbased_traceidratio
+  #   argument: "0.25"
