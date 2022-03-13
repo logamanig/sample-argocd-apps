@@ -9,7 +9,6 @@ data:
         access: proxy
         isDefault: false
         editable: true
-        version: 1
         jsonData:
           timeInterval: 30s
 
@@ -21,7 +20,6 @@ data:
         access: proxy
         isDefault: false
         editable: true
-        version: 1
         jsonData:
           timeInterval: 30s
           nodeGraph:
@@ -46,7 +44,6 @@ data:
         access: proxy
         isDefault: false
         editable: true
-        version: 1
         jsonData:
           timeInterval: 30s
           nodeGraph:
