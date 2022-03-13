@@ -26,18 +26,16 @@ data:
           timeInterval: 30s
           nodeGraph:
             enabled: true
-          tracesToLogs:
-            datasourceUid: loki
-            tags: ['job', 'instance', 'pod', 'namespace']
-            mappedTags: [{ key: 'service.name', value: 'service' }]
-            mapTagNamesEnabled: false
-            spanStartTimeShift: '1h'
-            spanEndTimeShift: '1h'
-            filterByTraceID: false
-            filterBySpanID: false
-            lokiSearch: false
-          serviceMap:
-            datasourceUid: loki
+          # tracesToLogs:
+          #   datasourceUid: loki
+          #   tags: ['job', 'instance', 'pod', 'namespace']
+          #   mappedTags: [{ key: 'service.name', value: 'service' }]
+          #   mapTagNamesEnabled: false
+          #   spanStartTimeShift: '1h'
+          #   spanEndTimeShift: '1h'
+          #   filterByTraceID: false
+          #   filterBySpanID: false
+          #   lokiSearch: false
           search:
             hide: true
 
@@ -53,18 +51,16 @@ data:
           timeInterval: 30s
           nodeGraph:
             enabled: true
-          tracesToLogs:
-            datasourceUid: loki
-            tags: ['job', 'instance', 'pod', 'namespace']
-            mappedTags: [{ key: 'service.name', value: 'service' }]
-            mapTagNamesEnabled: false
-            spanStartTimeShift: '1h'
-            spanEndTimeShift: '1h'
-            filterByTraceID: true
-            filterBySpanID: true
-            lokiSearch: true
-          serviceMap:
-            datasourceUid: loki
+          # tracesToLogs:
+          #   datasourceUid: loki
+          #   tags: ['job', 'instance', 'pod', 'namespace']
+          #   mappedTags: [{ key: 'service.name', value: 'service' }]
+          #   mapTagNamesEnabled: false
+          #   spanStartTimeShift: '1h'
+          #   spanEndTimeShift: '1h'
+          #   filterByTraceID: true
+          #   filterBySpanID: true
+          #   lokiSearch: true
           search:
             hide: false
 kind: ConfigMap
