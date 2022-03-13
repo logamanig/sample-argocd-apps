@@ -16,5 +16,5 @@ patchesStrategicMerge:
   # to force argocd to replace(create/recreate) instead appling this crd as a workaround for it's name too long issue
   - "./overlays/crd-prometheuses.monitoring.coreos.com.yaml"
 
-  # - "./overlays/additional-grafana-datasource-cm.yaml"
+  - "./overlays/additional-grafana-datasource-cm.yaml"
   - "./overlays/grafana-cm.yaml"
