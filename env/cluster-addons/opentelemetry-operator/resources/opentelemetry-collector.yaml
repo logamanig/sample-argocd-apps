@@ -26,7 +26,8 @@ spec:
         exclude:
           - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
         include:
-          - /var/log/pods/*/*/*.log
+          # - /var/log/pods/*/*/*.log
+          - /var/log/pods/test_my-app-*/*/*.log
         include_file_name: false
         operators:
           - type: regex_parser
