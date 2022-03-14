@@ -15,7 +15,7 @@ data:
         url: http://tempo-tempo-distributed-query-frontend.tempo:3100
         access: proxy
         isDefault: false
-        editable: true
+        editable: false
         jsonData:
           timeInterval: 30s
           nodeGraph:
@@ -23,7 +23,7 @@ data:
           search:
             hide: false
           serviceMap:
-            enabled: true
+            datasourceUid: prometheus
           tracesToLogs:
             datasourceUid: loki
             tags: ['job', 'instance', 'pod', 'namespace']
@@ -31,6 +31,6 @@ data:
             mapTagNamesEnabled: false
             spanStartTimeShift: '1h'
             spanEndTimeShift: '1h'
-            filterByTraceID: false
-            filterBySpanID: false
+            filterByTraceID: true
+            filterBySpanID: true
             lokiSearch: true

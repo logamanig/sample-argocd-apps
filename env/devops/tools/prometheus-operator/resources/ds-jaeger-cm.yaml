@@ -23,14 +23,14 @@ data:
           search:
             hide: false
           serviceMap:
-            enabled: true
+            datasourceUid: prometheus
           tracesToLogs:
             datasourceUid: loki
             tags: ['job', 'instance', 'pod', 'namespace']
             mappedTags: [{ key: 'service.name', value: 'service' }]
-            mapTagNamesEnabled: false
+            mapTagNamesEnabled: true
             spanStartTimeShift: '1h'
             spanEndTimeShift: '1h'
-            filterByTraceID: false
-            filterBySpanID: false
+            filterByTraceID: true
+            filterBySpanID: true
             lokiSearch: false

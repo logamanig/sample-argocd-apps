@@ -15,7 +15,7 @@ data:
         url: http://loki-loki-distributed-gateway.loki
         access: proxy
         isDefault: false
-        editable: true
+        editable: false
         jsonData:
           timeInterval: 30s
           maxLines: 1000
