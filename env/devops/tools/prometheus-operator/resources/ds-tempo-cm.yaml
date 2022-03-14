@@ -20,6 +20,10 @@ data:
           timeInterval: 30s
           nodeGraph:
             enabled: true
+          search:
+            hide: false
+          serviceMap:
+            enabled: true
           tracesToLogs:
             datasourceUid: loki
             tags: ['job', 'instance', 'pod', 'namespace']
@@ -30,5 +34,3 @@ data:
             filterByTraceID: false
             filterBySpanID: false
             lokiSearch: true
-          search:
-            hide: false
