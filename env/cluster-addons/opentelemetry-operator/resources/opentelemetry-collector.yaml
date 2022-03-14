@@ -90,7 +90,7 @@ spec:
 
     exporters:
       logging:
-        logLevel: info
+        logLevel: debug
 
       jaeger:
         endpoint: jaeger-operator-jaeger-collector.jaeger-operator:14250
