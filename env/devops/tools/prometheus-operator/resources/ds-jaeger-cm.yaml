@@ -15,7 +15,7 @@ data:
         url: http://jaeger-operator-jaeger-query.jaeger-operator:16686
         access: proxy
         isDefault: false
-        editable: true
+        editable: false
         jsonData:
           timeInterval: 30s
           nodeGraph:

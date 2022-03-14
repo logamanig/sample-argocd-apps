@@ -29,6 +29,6 @@ data:
             spanEndTimeShift: '1h'
             filterByTraceID: false
             filterBySpanID: false
-            lokiSearch: false
+            lokiSearch: true
           search:
-            hide: true
+            hide: false
