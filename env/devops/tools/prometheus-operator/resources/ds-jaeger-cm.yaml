@@ -22,8 +22,6 @@ data:
             enabled: true
           search:
             hide: false
-          serviceMap:
-            datasourceUid: prometheus
           tracesToLogs:
             datasourceUid: loki
             tags: ['job', 'instance', 'pod', 'namespace']
@@ -33,4 +31,4 @@ data:
             spanEndTimeShift: '1h'
             filterByTraceID: true
             filterBySpanID: true
-            lokiSearch: false
+            lokiSearch: true
