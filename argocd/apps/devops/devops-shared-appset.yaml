@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: devops-tools-appset
+  name: devops-shared-appset
   namespace: argocd
 spec:
   generators:
