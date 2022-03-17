@@ -13,7 +13,7 @@ spec:
               directories:
                 - path: env/cluster-addons/tools/*
 
-                - path: env/cluster-addons/ingress-nginx
+                - path: env/cluster-addons/tools/ingress-nginx
                   exclude: true # ingress excluded as this sample running on minukube with ingress addon enabled
                   
           - clusters: {} # all registered clusters in argocd
