@@ -3,7 +3,7 @@ kind: Kustomization
 helmCharts:
   - repo: https://grafana.github.io/helm-charts
     name: tempo-distributed
-    version: 0.16.4
+    version: 0.16.5
     namespace: monitoring
     includeCRDs: true
     releaseName: tempo
