@@ -12,7 +12,7 @@ spec:
     path: env/cluster-addons/linkerd
     repoURL: 'https://github.com/logamanig/sample-argocd-apps'
     targetRevision: master
-  project: tools
+  project: devops
   syncPolicy:
     automated:
       prune: true

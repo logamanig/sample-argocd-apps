@@ -8,7 +8,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # Project description
-  description: Project for K8S Tools
+  description: Project for DevOps Tools
 
   # Allow manifests to deploy from any Git repos
   sourceRepos:
