@@ -1,25 +1,25 @@
-kind: Kustomization
-namespace: argocd
-
-resources:
-  - "./resources/argocd-install.yaml"
-  - "./resources/ingress.yaml"
-
-patches:
-  - target:
-      kind: ConfigMap
-      name: argocd-cm
-    path: ./overlays/argocd-cm.yaml
-
 # kind: Kustomization
 # namespace: argocd
 
-# helmCharts:
-#   - name: argocd
-#     repo: https://argoproj.github.io/argo-helm
-#     version: 2.3.0
-#     releaseName: argocd
-#     valuesFile: values.yaml
+# resources:
+#   - "./resources/argocd-install.yaml"
+#   - "./resources/ingress.yaml"
 
-# patchesStrategicMerge:
-#   - ./overlays/argocd-cm.yaml
+# patches:
+#   - target:
+#       kind: ConfigMap
+#       name: argocd-cm
+#     path: ./overlays/argocd-cm.yaml
+
+kind: Kustomization
+
+helmCharts:
+  - name: argocd
+    repo: https://argoproj.github.io/argo-helm
+    version: 4.0.1
+    releaseName: argocd
+    namespace: argocd
+    valuesFile: values.yaml
+
+patchesStrategicMerge:
+  - ./overlays/argocd-cm.yaml
