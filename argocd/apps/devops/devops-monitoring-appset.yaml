@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: devops-monitoring-appset
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/logamanig/sample-argocd-apps
+              revision: master
+              directories:
+                - path: env/devops/monitoring/*
+                
+          - clusters: {} # all registered clusters in argocd
+              # selector:
+              #   matchLabels:
+              #     argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      namespace: argocd
+    spec:
+      project: devops
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: '{{path}}'
+      destination:
+        server: '{{server}}'
+        namespace: monitoring
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
