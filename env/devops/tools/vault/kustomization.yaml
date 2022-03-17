@@ -1,5 +1,5 @@
 kind: Kustomization
-namespace: vault
+namespace: tools
 
 helmCharts:
   - repo: https://helm.releases.hashicorp.com

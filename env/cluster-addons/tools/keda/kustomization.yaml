@@ -1,0 +1,10 @@
+kind: Kustomization
+
+helmCharts:
+  - repo: https://kedacore.github.io/charts
+    name: keda
+    version: 2.6.2
+    includeCRDs: true
+    namespace: tools
+    releaseName: keda
+    valuesFile: values.yaml

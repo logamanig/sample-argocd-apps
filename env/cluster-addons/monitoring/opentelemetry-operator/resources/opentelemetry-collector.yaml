@@ -1,0 +1,141 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: otel-collector-daemonset
+spec:
+  mode: daemonset
+  image: otel/opentelemetry-collector-contrib:latest
+
+  volumes:
+    - name: varlog
+      hostPath:
+        path: /var/log
+  volumeMounts:
+    - name: varlog
+      mountPath: /var/log
+
+  config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+          http:
+
+      filelog:
+        start_at: beginning
+        exclude:
+          - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
+        include:
+          # - /var/log/pods/*/*/*.log
+          - /var/log/pods/test_my-app-*/*/*.log
+        include_file_name: false
+        operators:
+          - type: regex_parser
+            id: regex_parser_init
+            regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<sev>[^ ]*) (?P<uuid>[^ ]*) (?P<log>.*)$'
+            timestamp:
+              parse_from: time
+              layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+            severity:
+              parse_from: sev
+            attributes:
+              - stream
+            resource:
+              - uuid
+            record: log
+          # - id: parser-docker
+          #   output: extract_metadata_from_filepath
+          #   timestamp:
+          #     layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+          #     parse_from: time
+          #   type: json_parser
+          # - id: extract_metadata_from_filepath
+          #   parse_from: $$labels.file_path
+          #   regex: ^\/var\/log\/pods\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[^\/]+)\/(?P<container_name>[^\._]+)\/(?P<run_id>\d+)\.log$
+          #   type: regex_parser
+          # - attributes:
+          #     k8s.container.name: EXPR($.container_name)
+          #     k8s.namespace.name: EXPR($.namespace)
+          #     k8s.pod.name: EXPR($.pod_name)
+          #     k8s.pod.uid: EXPR($.uid)
+          #     run_id: EXPR($.run_id)
+          #     stream: EXPR($.stream)
+          #   resource:
+          #     k8s.pod.uid: EXPR($.uid)
+          #   type: metadata
+          # - id: clean-up-log-record
+          #   ops:
+          #     - remove: logtag
+          #     - remove: stream
+          #     - remove: container_name
+          #     - remove: namespace
+          #     - remove: pod_name
+          #     - remove: run_id
+          #     - remove: uid
+          #   type: restructure
+
+      prometheus:
+        config:
+          scrape_configs:
+            - job_name: 'otelcol'
+              scrape_interval: 10s
+              static_configs:
+              - targets: ['0.0.0.0:8888']
+              metric_relabel_configs:
+                - source_labels: [ __name__ ]
+                  regex: '.*grpc_io.*'
+                  action: drop
+    processors:
+      batch:
+
+    exporters:
+      logging:
+        logLevel: debug
+
+      jaeger:
+        endpoint: jaeger-operator-jaeger-collector.monitoring:14250
+        tls:
+          insecure: true
+
+      otlphttp/tempo:
+        # endpoint: http://mk.tempo.192.168.64.35.nip.io/otlp # Public URL
+        endpoint: http://tempo-tempo-distributed-distributor.monitoring:55681
+        tls:
+          # insecure_skip_verify: true # for HTTPS with invalid cert
+          insecure: true # for http only endpoint
+
+      loki:
+        endpoint: http://loki-loki-distributed-gateway.monitoring/loki/api/v1/push
+        # tenant_id: "example"
+        tls:
+          insecure: true
+        labels:
+          resource:
+            # Allowing 'container.name' attribute and transform it to 'container_name', which is a valid Loki label name.
+            container.name: "container_name"
+            # Allowing 'k8s.cluster.name' attribute and transform it to 'k8s_cluster_name', which is a valid Loki label name.
+            k8s.cluster.name: "k8s_cluster_name"
+          attributes:
+            # Allowing 'severity' attribute and not providing a mapping, since the attribute name is a valid Loki label name.
+            severity: ""
+            http.status_code: "http_status_code"
+            traceID: "traceid"
+          # Move traceId to record section once the https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/7569 is released
+          # record:
+          #   # Adds 'traceID' as a log label, seen as 'traceid' in Loki.
+          #   traceID: "traceid"
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [logging, otlphttp/tempo, jaeger]
+        metrics:
+          receivers: [prometheus]
+          processors: [batch]
+          exporters: [logging]
+        logs:
+          receivers: [filelog]
+          processors: [batch]
+          exporters: [logging]

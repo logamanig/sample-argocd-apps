@@ -1,0 +1,13 @@
+kind: Kustomization
+namespace: tools
+
+resources:
+  - "./resources/cluster-secret-store.yaml"
+
+helmCharts:
+  - repo: https://charts.external-secrets.io
+    name: external-secrets
+    version: 0.4.4
+    releaseName: external-secrets
+    valuesFile: values.yaml
+    includeCRDs: true

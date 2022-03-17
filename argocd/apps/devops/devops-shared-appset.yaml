@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: devops-tools-appset
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        revision: master
+        directories:
+          - path: env/devops/shared/*
+
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      namespace: argocd
+    spec:
+      project: devops
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: '{{path}}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: shared
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
