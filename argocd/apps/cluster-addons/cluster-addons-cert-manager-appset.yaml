@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons-cert-manager-appset
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        {} # all registered clusters in argocd
+        # selector:
+        #   matchLabels:
+        #     argocd.argoproj.io/secret-type: cluster
+
+  template:
+    metadata:
+      name: "cert-manager-{{name}}"
+      namespace: argocd
+    spec:
+      project: cluster-addons
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: "env/cluster-addons/cert-manager"
+      destination:
+        server: "{{server}}"
+        namespace: cert-manager
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

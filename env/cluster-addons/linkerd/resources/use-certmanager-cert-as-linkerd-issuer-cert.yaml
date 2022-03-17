@@ -2,7 +2,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: linkerd-identity-issuer
-  namespace: linkerd
 spec:
   secretName: linkerd-identity-issuer
   duration: 48h0m0s
@@ -26,7 +25,6 @@ apiVersion: trust.cert-manager.io/v1alpha1
 kind: Bundle
 metadata:
   name: linkerd-identity-trust-roots
-  namespace: linkerd
 spec:
   sources:
   - secret:

@@ -1,5 +1,5 @@
 kind: Kustomization
-# namespace: cert-manager # Namespace must be not mentioned at the kustomize level to let webhook service to be provisioned to the default namespace as it required
+# namespace: tools # Namespace must be not mentioned at the kustomize level to let webhook service to be provisioned to the default namespace as it required
 
 resources:
   - "./resources/linkerd-cert-issuer.yaml"
@@ -9,7 +9,7 @@ helmCharts:
     name: cert-manager
     version: 1.7.1
     includeCRDs: true
-    namespace: tools
+    namespace: cert-manager
     releaseName: cert-manager
     valuesFile: values.yaml
 
@@ -18,4 +18,4 @@ helmCharts:
     version: 0.1.1
     releaseName: cert-manager-trust
     includeCRDs: true
-    namespace: tools
+    namespace: cert-manager
