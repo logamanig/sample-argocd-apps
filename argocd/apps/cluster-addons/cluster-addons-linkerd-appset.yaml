@@ -5,31 +5,24 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - matrix:
-        generators:
-          - git:
-              repoURL: https://github.com/logamanig/sample-argocd-apps
-              revision: master
-              directories:
-                - path: env/cluster-addons/tools/*
+    - clusters:
+        {} # all registered clusters in argocd
+        # selector:
+        #   matchLabels:
+        #     argocd.argoproj.io/secret-type: cluster
 
-          - clusters: {} # all registered clusters in argocd
-              # selector:
-              #   matchLabels:
-              #     argocd.argoproj.io/secret-type: cluster
-  
   template:
     metadata:
-      name: 'linkerd-{{name}}'
+      name: "linkerd-{{name}}"
       namespace: argocd
     spec:
       project: cluster-addons
       source:
         repoURL: https://github.com/logamanig/sample-argocd-apps
         targetRevision: master
-        path: '{{path}}'
+        path: "env/cluster-addons/linkerd"
       destination:
-        server: '{{server}}'
+        server: "{{server}}"
         namespace: tools
       syncPolicy:
         automated:
