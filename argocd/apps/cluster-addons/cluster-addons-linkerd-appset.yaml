@@ -23,7 +23,7 @@ spec:
         path: "env/cluster-addons/linkerd"
       destination:
         server: "{{server}}"
-        namespace: tools
+        namespace: linkerd
       syncPolicy:
         automated:
           prune: true
