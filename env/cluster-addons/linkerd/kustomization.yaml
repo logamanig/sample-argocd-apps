@@ -10,3 +10,9 @@ helmCharts:
     version: 2.11.1
     releaseName: linkerd
     valuesFile: values.yaml
+
+  - repo: https://helm.linkerd.io/stable
+    name: linkerd-viz
+    version: 2.11.1
+    releaseName: linkerd
+    valuesFile: values.yaml
