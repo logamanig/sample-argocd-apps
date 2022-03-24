@@ -2,6 +2,7 @@ kind: Kustomization
 
 resources:
   - "./resources/use-certmanager-cert-as-linkerd-issuer-cert.yaml"
+  - "./resources/linkerd-viz-ingress.yaml"
 
 helmCharts:
   - repo: https://helm.linkerd.io/stable
