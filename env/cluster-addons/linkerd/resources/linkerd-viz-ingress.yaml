@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: linkerd-viz-ingress
+  labels:
+    name: linkerd-viz-ingress
+spec:
+  rules:
+  - host: mk.linkerd-viz.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: web
+            port: 
+              name: http
