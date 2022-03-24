@@ -15,4 +15,4 @@ helmCharts:
     name: linkerd-viz
     version: 2.11.1
     releaseName: linkerd-viz
-    valuesFile: values.yaml
+    # valuesFile: values.yaml
