@@ -1,5 +1,4 @@
 kind: Kustomization
-namespace: linkerd
 
 resources:
   - "./resources/use-certmanager-cert-as-linkerd-issuer-cert.yaml"
@@ -9,10 +8,12 @@ helmCharts:
     name: linkerd2
     version: 2.11.1
     releaseName: linkerd
+    namespace: linkerd
     valuesFile: linkerd-values.yaml
 
   - repo: https://helm.linkerd.io/stable
     name: linkerd-viz
     version: 2.11.1
     releaseName: linkerd-viz
+    namespace: linkerd 
     valuesFile: linkerd-viz-values.yaml
