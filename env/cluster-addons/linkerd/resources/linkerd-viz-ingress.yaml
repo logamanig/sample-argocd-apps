@@ -5,6 +5,8 @@ metadata:
   namespace: linkerd-viz
   labels:
     name: linkerd-viz-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/upstream-vhost: $service_name.$namespace.svc.cluster.local:8084
 spec:
   ingressClassName: nginx
   rules:
