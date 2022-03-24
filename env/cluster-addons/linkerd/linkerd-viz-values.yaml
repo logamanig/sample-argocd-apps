@@ -1,0 +1,9 @@
+prometheusUrl: http://prometheus-stack-prometheus.monitoring:9090
+jaegerUrl: http://otel-collector-daemonset-collector.monitoring:4317
+
+prometheus:
+  enabled: false
+
+grafana:
+  externalUrl: https://mk.grafana.local
+  uidPrefix: linkerd-dashboard
