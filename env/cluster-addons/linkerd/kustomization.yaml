@@ -16,5 +16,5 @@ helmCharts:
     name: linkerd-viz
     version: 2.11.1
     releaseName: linkerd-viz
-    namespace: linkerd 
+    namespace: linkerd-viz
     valuesFile: linkerd-viz-values.yaml
