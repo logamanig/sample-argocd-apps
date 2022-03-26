@@ -15,6 +15,8 @@ spec:
 
                 - path: env/cluster-addons/tools/ingress-nginx
                   exclude: true # ingress excluded as this sample running on minukube with ingress addon enabled
+                - path: env/cluster-addons/tools/argo-rollouts
+                  exclude: ture # Exlcuded in favour of flagger (add through linkerd argocd app)
                   
           - clusters: {} # all registered clusters in argocd
               # selector:

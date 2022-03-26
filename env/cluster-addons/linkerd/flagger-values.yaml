@@ -1,0 +1,67 @@
+# priority class name for pod priority configuration
+podPriorityClassName: ""
+
+metricsServer: http://prometheus-operator-kube-p-prometheus.monitoring:9090
+
+# accepted values are kubernetes, istio, linkerd, appmesh, contour, nginx, gloo, skipper, traefik, osm
+meshProvider: linkerd
+
+# annotations prefix for NGINX ingresses
+ingressAnnotationsPrefix: ""
+
+# ingress class used for annotating HTTPProxy objects
+ingressClass: ""
+
+# when specified, flagger will publish events to the provided webhook
+eventWebhook: ""
+
+# when specified, flagger will add the cluster name to alerts
+clusterName: ""
+
+slack:
+  user: flagger
+  channel:
+  # incoming webhook https://api.slack.com/incoming-webhooks
+  url:
+  proxy:
+
+msteams:
+  # MS Teams incoming webhook URL
+  url:
+
+podMonitor:
+  enabled: false
+  namespace:
+  interval: 15s
+  additionalLabels: {}
+
+
+#env:
+#- name: SLACK_URL
+#  valueFrom:
+#    secretKeyRef:
+#      name: slack
+#      key: url
+#- name: SLACK_PROXY_URL
+#  valueFrom:
+#    secretKeyRef:
+#      name: slack
+#      key: proxy-url
+#- name: MSTEAMS_URL
+#  valueFrom:
+#    secretKeyRef:
+#      name: msteams
+#      key: url
+#- name: MSTEAMS_PROXY_URL
+#  valueFrom:
+#    secretKeyRef:
+#      name: msteams
+#      key: proxy-url
+#- name: EVENT_WEBHOOK_URL
+#  valueFrom:
+#    secretKeyRef:
+#      name: eventwebhook
+#      key: url
+
+crd:
+  create: true
