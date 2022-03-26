@@ -16,20 +16,45 @@ spec:
         app: keycloak
     spec:
       containers:
-      - name: keycloak
-        image: quay.io/keycloak/keycloak:17.0.1
-        args: ["start-dev"]
-        env:
-        - name: KEYCLOAK_ADMIN
-          value: "admin"
-        - name: KEYCLOAK_ADMIN_PASSWORD
-          value: "admin"
-        - name: KC_PROXY
-          value: "edge"
-        ports:
-        - name: http
-          containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /realms/master
-            port: 8080
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:17.0.1
+          args: ["start-dev"]
+          env:
+            # refer https://www.keycloak.org/server/all-config for keycloak environment variable
+            # - name: KC_HOSTNAME
+            #   value: mk.sso.local
+            - name: KEYCLOAK_ADMIN
+              value: admin
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: admin
+            - name: KC_LOG_LEVEL
+              value: info
+            - name: KC_PROXY
+              value: edge
+            - name: KC_DB
+            #   value: postgres
+            # - name: KC_DB_URL_HOST
+            #   value: <DB_SERVER_HOST>
+            # - name: KC_DB_URL_DATABASE
+            #   value: keycloak
+            # - name: KC_DB_URL
+            #   value: jdbc:postgresql://${KC_DB_URL_HOST}/${KC_DB_URL_DATABASE}?currentSchema=${KC_DB_SCHEMA}
+            # - name: KC_DB_SCHEMA
+            #   value: keycloak
+            # - name: KC_DB_USERNAME
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: keycloak-secret
+            #       key: username
+            # - name: KC_DB_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: keycloak-secret
+            #       key: password
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /realms/master
+              port: 8080
