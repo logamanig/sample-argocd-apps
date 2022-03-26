@@ -13,12 +13,15 @@ spec:
     metadata:
       labels:
         app: my-app
-      annotations:
-        instrumentation.opentelemetry.io/inject-java: auto-instrumentation
+      # annotations:
+      #   instrumentation.opentelemetry.io/inject-java: auto-instrumentation
     spec:
       containers:
         - name: myapp
           image: jaegertracing/vertx-create-span:operator-e2e-tests
+          env:
+            - name: JAEGER_AGENT_HOST
+              value: http://otel-collector-daemonset-collector.monitoring:4317
           ports:
             - containerPort: 8080
               protocol: TCP
