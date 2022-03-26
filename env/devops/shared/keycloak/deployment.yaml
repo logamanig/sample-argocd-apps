@@ -31,7 +31,7 @@ spec:
               value: info
             - name: KC_PROXY
               value: edge
-            - name: KC_DB
+            # - name: KC_DB
             #   value: postgres
             # - name: KC_DB_URL_HOST
             #   value: <DB_SERVER_HOST>
