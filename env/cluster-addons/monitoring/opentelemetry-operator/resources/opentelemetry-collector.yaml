@@ -131,7 +131,7 @@ spec:
           #   # Adds 'traceID' as a log label, seen as 'traceid' in Loki.
           #   traceID: "traceid"
     extensions:
-      healthcheck
+      healthcheck:
 
     service:
       extensions: [healthcheck]
