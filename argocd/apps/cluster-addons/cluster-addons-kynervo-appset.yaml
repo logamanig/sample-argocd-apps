@@ -13,7 +13,7 @@ spec:
 
   template:
     metadata:
-      name: "flagger-{{name}}"
+      name: "kynervo-{{name}}"
       namespace: argocd
     spec:
       project: cluster-addons
