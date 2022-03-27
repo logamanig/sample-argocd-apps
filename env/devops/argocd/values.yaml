@@ -11,14 +11,14 @@ server:
         kind: ClusterPolicy
         jqPathExpressions:
           # commented out the second part to ignore only autogen rule as the base rule (as in Git/helm chart) is also having empty maps as default for missing properties
-          # - .spec.rules[] | select(.name|test("autogen-.")) 
-          - .spec.rules[]
+          - .spec.rules[] | select(.name|test("autogen-.")) 
+          # - .spec.rules[]
       - group: kyverno.io
         kind: Policy
         jqPathExpressions:
           # commented out the second part to ignore only autogen rule as the base rule (as in Git/helm chart) is also having empty maps as default for missing properties
-          # - .spec.rules[] | select(.name|test("autogen-.")) 
-          - .spec.rules[]
+          - .spec.rules[] | select(.name|test("autogen-.")) 
+          # - .spec.rules[]
           
   ingress:
     enabled: true
