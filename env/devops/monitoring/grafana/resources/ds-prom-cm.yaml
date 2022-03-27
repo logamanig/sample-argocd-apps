@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-devops-ds-grafana
+  labels:
+    grafana_datasource: "1"
+    namespace: monitoring
+data:
+  ds-prometheus.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: DevOps-Prometheus
+        uid: devops-prom
+        type: prometheus
+        url: http://prometheus-operator-kube-p-prometheus.monitoring:9090/
+        access: proxy
+        isDefault: true
+        editable: false
+        jsonData:
+          timeInterval: 30s
+          httpMethod: POST
+          exemplarTraceIdDestinations:
+          - datasourceUid: devops-tempo
+            name: traceID
+          - datasourceUid: devops-jaeger
+            name: traceID

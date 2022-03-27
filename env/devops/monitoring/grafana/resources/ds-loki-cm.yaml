@@ -6,11 +6,11 @@ metadata:
     grafana_datasource: "1"
     namespace: monitoring
 data:
-  loki-ds.yaml: |-
+  ds-loki.yaml: |-
     apiVersion: 1
     datasources:
-      - name: Loki
-        uid: loki
+      - name: DevOps-Loki
+        uid: devops-loki
         type: loki
         url: http://loki-loki-distributed-gateway.monitoring
         access: proxy
@@ -23,7 +23,7 @@ data:
             # Field with internal link pointing to data source in Grafana.
             # Right now, Grafana supports only Jaeger and Zipkin data sources as link targets.
             # datasourceUid value can be anything, but it should be unique across all defined data source uids.
-            - datasourceUid: jaeger
+            - datasourceUid: devops-jaeger
               matcherRegex: "traceID=(\\w+)"
               name: TraceID
               # url will be interpreted as query for the datasource
@@ -34,7 +34,7 @@ data:
             #   name: TraceID
             #   url: 'http://jaeger-operator-jaeger-query.monitoring:16686/trace/$${__value.raw}'
 
-            - datasourceUid: tempo
+            - datasourceUid: devops-tempo
               matcherRegex: "traceID=(\\w+)"
               name: TraceID
               # url will be interpreted as query for the datasource

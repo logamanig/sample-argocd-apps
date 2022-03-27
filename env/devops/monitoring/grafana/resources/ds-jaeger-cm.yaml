@@ -6,11 +6,11 @@ metadata:
     grafana_datasource: "1"
     namespace: monitoring
 data:
-  jaeger-ds.yaml: |-
+  ds-jaeger.yaml: |-
     apiVersion: 1
     datasources:
-      - name: Jaeger
-        uid: jaeger
+      - name: DevOps-Jaeger
+        uid: devops-jaeger
         type: jaeger
         url: http://jaeger-operator-jaeger-query.monitoring:16686
         access: proxy
