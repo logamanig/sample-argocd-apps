@@ -96,7 +96,7 @@ spec:
 
     exporters:
       logging:
-        logLevel: debug
+        # logLevel: debug
 
       # prometheus:
       #   endpoint: prometheus-operator-kube-p-prometheus.monitoring:9090
