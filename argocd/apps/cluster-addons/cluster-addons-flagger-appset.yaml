@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons-linkerd-appset
+  name: cluster-addons-flagger-appset
   namespace: argocd
 spec:
   generators:
