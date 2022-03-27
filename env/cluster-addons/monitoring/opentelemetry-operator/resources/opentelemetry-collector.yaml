@@ -96,7 +96,13 @@ spec:
 
     exporters:
       logging:
-        # logLevel: debug
+        logLevel: debug
+
+      prometheus:
+        endpoint: http://prometheus-operator-kube-p-prometheus.monitoring:9090
+        tls:
+          # insecure_skip_verify: true # for HTTPS with invalid cert
+          insecure: true # for http only endpoint
 
       jaeger:
         endpoint: jaeger-operator-jaeger-collector.monitoring:14250
