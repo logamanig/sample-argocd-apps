@@ -5,12 +5,16 @@ server:
     # To enable helm install through kustomize in argocd
     kustomize.buildOptions: --enable-helm
 
-    resource.customizations.ignoreDifferences:
+    resource.customizations.ignoreDifferences: |
       #fixes out of sync issue for kynervo and handles the autogen rule exclusion without ignoring the base rule definitions
       - group: kyverno.io
         kind: ClusterPolicy
         jqPathExpressions:
-          - .spec.rules[] | select(.name|test("autogen-."))
+          - .spec.rules[] # | select(.name|test("autogen-.")) # commented out the second part to ignore only autogen rule as the base rule (as in Git/helm chart) is also having empty maps as default for missing properties
+      - group: kyverno.io
+        kind: Policy
+        jqPathExpressions:
+          - .spec.rules[] # | select(.name|test("autogen-.")) # commented out the second part to ignore only autogen rule as the base rule (as in Git/helm chart) is also having empty maps as default for missing properties
 
   ingress:
     enabled: true
