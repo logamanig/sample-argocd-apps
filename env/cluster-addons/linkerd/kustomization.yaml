@@ -26,13 +26,6 @@ helmCharts:
     namespace: linkerd-viz
     valuesFile: linkerd-viz-values.yaml
 
-  - repo: https://linkerd.github.io/linkerd-smi
-    name: linkerd-smi
-    version: 0.2.0
-    releaseName: linkerd-smi
-    namespace: linkerd
-    valuesFile: linkerd-smi-values.yaml
-
   - repo: https://flagger.app
     name: flagger
     version: 1.19.0
