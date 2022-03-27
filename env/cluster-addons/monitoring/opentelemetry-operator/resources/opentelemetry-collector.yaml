@@ -143,8 +143,8 @@ spec:
         metrics:
           receivers: [prometheus]
           processors: [batch]
-          exporters: [logging]
+          exporters: [logging, prometheus]
         logs:
           receivers: [filelog]
           processors: [batch]
-          exporters: [logging]
+          exporters: [logging, loki]
