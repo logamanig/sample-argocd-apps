@@ -6,8 +6,8 @@ server:
     kustomize.buildOptions: --enable-helm
 
     resource.customizations.ignoreDifferences.kyverno.io.ClusterPolicy: |
-      jqPathExpressions:
-        - .spec.rules[] | select(.name|test("autogen-.")) 
+      jsonPointers:
+        - /spec/rules
     # resource.customizations.ignoreDifferences.kyverno.io.Policy: |
     #   jqPathExpressions:
     #     - .spec.rules[] | select(.name|test("autogen-.")) 
