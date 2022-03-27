@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons-linkerd-appset
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        {} # all registered clusters in argocd
+        # selector:
+        #   matchLabels:
+        #     argocd.argoproj.io/secret-type: cluster
+
+  template:
+    metadata:
+      name: "flagger-{{name}}"
+      namespace: argocd
+    spec:
+      project: cluster-addons
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: "env/cluster-addons/flagger"
+      destination:
+        server: "{{server}}"
+        namespace: linkerd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

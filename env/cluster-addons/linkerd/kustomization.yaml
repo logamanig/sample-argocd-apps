@@ -25,11 +25,3 @@ helmCharts:
     releaseName: linkerd-viz
     namespace: linkerd-viz
     valuesFile: linkerd-viz-values.yaml
-
-  - repo: https://flagger.app
-    name: flagger
-    version: 1.19.0
-    releaseName: flagger
-    namespace: linkerd
-    includeCRDs: true
-    valuesFile: flagger-values.yaml
