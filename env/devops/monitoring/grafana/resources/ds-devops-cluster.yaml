@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ds-devops-cluster
+  labels:
+    grafana_datasource: "1"
+    namespace: monitoring
+data:
+  ds-devops-cluster.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: DevOps-Prometheus
+        uid: devops-prometheus
+        type: prometheus
+        url: http://prometheus-operator-kube-p-prometheus.monitoring:9090/
+        access: proxy
+        isDefault: true
+        editable: false
+        jsonData:
+          timeInterval: 30s
+          httpMethod: POST
+          exemplarTraceIdDestinations:
+          - datasourceUid: devops-tempo
+            name: traceID
+          - datasourceUid: devops-jaeger
+            name: traceID
+
+      - name: DevOps-Tempo
+        uid: devops-tempo
+        type: tempo
+        url: http://tempo-tempo-distributed-query-frontend.monitoring:3100
+        access: proxy
+        isDefault: false
+        editable: false
+        jsonData:
+          timeInterval: 30s
+          nodeGraph:
+            enabled: true
+          search:
+            hide: false
+          serviceMap:
+            datasourceUid: devops-prometheus
+          tracesToLogs:
+            datasourceUid: devops-loki
+            tags: ['job', 'instance', 'pod', 'namespace']
+            mappedTags: [{ key: 'service.name', value: 'service' }]
+            mapTagNamesEnabled: false
+            spanStartTimeShift: '1h'
+            spanEndTimeShift: '1h'
+            filterByTraceID: true
+            filterBySpanID: true
+            lokiSearch: true
+
+      - name: DevOps-Loki
+        uid: devops-loki
+        type: loki
+        url: http://loki-loki-distributed-gateway.monitoring
+        access: proxy
+        isDefault: false
+        editable: false
+        jsonData:
+          timeInterval: 30s
+          maxLines: 1000
+          derivedFields:
+            # Field with internal link pointing to data source in Grafana.
+            # Right now, Grafana supports only Jaeger and Zipkin data sources as link targets.
+            # datasourceUid value can be anything, but it should be unique across all defined data source uids.
+            - datasourceUid: devops-jaeger
+              matcherRegex: "traceID=(\\w+)"
+              name: TraceID
+              # url will be interpreted as query for the datasource
+              url: '$${__value.raw}'
+
+            # # Field with external link.
+            # - matcherRegex: "traceID=(\\w+)"
+            #   name: TraceID
+            #   url: 'http://jaeger-operator-jaeger-query.monitoring:16686/trace/$${__value.raw}'
+
+            - datasourceUid: devops-tempo
+              matcherRegex: "traceID=(\\w+)"
+              name: TraceID
+              # url will be interpreted as query for the datasource
+              url: '$${__value.raw}'
+
+            # # Field with external link.
+            # - matcherRegex: "traceID=(\\w+)"
+            #   name: TraceID
+            #   url: 'http://tempo-tempo-distributed-query-frontend.monitoring:3100/trace/$${__value.raw}'
+
+      - name: DevOps-Jaeger
+        uid: devops-jaeger
+        type: jaeger
+        url: http://jaeger-operator-jaeger-query.monitoring:16686
+        access: proxy
+        isDefault: false
+        editable: false
+        jsonData:
+          timeInterval: 30s
+          nodeGraph:
+            enabled: true
+          search:
+            hide: false
+          tracesToLogs:
+            datasourceUid: devops-loki
+            tags: ['job', 'instance', 'pod', 'namespace']
+            mappedTags: [{ key: 'service.name', value: 'service' }]
+            mapTagNamesEnabled: true
+            spanStartTimeShift: '1h'
+            spanEndTimeShift: '1h'
+            filterByTraceID: true
+            filterBySpanID: true
+            lokiSearch: true
