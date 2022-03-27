@@ -1,3 +1,107 @@
 controller:
   podAnnotations:
     linkerd.io/inject: enabled
+
+  keda:
+      apiVersion: "keda.sh/v1alpha1"
+      ## apiVersion changes with keda 1.x vs 2.x
+      ## 2.x = keda.sh/v1alpha1
+      ## 1.x = keda.k8s.io/v1alpha1
+      enabled: false
+      minReplicas: 3
+      maxReplicas: 11
+      pollingInterval: 30
+      cooldownPeriod: 300
+      restoreToOriginalReplicaCount: false
+      scaledObject:
+        annotations: {}
+        # Custom annotations for ScaledObject resource
+        #  annotations:
+        # key: value
+      triggers:
+       - type: prometheus
+         metadata:
+           serverAddress: http://prometheus-operator-kube-p-prometheus.monitoring:9090
+           metricName: http_requests_total
+           threshold: '100'
+           query: sum(rate(http_requests_total{deployment="my-deployment"}[2m]))
+
+  metrics:
+    port: 10254
+    # if this port is changed, change healthz-port: in extraArgs: accordingly
+    enabled: true
+
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
+
+      # clusterIP: ""
+
+      # -- List of IP addresses at which the stats-exporter service is available
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+      ##
+      externalIPs: []
+
+      # loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      servicePort: 10254
+      type: ClusterIP
+      # externalTrafficPolicy: ""
+      # nodePort: ""
+
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        ## The label to use to retrieve the job name from.
+        jobLabel: "app.kubernetes.io/name"
+      namespace: ""
+      namespaceSelector: {}
+      ## Default: scrape .Release.Namespace only
+      ## To scrape all, use the following:
+      ## namespaceSelector:
+      ##   any: true
+      scrapeInterval: 30s
+      # honorLabels: true
+      targetLabels: []
+      relabelings: []
+      metricRelabelings: []
+
+    prometheusRule:
+      enabled: true
+      additionalLabels: {}
+      # namespace: ""
+      rules:
+        # These are just examples rules, please adapt them to your needs
+        - alert: NGINXConfigFailed
+          expr: count(nginx_ingress_controller_config_last_reload_successful == 0) > 0
+          for: 1s
+          labels:
+            severity: critical
+          annotations:
+            description: bad ingress config - nginx config test failed
+            summary: uninstall the latest ingress changes to allow config reloads to resume
+        - alert: NGINXCertificateExpiry
+          expr: (avg(nginx_ingress_controller_ssl_expire_time_seconds) by (host) - time()) < 604800
+          for: 1s
+          labels:
+            severity: critical
+          annotations:
+            description: ssl certificate(s) will expire in less then a week
+            summary: renew expiring certificates to avoid downtime
+        - alert: NGINXTooMany500s
+          expr: 100 * ( sum( nginx_ingress_controller_requests{status=~"5.+"} ) / sum(nginx_ingress_controller_requests) ) > 5
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            description: Too many 5XXs
+            summary: More than 5% of all requests returned 5XX, this requires your attention
+        - alert: NGINXTooMany400s
+          expr: 100 * ( sum( nginx_ingress_controller_requests{status=~"4.+"} ) / sum(nginx_ingress_controller_requests) ) > 5
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            description: Too many 4XXs
+            summary: More than 5% of all requests returned 4XX, this requires your attention

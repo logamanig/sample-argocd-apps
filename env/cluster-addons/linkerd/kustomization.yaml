@@ -31,7 +31,6 @@ helmCharts:
     version: 0.2.0
     releaseName: linkerd-smi
     namespace: linkerd
-    includeCRDs: true
     valuesFile: linkerd-smi-values.yaml
 
   - repo: https://flagger.app
