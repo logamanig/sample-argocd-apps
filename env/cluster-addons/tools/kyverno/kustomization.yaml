@@ -9,9 +9,9 @@ helmCharts:
     releaseName: kyverno
     valuesFile: kyverno-values.yaml
     
-  # - repo: https://kyverno.github.io/kyverno/
-  #   name: kyverno-policies
-  #   version: v2.3.1
-  #   namespace: tools
-  #   releaseName: kyverno-policies
-  #   valuesFile: kyverno-policies-values.yaml
+  - repo: https://kyverno.github.io/kyverno/
+    name: kyverno-policies
+    version: v2.3.1
+    namespace: tools
+    releaseName: kyverno-policies
+    valuesFile: kyverno-policies-values.yaml
