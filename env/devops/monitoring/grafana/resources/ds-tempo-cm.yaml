@@ -23,7 +23,7 @@ data:
           search:
             hide: false
           serviceMap:
-            datasourceUid: prometheus
+            datasourceUid: devops-prometheus
           tracesToLogs:
             datasourceUid: devops-loki
             tags: ['job', 'instance', 'pod', 'namespace']

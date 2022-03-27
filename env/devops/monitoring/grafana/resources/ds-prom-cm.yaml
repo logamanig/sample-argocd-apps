@@ -10,7 +10,7 @@ data:
     apiVersion: 1
     datasources:
       - name: DevOps-Prometheus
-        uid: devops-prom
+        uid: devops-prometheus
         type: prometheus
         url: http://prometheus-operator-kube-p-prometheus.monitoring:9090/
         access: proxy
