@@ -39,7 +39,7 @@ data:
           search:
             hide: false
           serviceMap:
-            datasourceUid: devops-prometheus
+            datasourceUid: 'devops-prometheus'
           tracesToLogs:
             datasourceUid: devops-loki
             tags: ['job', 'instance', 'pod', 'namespace']
@@ -50,6 +50,7 @@ data:
             filterByTraceID: true
             filterBySpanID: true
             lokiSearch: true
+          version: 1
 
       - name: DevOps-Loki
         uid: devops-loki
