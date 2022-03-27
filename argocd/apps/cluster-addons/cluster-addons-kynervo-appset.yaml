@@ -1,3 +1,5 @@
+# Kynervo is not part of the tools-appset due to special addition of ignoreDifferences 
+# for autogen rules from kynervo policies
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
