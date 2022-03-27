@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: jaeger-ds-grafana
+  name: ds-jaeger
   labels:
     grafana_datasource: "1"
     namespace: monitoring

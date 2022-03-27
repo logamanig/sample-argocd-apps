@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: prometheus-devops-ds-grafana
+  name: ds-prometheus
   labels:
     grafana_datasource: "1"
     namespace: monitoring
