@@ -4,6 +4,7 @@
 kind: Kustomization
 
 resources:
+  - "./resources/ds-prom-cm.yaml"
   - "./resources/ds-tempo-cm.yaml"
   - "./resources/ds-loki-cm.yaml"
   - "./resources/ds-jaeger-cm.yaml"

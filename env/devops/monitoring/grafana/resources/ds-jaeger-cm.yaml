@@ -23,7 +23,7 @@ data:
           search:
             hide: false
           tracesToLogs:
-            datasourceUid: loki
+            datasourceUid: devops-loki
             tags: ['job', 'instance', 'pod', 'namespace']
             mappedTags: [{ key: 'service.name', value: 'service' }]
             mapTagNamesEnabled: true
