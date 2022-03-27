@@ -21,7 +21,7 @@ spec:
           image: jaegertracing/vertx-create-span:operator-e2e-tests
           env:
             - name: JAEGER_AGENT_HOST
-              value: otel-collector-daemonset-collector.monitoring1
+              value: otel-collector-daemonset-collector.monitoring
           ports:
             - containerPort: 8080
               protocol: TCP
