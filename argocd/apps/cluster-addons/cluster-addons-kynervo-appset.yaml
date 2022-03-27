@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons-cert-manager-appset
+  name: cluster-addons-kynervo-appset
   namespace: argocd
 spec:
   generators:
@@ -13,20 +13,25 @@ spec:
 
   template:
     metadata:
-      name: "cert-manager-{{name}}"
+      name: "flagger-{{name}}"
       namespace: argocd
     spec:
       project: cluster-addons
       source:
         repoURL: https://github.com/logamanig/sample-argocd-apps
         targetRevision: master
-        path: "env/cluster-addons/cert-manager"
+        path: "env/cluster-addons/kynervo"
       destination:
         server: "{{server}}"
-        namespace: cert-manager
+        namespace: tools
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
+      ignoreDifferences:
+        - group: kyverno.io
+          kind: ClusterPolicy
+          jqPathExpressions:
+            - .spec.rules[] | select(.name|test("autogen-."))
