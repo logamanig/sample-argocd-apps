@@ -5,5 +5,5 @@ jaeger:
   enabled: false
 
 webhook:
-  collectorSvcAddr: otel-collector-daemonset-collector.monitoring.svc.cluster.local:4317
+  collectorSvcAddr: otel-collector-daemonset-collector.monitoring.svc.cluster.local:55678
   collectorSvcAccount: otel-collector-daemonset-collector
