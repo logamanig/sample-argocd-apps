@@ -91,6 +91,8 @@ metadata:
     app.kubernetes.io/version: v11
   name: emoji
   namespace: test
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -130,6 +132,8 @@ metadata:
     app.kubernetes.io/version: v11
   name: vote-bot
   namespace: test
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -163,6 +167,8 @@ metadata:
     app.kubernetes.io/version: v11
   name: voting
   namespace: test
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -202,6 +208,8 @@ metadata:
     app.kubernetes.io/version: v11
   name: web
   namespace: test
+  annotations:
+    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
