@@ -20,6 +20,7 @@ spec:
         protocols:
           grpc:
           http:
+      opencensus:
       jaeger:
         protocols:
           grpc:
@@ -137,7 +138,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlp, jaeger]
+          receivers: [otlp, opencensus, jaeger]
           processors: [batch]
           exporters: [logging, otlphttp/tempo, jaeger]
         metrics:
