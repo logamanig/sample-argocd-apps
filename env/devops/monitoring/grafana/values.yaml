@@ -69,7 +69,7 @@ grafana:
       strict_transport_security: true
       strict_transport_security_subdomains: true
     auth:
-      disable_login_form: true
+      disable_login_form: false
     log:
       mode: console
       level: warning
