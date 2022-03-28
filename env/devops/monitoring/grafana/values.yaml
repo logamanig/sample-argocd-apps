@@ -57,6 +57,29 @@ grafana:
     #   hosts:
     #   - mk.grafana.local
 
+  grafana.ini:
+    analytics:
+      check_for_updates: false
+      reporting_enabled: false
+    feature_toggles:
+      enable: tempoSearch tempoBackendSearch tempoServiceGraph
+    security:
+      cookie_secure: true
+      cookie_samesite: strict
+      strict_transport_security: true
+      strict_transport_security_subdomains: true
+    auth:
+      disable_login_form: true
+    log:
+      mode: console
+      level: warning
+    grafana_net:
+      url: https://grafana.com
+    server:
+      domain: mk.grafana.local
+      root_url: "%(protocol)s://%(domain)s/"
+      serve_from_sub_path: false
+
   sidecar:
     dashboards:
       enabled: true
