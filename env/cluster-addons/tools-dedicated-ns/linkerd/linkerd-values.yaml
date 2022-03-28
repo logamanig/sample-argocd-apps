@@ -7,3 +7,5 @@ identity:
 # installNamespace -- Set to false when installing Linkerd in a custom namespace. See the
 # [Linkerd documentation](https://linkerd.io/2/tasks/install-helm#customizing-the-namespace) for more information.
 installNamespace: true
+
+cniEnabled: true
