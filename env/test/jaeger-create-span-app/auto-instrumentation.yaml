@@ -5,7 +5,7 @@ metadata:
   namespace: test
 spec:
   exporter:
-    endpoint: http://otel-collector-daemonset-collector.monitoring.svc.cluster.local:4317
+    endpoint: http://otel-collector-daemonset-collector.monitoring:4317
   propagators:
     - tracecontext
     - baggage

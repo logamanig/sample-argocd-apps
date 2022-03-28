@@ -12,7 +12,7 @@ data:
       - name: DevOps-Prometheus
         uid: devops-prometheus
         type: prometheus
-        url: http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090/
+        url: http://prometheus-operator-kube-p-prometheus.monitoring:9090/
         access: proxy
         isDefault: true
         editable: false
@@ -28,7 +28,7 @@ data:
       - name: DevOps-Tempo
         uid: devops-tempo
         type: tempo
-        url: http://tempo-tempo-distributed-query-frontend.monitoring.svc.cluster.local:3100
+        url: http://tempo-tempo-distributed-query-frontend.monitoring:3100
         access: proxy
         isDefault: false
         editable: false
@@ -55,7 +55,7 @@ data:
       - name: DevOps-Loki
         uid: devops-loki
         type: loki
-        url: http://loki-loki-distributed-gateway.monitoring.svc.cluster.local
+        url: http://loki-loki-distributed-gateway.monitoring
         access: proxy
         isDefault: false
         editable: false
@@ -75,7 +75,7 @@ data:
             # # Field with external link.
             # - matcherRegex: "traceID=(\\w+)"
             #   name: TraceID
-            #   url: 'http://jaeger-operator-jaeger-query.monitoring.svc.cluster.local:16686/trace/$${__value.raw}'
+            #   url: 'http://jaeger-operator-jaeger-query.monitoring:16686/trace/$${__value.raw}'
 
             - datasourceUid: devops-tempo
               matcherRegex: "traceID=(\\w+)"
@@ -86,12 +86,12 @@ data:
             # # Field with external link.
             # - matcherRegex: "traceID=(\\w+)"
             #   name: TraceID
-            #   url: 'http://tempo-tempo-distributed-query-frontend.monitoring.svc.cluster.local:3100/trace/$${__value.raw}'
+            #   url: 'http://tempo-tempo-distributed-query-frontend.monitoring:3100/trace/$${__value.raw}'
 
       - name: DevOps-Jaeger
         uid: devops-jaeger
         type: jaeger
-        url: http://jaeger-operator-jaeger-query.monitoring.svc.cluster.local:16686
+        url: http://jaeger-operator-jaeger-query.monitoring:16686
         access: proxy
         isDefault: false
         editable: false
