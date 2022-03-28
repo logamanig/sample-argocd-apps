@@ -5,6 +5,8 @@ metadata:
 spec:
   mode: daemonset
   image: otel/opentelemetry-collector-contrib:latest
+  podAnnotations:
+    linkerd.io/inject: enabled
 
   volumes:
     - name: varlog
