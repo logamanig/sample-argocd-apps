@@ -21,7 +21,7 @@ controller:
       triggers:
        - type: prometheus
          metadata:
-           serverAddress: http://prometheus-operator-kube-p-prometheus.monitoring:9090
+           serverAddress: http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090
            metricName: http_requests_total
            threshold: '100'
            query: sum(rate(http_requests_total{deployment="my-deployment"}[2m]))

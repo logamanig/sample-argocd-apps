@@ -1,7 +1,7 @@
 # priority class name for pod priority configuration
 podPriorityClassName: ""
 
-metricsServer: http://prometheus-operator-kube-p-prometheus.monitoring:9090
+metricsServer: http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090
 
 # accepted values are kubernetes, istio, linkerd, appmesh, contour, nginx, gloo, skipper, traefik, osm
 meshProvider: linkerd

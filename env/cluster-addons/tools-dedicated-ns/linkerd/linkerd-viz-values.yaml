@@ -1,5 +1,5 @@
-prometheusUrl: http://prometheus-operator-kube-p-prometheus.monitoring:9090
-jaegerUrl: http://jaeger-operator-jaeger-query.monitoring:16686
+prometheusUrl: http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090
+jaegerUrl: http://jaeger-operator-jaeger-query.monitoring.svc.cluster.local:16686
 
 prometheus:
   enabled: false

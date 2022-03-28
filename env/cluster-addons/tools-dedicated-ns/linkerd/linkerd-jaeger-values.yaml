@@ -1,0 +1,9 @@
+collector:
+  enabled: false
+
+jaeger:
+  enabled: false
+
+webhook:
+  collectorSvcAddr: otel-collector-daemonset-collector.monitoring.svc.cluster.local:4317
+  collectorSvcAccount: otel-collector-daemonset-collector

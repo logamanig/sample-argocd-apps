@@ -112,7 +112,7 @@ spec:
         - name: PROM_PORT
           value: "8801"
         - name: OC_AGENT_HOST
-          value: "otel-collector-daemonset-collector.monitoring:14250"
+          value: "otel-collector-daemonset-collector.monitoring.svc.cluster.local:14250"
         image: docker.l5d.io/buoyantio/emojivoto-emoji-svc:v11
         name: emoji-svc
         ports:
@@ -153,9 +153,9 @@ spec:
         - emojivoto-vote-bot
         env:
         - name: WEB_HOST
-          value: web-svc.test:80
+          value: web-svc.test.svc.cluster.local:80
         - name: OC_AGENT_HOST
-          value: "otel-collector-daemonset-collector.monitoring:14250"
+          value: "otel-collector-daemonset-collector.monitoring.svc.cluster.local:14250"
         image: docker.l5d.io/buoyantio/emojivoto-web:v11
         name: vote-bot
         resources:
@@ -192,7 +192,7 @@ spec:
         - name: PROM_PORT
           value: "8801"
         - name: OC_AGENT_HOST
-          value: "otel-collector-daemonset-collector.monitoring:14250"
+          value: "otel-collector-daemonset-collector.monitoring.svc.cluster.local:14250"
         image: docker.l5d.io/buoyantio/emojivoto-voting-svc:v11
         name: voting-svc
         ports:
@@ -233,13 +233,13 @@ spec:
         - name: WEB_PORT
           value: "8080"
         - name: EMOJISVC_HOST
-          value: emoji-svc.test:8080
+          value: emoji-svc.test.svc.cluster.local:8080
         - name: VOTINGSVC_HOST
-          value: voting-svc.test:8080
+          value: voting-svc.test.svc.cluster.local:8080
         - name: INDEX_BUNDLE
           value: dist/index_bundle.js
         - name: OC_AGENT_HOST
-          value: "otel-collector-daemonset-collector.monitoring:14250"
+          value: "otel-collector-daemonset-collector.monitoring.svc.cluster.local:14250"
         image: docker.l5d.io/buoyantio/emojivoto-web:v11
         name: web-svc
         ports:
