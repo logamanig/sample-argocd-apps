@@ -12,12 +12,12 @@ helmCharts:
     namespace: linkerd
     valuesFile: linkerd-values.yaml
 
-  - repo: https://helm.linkerd.io/stable
-    name: linkerd2-cni
-    version: 2.11.1
-    releaseName: linkerd-cni
-    namespace: linkerd-cni
-    valuesFile: linkerd-cni-values.yaml
+  # - repo: https://helm.linkerd.io/stable
+  #   name: linkerd2-cni
+  #   version: 2.11.1
+  #   releaseName: linkerd-cni
+  #   namespace: linkerd-cni
+  #   valuesFile: linkerd-cni-values.yaml
 
   - repo: https://helm.linkerd.io/stable
     name: linkerd-viz
