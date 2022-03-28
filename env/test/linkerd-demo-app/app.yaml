@@ -91,8 +91,6 @@ metadata:
     app.kubernetes.io/version: v11
   name: emoji
   namespace: test
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -104,6 +102,8 @@ spec:
       labels:
         app: emoji-svc
         version: v11
+      annotations:
+        linkerd.io/inject: enabled
     spec:
       containers:
       - env:
@@ -132,8 +132,6 @@ metadata:
     app.kubernetes.io/version: v11
   name: vote-bot
   namespace: test
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -145,6 +143,8 @@ spec:
       labels:
         app: vote-bot
         version: v11
+      annotations:
+        linkerd.io/inject: enabled
     spec:
       containers:
       - command:
@@ -167,8 +167,6 @@ metadata:
     app.kubernetes.io/version: v11
   name: voting
   namespace: test
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -180,6 +178,8 @@ spec:
       labels:
         app: voting-svc
         version: v11
+      annotations:
+        linkerd.io/inject: enabled
     spec:
       containers:
       - env:
@@ -208,8 +208,6 @@ metadata:
     app.kubernetes.io/version: v11
   name: web
   namespace: test
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -221,6 +219,8 @@ spec:
       labels:
         app: web-svc
         version: v11
+      annotations:
+        linkerd.io/inject: enabled
     spec:
       containers:
       - env:
