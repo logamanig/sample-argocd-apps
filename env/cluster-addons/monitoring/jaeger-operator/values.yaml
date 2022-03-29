@@ -1,7 +1,7 @@
 jaeger:
   create: true
   spec:
-    strategy: production
+    # strategy: production
     ingress:
       enabled: true
       hosts:
