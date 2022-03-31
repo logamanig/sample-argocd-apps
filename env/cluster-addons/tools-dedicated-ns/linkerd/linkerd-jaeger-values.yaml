@@ -1,3 +1,6 @@
+installNamespace: false
+namespace: linkerd
+
 collector:
   enabled: false
 
