@@ -1,11 +1,81 @@
+global:
+  image:
+    registry: docker.io
+
 search:
   # -- Enable Tempo search
   enabled: true
 
+rbac:
+  create: true
+
+tempo:
+  securityContext:
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 1000
+
+ingester:
+  # resources:
+  #   limits:
+  #     cpu: 0.5
+  #     memory: 0.75Gi
+  #   requests:
+  #     cpu: 0.5
+  #     memory: 0.75Gi
+
+distributor:
+  # resources:
+  #   limits:
+  #     cpu: 0.25
+  #     memory: 0.25Gi
+  #   requests:
+  #     cpu: 0.25
+  #     memory: 0.25Gi
+
+compactor:
+  # resources:
+  #   llimits:
+  #     cpu: 0.5
+  #     memory: 0.75Gi
+  #   requests:
+  #     cpu: 0.5
+  #     memory: 0.75Gi
+
+querier:
+  # resources:
+  #   llimits:
+  #     cpu: 0.5
+  #     memory: 0.75Gi
+  #   requests:
+  #     cpu: 0.5
+  #     memory: 0.75Gi
+
+queryFrontend:
+  # resources:
+  #   llimits:
+  #     cpu: 0.25
+  #     memory: 0.25Gi
+  #   requests:
+  #     cpu: 0.5
+  #     memory: 0.25Gi
+
+memcached:
+  # resources:
+  #   limits:
+  #     cpu: 0.25
+  #     memory: 0.25Gi
+  #   requests:
+  #     cpu: 0.25
+  #     memory: 0.25Gi
+
 gateway:
   enabled: true
   ingress:
-    enabled: true
+    enabled: true # Grafana
     ingressClassName: nginx
     # annotations:
     #   nginx.ingress.kubernetes.io/ssl-passthrough: true
@@ -18,7 +88,14 @@ gateway:
     tls:
       # - secretName: tempo-gateway-tls
       - hosts:
-        - mk.tempo.192.168.64.35.nip.io
+          - mk.tempo.192.168.64.35.nip.io
+  # resources:
+  #   limits:
+  #     cpu: 0.25
+  #     memory: 0.25Gi
+  #   requests:
+  #     cpu: 0.25
+  #     memory: 0.25Gi
 
 traces:
   jaeger:
@@ -42,17 +119,10 @@ traces:
   # -- Enable Tempo to ingest traces from Kafka. Reference: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/kafkareceiver
   kafka: {}
 
-
-# ingester:
-#   persistence: true
-#   size: 2Gi
-#   storageClass: 
-  
 # ServiceMonitor configuration
 serviceMonitor:
   # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
   enabled: true
-
 
 # Rules for the Prometheus Operator
 prometheusRule:
@@ -66,11 +136,11 @@ prometheusRule:
   labels: {}
   # -- Contents of Prometheus rules file
   groups: # []
-  - name: tempo-rules
-    rules:
-      - record: job:tempo_request_duration_seconds_bucket:sum_rate
-        expr: sum(rate(tempo_request_duration_seconds_bucket[1m])) by (le, job)
-      - record: job_route:tempo_request_duration_seconds_bucket:sum_rate
-        expr: sum(rate(tempo_request_duration_seconds_bucket[1m])) by (le, job, route)
-      - record: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate
-        expr: sum(rate(container_cpu_usage_seconds_total[1m])) by (node, namespace, pod, container)
+    - name: tempo-rules
+      rules:
+        - record: job:tempo_request_duration_seconds_bucket:sum_rate
+          expr: sum(rate(tempo_request_duration_seconds_bucket[1m])) by (le, job)
+        - record: job_route:tempo_request_duration_seconds_bucket:sum_rate
+          expr: sum(rate(tempo_request_duration_seconds_bucket[1m])) by (le, job, route)
+        - record: node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate
+          expr: sum(rate(container_cpu_usage_seconds_total[1m])) by (node, namespace, pod, container)
