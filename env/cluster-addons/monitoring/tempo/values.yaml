@@ -9,14 +9,14 @@ search:
 rbac:
   create: true
 
-tempo:
-  securityContext:
-    capabilities:
-      drop:
-        - ALL
-    readOnlyRootFilesystem: false
-    runAsNonRoot: true
-    runAsUser: 1000
+# tempo:
+#   securityContext:
+#     capabilities:
+#       drop:
+#         - ALL
+#     readOnlyRootFilesystem: true
+#     runAsNonRoot: true
+#     runAsUser: 1000
 
 # ingester:
 #   resources:
