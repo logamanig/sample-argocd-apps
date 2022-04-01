@@ -1,5 +1,5 @@
-image:
-  tag: 1.32.0
+# image:
+#   tag: 1.32.0
 
 jaeger:
   create: true
