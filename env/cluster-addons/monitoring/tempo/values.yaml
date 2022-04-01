@@ -14,74 +14,72 @@ tempo:
     capabilities:
       drop:
         - ALL
-    readOnlyRootFilesystem: true
+    # readOnlyRootFilesystem: true
     runAsNonRoot: true
     runAsUser: 1000
 
-ingester:
-  # resources:
-  #   limits:
-  #     cpu: 0.5
-  #     memory: 0.75Gi
-  #   requests:
-  #     cpu: 0.5
-  #     memory: 0.75Gi
+# ingester:
+#   resources:
+#     limits:
+#       cpu: 0.5
+#       memory: 0.75Gi
+#     requests:
+#       cpu: 0.5
+#       memory: 0.75Gi
 
-distributor:
-  # resources:
-  #   limits:
-  #     cpu: 0.25
-  #     memory: 0.25Gi
-  #   requests:
-  #     cpu: 0.25
-  #     memory: 0.25Gi
+# distributor:
+#   resources:
+#     limits:
+#       cpu: 0.25
+#       memory: 0.25Gi
+#     requests:
+#       cpu: 0.25
+#       memory: 0.25Gi
 
-compactor:
-  # resources:
-  #   llimits:
-  #     cpu: 0.5
-  #     memory: 0.75Gi
-  #   requests:
-  #     cpu: 0.5
-  #     memory: 0.75Gi
+# compactor:
+#   resources:
+#     llimits:
+#       cpu: 0.5
+#       memory: 0.75Gi
+#     requests:
+#       cpu: 0.5
+#       memory: 0.75Gi
 
-querier:
-  # resources:
-  #   llimits:
-  #     cpu: 0.5
-  #     memory: 0.75Gi
-  #   requests:
-  #     cpu: 0.5
-  #     memory: 0.75Gi
+# querier:
+#   resources:
+#     llimits:
+#       cpu: 0.5
+#       memory: 0.75Gi
+#     requests:
+#       cpu: 0.5
+#       memory: 0.75Gi
 
-queryFrontend:
-  # resources:
-  #   llimits:
-  #     cpu: 0.25
-  #     memory: 0.25Gi
-  #   requests:
-  #     cpu: 0.5
-  #     memory: 0.25Gi
+# queryFrontend:
+#   resources:
+#     llimits:
+#       cpu: 0.25
+#       memory: 0.25Gi
+#     requests:
+#       cpu: 0.5
+#       memory: 0.25Gi
 
-memcached:
-  # resources:
-  #   limits:
-  #     cpu: 0.25
-  #     memory: 0.25Gi
-  #   requests:
-  #     cpu: 0.25
-  #     memory: 0.25Gi
+# memcached:
+#   resources:
+#     limits:
+#       cpu: 0.25
+#       memory: 0.25Gi
+#     requests:
+#       cpu: 0.25
+#       memory: 0.25Gi
 
 gateway:
   enabled: true
   ingress:
     enabled: true # Grafana
     ingressClassName: nginx
-    # annotations:
-    #   nginx.ingress.kubernetes.io/ssl-passthrough: true
 
     hosts:
-      - host: mk.tempo.192.168.64.35.nip.io
+      - host: mk.tempo.local
         paths:
           - path: /
             pathType: ImplementationSpecific
