@@ -1,3 +1,33 @@
+manager:
+  image:
+    repository: open-telemetry/opentelemetry-operator/opentelemetry-operator
+    # tag: v0.47.0
+  collectorImage:
+    repository: otel/opentelemetry-collector-contrib
+    tag: 0.48.0
+  # resources:
+  #   limits:
+  #     cpu: 150m
+  #     memory: 192Mi
+  #   requests:
+  #     cpu: 100m
+  #     memory: 64Mi
+
+  # env:
+  #   WATCH_NAMESPACE: monitoring, prd
+
+kubeRBACProxy:
+  image:
+    repository: kubebuilder/kube-rbac-proxy
+    # tag: v0.8.0
+  # resources:
+  #   limits:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+
 admissionWebhooks:
   failurePolicy: Fail
   enabled: true
