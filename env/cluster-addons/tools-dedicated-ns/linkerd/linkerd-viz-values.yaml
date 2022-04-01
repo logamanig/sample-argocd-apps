@@ -1,6 +1,3 @@
-installNamespace: false
-namespace: linkerd
-
 prometheusUrl: http://prometheus-operator-kube-p-prometheus.monitoring:9090
 jaegerUrl: jaeger-operator-jaeger-query.monitoring
 
