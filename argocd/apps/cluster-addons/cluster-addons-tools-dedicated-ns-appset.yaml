@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons-tools-dedicated-ns-appset
+  name: cluster-addons-dedicated-ns-appset
   namespace: argocd
 spec:
   generators:
@@ -11,7 +11,7 @@ spec:
               repoURL: https://github.com/logamanig/sample-argocd-apps
               revision: master
               directories:
-                - path: env/cluster-addons/tools-dedicated-ns/*
+                - path: env/cluster-addons/dedicated-ns/*
                   
           - clusters: {} # all registered clusters in argocd
               # selector:
