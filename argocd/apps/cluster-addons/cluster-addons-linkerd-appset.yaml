@@ -11,7 +11,7 @@ spec:
               repoURL: https://github.com/logamanig/sample-argocd-apps
               revision: master
               directories:
-                - path: env/cluster-addons/dedicated-ns/linkerd/*
+                - path: env/cluster-addons/dedicated-ns/linkerd-stack/*
                 
           - clusters: {} # all registered clusters in argocd
               # selector:
