@@ -1,0 +1,12 @@
+namespace: linkerd
+installNamespace: false
+
+prometheusUrl: http://prometheus-operator-kube-p-prometheus.monitoring:9090
+jaegerUrl: jaeger-operator-jaeger-query.monitoring
+
+prometheus:
+  enabled: false
+
+grafana:
+  externalUrl: https://mk.grafana.local
+  uidPrefix: linkerd-dashboard

@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons-linkerd-appset
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/logamanig/sample-argocd-apps
+              revision: master
+              directories:
+                - path: env/cluster-addons/dedicated-ns/linkerd/*
+                
+          - clusters: {} # all registered clusters in argocd
+              # selector:
+              #   matchLabels:
+              #     argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: '{{path.basename}}-{{name}}'
+      namespace: argocd
+    spec:
+      project: cluster-addons
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: '{{path}}'
+      destination:
+        server: '{{server}}'
+        namespace: linkerd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
