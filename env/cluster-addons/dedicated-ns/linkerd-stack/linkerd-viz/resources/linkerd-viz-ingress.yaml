@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: linkerd-viz-ingress
-  namespace: linkerd-viz
+  namespace: linkerd
   labels:
     name: linkerd-viz-ingress
   annotations:
