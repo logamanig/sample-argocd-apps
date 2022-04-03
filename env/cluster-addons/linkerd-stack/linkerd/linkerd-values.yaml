@@ -4,6 +4,6 @@ identity:
   issuer:
     scheme: kubernetes.io/tls
 
-installNamespace: false
+# installNamespace: false
 
 cniEnabled: false
