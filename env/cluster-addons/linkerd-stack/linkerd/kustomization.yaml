@@ -11,7 +11,7 @@ helmCharts:
     namespace: linkerd
 
   - repo: https://helm.linkerd.io/edge
-    name: linkerd
+    name: linkerd-control-plane
     version: 1.2.0-edge
     releaseName: linkerd-control-plane
     namespace: linkerd
