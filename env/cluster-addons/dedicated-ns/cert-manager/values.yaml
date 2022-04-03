@@ -90,9 +90,9 @@ cainjector:
   #     memory: 128Mi
 
 startupapicheck:
-  image:
-    repository: 
-    pullPolicy: IfNotPresent
+  # image:
+  #   repository: 
+  #   pullPolicy: IfNotPresent
 
   securityContext:
     fsGroup: 1000
