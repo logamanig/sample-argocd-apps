@@ -16,4 +16,5 @@ helmCharts:
     version: 1.2.0-edge
     releaseName: linkerd-control-plane
     namespace: linkerd
+    includeCRDs: true
     valuesFile: values.yaml
