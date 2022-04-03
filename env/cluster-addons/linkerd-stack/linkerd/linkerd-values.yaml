@@ -6,4 +6,4 @@ identity:
 
 # installNamespace: false
 
-cniEnabled: false
+cniEnabled: true
