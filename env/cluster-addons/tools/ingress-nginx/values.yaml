@@ -1,6 +1,6 @@
-controller:
-  podAnnotations:
-    linkerd.io/inject: enabled
+# controller:
+#   podAnnotations:
+#     linkerd.io/inject: enabled
 
   keda:
       apiVersion: "keda.sh/v1alpha1"
