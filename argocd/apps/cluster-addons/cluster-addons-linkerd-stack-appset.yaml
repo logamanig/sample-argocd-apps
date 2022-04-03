@@ -29,8 +29,10 @@ spec:
         path: '{{path}}'
       destination:
         server: '{{server}}'
-        namespace: linkerd
+        namespace: '{{path.basename}}'
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
