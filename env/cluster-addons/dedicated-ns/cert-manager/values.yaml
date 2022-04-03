@@ -41,18 +41,18 @@ webhook:
 #   # Required for Fargate EKS cluster as per https://github.com/cert-manager/cert-manager/issues/3237#issuecomment-856348506
 #   securePort: 10250
 
-  securityContext:
-    fsGroup: 1000
-    runAsUser: 1000
-    runAsNonRoot: true
+  # securityContext:
+  #   fsGroup: 1000
+  #   runAsUser: 1000
+  #   runAsNonRoot: true
 
-  containerSecurityContext:
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-      - ALL
-    readOnlyRootFilesystem: true
-    runAsNonRoot: true
+  # containerSecurityContext:
+  #   allowPrivilegeEscalation: false
+  #   capabilities:
+  #     drop:
+  #     - ALL
+  #   readOnlyRootFilesystem: true
+  #   runAsNonRoot: true
   
 #   resources:
 #     requests:
@@ -68,18 +68,18 @@ cainjector:
 #   #   repository: 
 #   #   pullPolicy: IfNotPresent
   
-  securityContext:
-    fsGroup: 1000
-    runAsUser: 1000
-    runAsNonRoot: true
+  # securityContext:
+  #   fsGroup: 1000
+  #   runAsUser: 1000
+  #   runAsNonRoot: true
 
-  containerSecurityContext:
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-      - ALL
-    readOnlyRootFilesystem: true
-    runAsNonRoot: true
+  # containerSecurityContext:
+  #   allowPrivilegeEscalation: false
+  #   capabilities:
+  #     drop:
+  #     - ALL
+  #   readOnlyRootFilesystem: true
+  #   runAsNonRoot: true
   
 #   resources:
 #     requests:
@@ -94,18 +94,18 @@ startupapicheck:
 #   #   repository: 
 #   #   pullPolicy: IfNotPresent
 
-  securityContext:
-    fsGroup: 1000
-    runAsUser: 1000
-    runAsNonRoot: true
+  # securityContext:
+  #   fsGroup: 1000
+  #   runAsUser: 1000
+  #   runAsNonRoot: true
 
-  containerSecurityContext:
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-      - ALL
-    # readOnlyRootFilesystem: true
-    runAsNonRoot: true
+  # containerSecurityContext:
+  #   allowPrivilegeEscalation: false
+  #   capabilities:
+  #     drop:
+  #     - ALL
+  #   # readOnlyRootFilesystem: true
+  #   runAsNonRoot: true
   
 #   resources:
 #     requests:
