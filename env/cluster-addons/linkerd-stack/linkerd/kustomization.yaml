@@ -12,7 +12,7 @@ helmCharts:
   #   namespace: linkerd
 
   - repo: https://helm.linkerd.io/stable
-    name: linkerd
+    name: linkerd2
     version: 1.11.1
     releaseName: linkerd
     namespace: linkerd
