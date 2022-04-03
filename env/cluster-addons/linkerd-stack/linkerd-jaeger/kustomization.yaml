@@ -1,9 +1,9 @@
 kind: Kustomization
 
 helmCharts:
-  - repo: https://helm.linkerd.io/stable
+  - repo: https://helm.linkerd.io/edge
     name: linkerd-jaeger
-    version: 2.11.1
+    version: 30.2.8-edge
     releaseName: linkerd-jaeger
     namespace: linkerd-jaeger
     valuesFile: values.yaml
