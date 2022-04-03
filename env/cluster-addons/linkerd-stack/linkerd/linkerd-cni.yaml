@@ -1,0 +1,4 @@
+namespace: linkerd
+# install namespace through cni chart instead of control plane 
+# to make cni is installed before control plane
+installNamespace: true 

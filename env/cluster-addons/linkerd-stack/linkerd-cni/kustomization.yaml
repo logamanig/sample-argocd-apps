@@ -1,9 +1,0 @@
-kind: Kustomization
-
-helmCharts:
-  - repo: https://helm.linkerd.io/stable
-    name: linkerd2-cni
-    version: 2.11.1
-    releaseName: linkerd-cni
-    namespace: linkerd-cni
-    valuesFile: values.yaml

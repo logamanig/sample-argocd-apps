@@ -1,0 +1,9 @@
+identity:
+  # -- If the linkerd-identity-trust-roots ConfigMap has already been created
+  externalCA: true
+  issuer:
+    scheme: kubernetes.io/tls
+
+installNamespace: false
+
+cniEnabled: true
