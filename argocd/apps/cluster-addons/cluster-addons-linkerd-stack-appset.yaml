@@ -13,13 +13,6 @@ spec:
               directories:
                 - path: env/cluster-addons/linkerd-stack/*
 
-                - path: env/cluster-addons/linkerd-stack/linkerd-cni
-                  exclude: true
-                - path: env/cluster-addons/linkerd-stack/linkerd-jaeger
-                  exclude: true
-                - path: env/cluster-addons/linkerd-stack/linkerd-viz
-                  exclude: true
-
           - clusters: {} # all registered clusters in argocd
               # selector:
               #   matchLabels:
