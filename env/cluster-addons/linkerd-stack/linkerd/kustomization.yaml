@@ -18,10 +18,10 @@ helmCharts:
   #   releaseName: linkerd-crds
   #   namespace: linkerd
 
-  # - repo: https://helm.linkerd.io/stable
-  #   name: linkerd2
-  #   version: 2.11.1
-  #   releaseName: linkerd
-  #   namespace: linkerd
-  #   includeCRDs: true
-  #   valuesFile: linkerd-values.yaml
+  - repo: https://helm.linkerd.io/stable
+    name: linkerd2
+    version: 2.11.1
+    releaseName: linkerd
+    namespace: linkerd
+    includeCRDs: true
+    valuesFile: linkerd-values.yaml
