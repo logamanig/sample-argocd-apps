@@ -1,0 +1,34 @@
+# Kynervo is not part of the tools-appset due to special addition of ignoreDifferences 
+# for autogen rules from kynervo policies
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons-flagger-appset
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        {} # all registered clusters in argocd
+        # selector:
+        #   matchLabels:
+        #     argocd.argoproj.io/secret-type: cluster
+
+  template:
+    metadata:
+      name: "flagger-{{name}}"
+      namespace: argocd
+    spec:
+      project: cluster-addons
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: "env/cluster-addons/others/flagger"
+      destination:
+        server: "{{server}}"
+        namespace: linkerd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
