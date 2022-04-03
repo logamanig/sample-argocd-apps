@@ -28,7 +28,7 @@ prometheus:
 
 installCRDs: true
 
-webhook:
+# webhook:
 #   # image:
 #   #   repository: 
 #   #   pullPolicy: IfNotPresent
@@ -41,18 +41,18 @@ webhook:
 #   # Required for Fargate EKS cluster as per https://github.com/cert-manager/cert-manager/issues/3237#issuecomment-856348506
 #   securePort: 10250
 
-  # securityContext:
-  #   fsGroup: 1000
-  #   runAsUser: 1000
-  #   runAsNonRoot: true
+#   securityContext:
+#     fsGroup: 1000
+#     runAsUser: 1000
+#     runAsNonRoot: true
 
-  # containerSecurityContext:
-  #   allowPrivilegeEscalation: false
-  #   capabilities:
-  #     drop:
-  #     - ALL
-  #   readOnlyRootFilesystem: true
-  #   runAsNonRoot: true
+#   containerSecurityContext:
+#     allowPrivilegeEscalation: false
+#     capabilities:
+#       drop:
+#       - ALL
+#     readOnlyRootFilesystem: true
+#     runAsNonRoot: true
   
 #   resources:
 #     requests:
@@ -89,23 +89,23 @@ cainjector:
 #       cpu: 100m
 #       memory: 128Mi
 
-startupapicheck:
-#   # image:
-#   #   repository: 
-#   #   pullPolicy: IfNotPresent
+# startupapicheck:
+#   image:
+#     repository: 
+#     pullPolicy: IfNotPresent
 
-  # securityContext:
-  #   fsGroup: 1000
-  #   runAsUser: 1000
-  #   runAsNonRoot: true
+#   securityContext:
+#     fsGroup: 1000
+#     runAsUser: 1000
+#     runAsNonRoot: true
 
-  # containerSecurityContext:
-  #   allowPrivilegeEscalation: false
-  #   capabilities:
-  #     drop:
-  #     - ALL
-  #   # readOnlyRootFilesystem: true
-  #   runAsNonRoot: true
+#   containerSecurityContext:
+#     allowPrivilegeEscalation: false
+#     capabilities:
+#       drop:
+#       - ALL
+#     readOnlyRootFilesystem: true
+#     runAsNonRoot: true
   
 #   resources:
 #     requests:
