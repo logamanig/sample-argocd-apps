@@ -8,4 +8,4 @@ identity:
 # [Linkerd documentation](https://linkerd.io/2/tasks/install-helm#customizing-the-namespace) for more information.
 installNamespace: true
 
-# cniEnabled: true
+cniEnabled: true
