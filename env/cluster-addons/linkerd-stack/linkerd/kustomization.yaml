@@ -4,23 +4,23 @@ resources:
   - "./resources/use-certmanager-cert-as-linkerd-issuer-cert.yaml"
 
 helmCharts:
-  - repo: https://helm.linkerd.io/edge
-    name: linkerd2-cni
-    version: 30.0.12-edge
-    releaseName: linkerd-cni
-    namespace: linkerd
-    valuesFile: linkerd-cni.yaml
+  # - repo: https://helm.linkerd.io/stable
+  #   name: linkerd2-cni
+  #   version: 2.11.1
+  #   releaseName: linkerd-cni
+  #   namespace: linkerd
+  #   valuesFile: linkerd-cni.yaml
 
-  - repo: https://helm.linkerd.io/edge
-    name: linkerd-crds
-    version: 1.1.0-edge
-    includeCRDs: true
-    releaseName: linkerd-crds
-    namespace: linkerd
+  # - repo: https://helm.linkerd.io/stable
+  #   name: linkerd-crds
+  #   version: 2.11.1
+  #   includeCRDs: true
+  #   releaseName: linkerd-crds
+  #   namespace: linkerd
 
-  - repo: https://helm.linkerd.io/edge
-    name: linkerd-control-plane
-    version: 1.2.0-edge
+  - repo: https://helm.linkerd.io/stable
+    name: linkerd2
+    version: 2.11.1
     releaseName: linkerd-control-plane
     namespace: linkerd
     includeCRDs: true

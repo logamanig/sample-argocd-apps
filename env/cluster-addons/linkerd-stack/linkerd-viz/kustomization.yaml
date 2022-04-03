@@ -4,9 +4,9 @@ resources:
   - "./resources/linkerd-viz-ingress.yaml"
 
 helmCharts:
-  - repo: https://helm.linkerd.io/edge
+  - repo: https://helm.linkerd.io/stable
     name: linkerd-viz
-    version: 30.1.0-edge
+    version: 2.11.1
     releaseName: linkerd-viz
     namespace: linkerd-viz
     valuesFile: values.yaml
