@@ -1,39 +1,39 @@
-# # Kynervo is not part of the tools-appset due to special addition of ignoreDifferences 
-# # for autogen rules from kynervo policies
-# apiVersion: argoproj.io/v1alpha1
-# kind: ApplicationSet
-# metadata:
-#   name: cluster-addons-kynervo-appset
-#   namespace: argocd
-# spec:
-#   generators:
-#     - clusters:
-#         {} # all registered clusters in argocd
-#         # selector:
-#         #   matchLabels:
-#         #     argocd.argoproj.io/secret-type: cluster
+# Kynervo is not part of the tools-appset due to special addition of ignoreDifferences 
+# for autogen rules from kynervo policies
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons-kynervo-appset
+  namespace: argocd
+spec:
+  generators:
+    - clusters:
+        {} # all registered clusters in argocd
+        # selector:
+        #   matchLabels:
+        #     argocd.argoproj.io/secret-type: cluster
 
-#   template:
-#     metadata:
-#       name: "kynervo-{{name}}"
-#       namespace: argocd
-#     spec:
-#       project: cluster-addons
-#       source:
-#         repoURL: https://github.com/logamanig/sample-argocd-apps
-#         targetRevision: master
-#         path: "env/cluster-addons/others/kynervo"
-#       destination:
-#         server: "{{server}}"
-#         namespace: tools
-#       syncPolicy:
-#         automated:
-#           prune: true
-#           selfHeal: true
-#         syncOptions:
-#           - CreateNamespace=true
-#       ignoreDifferences:
-#         - group: kyverno.io
-#           kind: ClusterPolicy
-#           jqPathExpressions:
-#             - .spec.rules[] | select(.name|test("autogen-."))
+  template:
+    metadata:
+      name: "kynervo-{{name}}"
+      namespace: argocd
+    spec:
+      project: cluster-addons
+      source:
+        repoURL: https://github.com/logamanig/sample-argocd-apps
+        targetRevision: master
+        path: "env/cluster-addons/others/kynervo"
+      destination:
+        server: "{{server}}"
+        namespace: tools
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+      ignoreDifferences:
+        - group: kyverno.io
+          kind: ClusterPolicy
+          jqPathExpressions:
+            - .spec.rules[] | select(.name|test("autogen-."))
