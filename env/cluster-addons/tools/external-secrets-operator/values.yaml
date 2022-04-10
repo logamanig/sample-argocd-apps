@@ -1,3 +1,9 @@
+image:
+  repository: ghcr.io/external-secrets/external-secrets
+  pullPolicy: IfNotPresent
+  # -- The image tag to use. The default is the chart appVersion.
+  tag: ""
+
 podSecurityContext: # {}
   fsGroup: 2000
 
@@ -9,13 +15,74 @@ securityContext: # {}
   runAsNonRoot: true
   runAsUser: 1000
 
-resources: # {}
-  requests:
-    cpu: 10m
-    memory: 32Mi
+# resources:
+#   limits:
+#     cpu: 10m
+#     memory: 32Mi
+#   requests:
+#     cpu: 10m
+#     memory: 32Mi
 
 prometheus:
   # -- Specifies whether to expose Service resource for collecting Prometheus metrics
   enabled: true
   service:
-    port: 8080
+    port: 9090
+
+webhook:
+  image:
+    repository: ghcr.io/external-secrets/external-secrets
+    pullPolicy: IfNotPresent
+  # -- The image tag to use. The default is the chart appVersion.
+    tag: ""
+
+  prometheus:
+      # -- Specifies whether to expose Service resource for collecting Prometheus metrics
+    enabled: true
+    service:
+      port: 9090
+
+  podSecurityContext: 
+    fsGroup: 2000
+
+  securityContext:
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+
+  # resources:
+  #     requests:
+  #       cpu: 10m
+  #       memory: 32Mi
+
+
+certController:
+  image:
+    repository: ghcr.io/external-secrets/external-secrets
+    pullPolicy: IfNotPresent
+    tag: ""
+
+  prometheus:
+      # -- Specifies whether to expose Service resource for collecting Prometheus metrics
+    enabled: true
+    service:
+      port: 9090
+
+  podSecurityContext:
+      fsGroup: 2000
+
+  securityContext:
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1000
+
+  # resources:
+  #     # requests:
+  #     #   cpu: 10m
+  #     #   memory: 32Mi
