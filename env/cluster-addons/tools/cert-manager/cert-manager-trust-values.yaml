@@ -1,0 +1,38 @@
+# image:
+#   repository: quay.io/jetstack/cert-manager-trust
+#   tag: v0.1.0
+#   pullPolicy: IfNotPresent
+
+app:
+  # logLevel: 1 # 1-5
+
+  # metrics:
+  #   port: 9402
+  #   service:
+  #     enabled: true
+  #     type: ClusterIP
+  #     servicemonitor:
+  #       enabled: false
+  #       prometheusInstance: default
+  #       interval: 10s
+  #       scrapeTimeout: 5s
+  #       labels: {}
+
+  trust:
+    # -- Namespace used as trust source. Must be same as namespace where cert-manager installed
+    namespace: tools
+
+    # webhook:
+    # host: 0.0.0.0
+    # port: 6443
+    # timeoutSeconds: 5
+    # service:
+    #   type: ClusterIP
+
+# resources:
+#   limits:
+#     cpu: 100m
+#     memory: 128Mi
+#   requests:
+#     cpu: 100m
+#     memory: 128Mi

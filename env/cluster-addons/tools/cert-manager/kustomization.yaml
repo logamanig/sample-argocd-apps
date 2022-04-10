@@ -11,7 +11,7 @@ helmCharts:
     includeCRDs: true
     namespace: tools
     releaseName: cert-manager
-    valuesFile: values.yaml
+    valuesFile: cert-manager-values.yaml
 
   - repo: https://charts.jetstack.io
     name: cert-manager-trust
@@ -19,3 +19,5 @@ helmCharts:
     releaseName: cert-manager-trust
     includeCRDs: true
     namespace: tools
+    valuesFile: cert-manager-trust-values.yaml
+      

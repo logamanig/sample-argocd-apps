@@ -1,0 +1,65 @@
+global:
+  registry: docker.io/daprio
+  tag: 'edge'
+  dnsSuffix: ".cluster.local"
+  logAsJson: false
+  imagePullPolicy: IfNotPresent
+  imagePullSecrets: ""
+  nodeSelector: {}
+  tolerations: []
+  ha:
+    enabled: false
+    replicaCount: 3
+    disruption:
+      minimumAvailable: ""
+      maximumUnavailable: "25%"
+  mtls:
+    enabled: true
+    workloadCertTTL: 24h
+    allowedClockSkew: 15m
+
+# refer to adjust resources for prod setup: https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-production
+# dapr_operator:
+#   resources:
+#     limits:
+#       cpu: 0.25
+#       memory: 0.25Gi
+#     requests:
+#       cpu: 0.1
+#       memory: 100Mi
+
+# dapr_sidecar_injector:
+#   resources:
+#     limits:
+#       cpu: 0.25
+#       memory: 0.25Gi
+#     requests:
+#       cpu: 0.1
+#       memory: 30Mi
+
+# dapr_sentry:
+#   resources:
+#     limits:
+#       cpu: 0.25
+#       memory: 0.25Gi
+#     requests:
+#       cpu: 0.1
+#       memory: 30Mi
+
+# dapr_placement:
+#   resources:
+#     limits:
+#       cpu: 0.5
+#       memory: 150Mi
+#     requests:
+#       cpu: 0.25
+#       memory: 75Mi
+
+# dapr_dashboard:
+#   resources:
+#     limits:
+#       cpu: 0.2
+#       memory: 0.25Gi
+#     requests:
+#       cpu: 0.05
+#       memory: 20Mi
