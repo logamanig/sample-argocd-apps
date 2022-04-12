@@ -13,6 +13,8 @@ spec:
               directories:
                 - path: env/cluster-addons/tools/*
 
+                - path: env/cluster-addons/monitoring/external-secrets
+                  exclude: true
                 - path: env/cluster-addons/tools/ingress-nginx
                   exclude: true # ingress excluded as this sample running on minukube with ingress addon enabled
                 - path: env/cluster-addons/tools/argo-rollouts
