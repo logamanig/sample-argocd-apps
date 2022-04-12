@@ -12,6 +12,9 @@ spec:
               revision: master
               directories:
                 - path: env/cluster-addons/monitoring/*
+
+                - path: env/cluster-addons/monitoring/jaeger
+                  exclude: true
                 
           - clusters: {} # all registered clusters in argocd
               # selector:
