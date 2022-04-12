@@ -13,8 +13,8 @@ spec:
     metadata:
       labels:
         app: my-app
-      # annotations:
-      #   instrumentation.opentelemetry.io/inject-java: auto-instrumentation
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
         - name: myapp
