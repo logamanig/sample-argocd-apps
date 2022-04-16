@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: jaeger-test
   labels:
-    app: my-app
+    app: jaeger-test
 spec:
   selector:
     matchLabels:
-      app: my-app
+      app: jaeger-test
   replicas: 1
   template:
     metadata:
       labels:
-        app: my-app
+        app: jaeger-test
       annotations:
         instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       containers:
         - name: myapp
-          image: jaegertracing/vertx-create-span:operator-e2e-tests
-          env:
-            - name: JAEGER_AGENT_HOST
-              value: otel-collector-daemonset-collector.monitoring
+          image: 801475574804.dkr.ecr.ap-southeast-1.amazonaws.com/busybox:0.0.1-jaeger
+          # env:
+          #   - name: JAEGER_AGENT_HOST
+          #     value: otel-collector-collector.monitoring
           ports:
             - containerPort: 8080
               protocol: TCP
