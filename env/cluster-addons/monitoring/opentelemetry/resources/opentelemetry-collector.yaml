@@ -155,8 +155,8 @@ spec:
         # The exporter name must match the metrics_exporter name.
         # The receiver is just a dummy and never used; added to pass validation requiring at least one receiver in a pipeline.
         metrics/spanmetrics:
-          receiver: [otlp/dummyspanmetrics]
-          exporter: [prometheus]
+          receivers: [otlp/dummyspanmetrics]
+          exporters: [prometheus]
 
         logs:
           receivers: [filelog]
