@@ -8,5 +8,5 @@ spec:
   selector:
     matchNames:
       - otel-collector-daemonset-collector-monitoring
-  podMetricsEndpoints:
+  endpoints:
     - port: monitoring
