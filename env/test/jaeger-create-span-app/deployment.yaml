@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: myapp
-          - image: jaegertracing/vertx-create-span:operator-e2e-tests
+          image: jaegertracing/vertx-create-span:operator-e2e-tests
           env:
             - name: JAEGER_AGENT_HOST
               value: otel-collector-daemonset-collector.monitoring
