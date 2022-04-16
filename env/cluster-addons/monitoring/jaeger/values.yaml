@@ -10,7 +10,7 @@ jaeger:
 
       options:
         prometheus: http://prometheus-operator-kube-p-prometheus:9090
-      metricStorage:
+      metricsStorage:
         type: prometheus
 
     storage:
