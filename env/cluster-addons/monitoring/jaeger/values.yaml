@@ -1,5 +1,5 @@
-# image:
-#   tag: 1.33.0
+image:
+  tag: 1.33.0
 
 jaeger:
   create: true
@@ -8,13 +8,13 @@ jaeger:
     allInOne:
       image: jaegertracing/all-in-one:1.33.0
 
+      options:
+        prometheus: http://prometheus-operator-kube-p-prometheus:9090
+      metricStorage:
+        type: prometheus
+
     storage:
       type: badger
-
-    options:
-      prometheus: http://prometheus-operator-kube-p-prometheus:9090
-    metricStorage:
-      type: prometheus
 
     ingress:
       enabled: true
