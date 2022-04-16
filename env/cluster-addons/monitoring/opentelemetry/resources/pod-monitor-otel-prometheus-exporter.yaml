@@ -1,12 +1,12 @@
 apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
+kind: ServiceMonitor
 metadata:
   name: otel-promotheus-exporter
   labels:
     name: otel-promotheus-exporter
 spec:
   selector:
-    matchLabels:
-      "app.kubernetes.io/component": opentelemetry-collector
+    matchNames:
+      - otel-collector-daemonset-collector-monitoring
   podMetricsEndpoints:
-    - port: 9090
+    - port: monitoring
