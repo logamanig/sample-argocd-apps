@@ -4,9 +4,18 @@
 jaeger:
   create: true
   spec:
+    # strategy: production
     allInOne:
       image: jaegertracing/all-in-one:1.33.0
-    # strategy: production
+
+    storage:
+      type: badger
+
+    options:
+      prometheus: http://prometheus-operator-kube-p-prometheus:9090
+    metricStorage:
+      type: prometheus
+
     ingress:
       enabled: true
       hosts:

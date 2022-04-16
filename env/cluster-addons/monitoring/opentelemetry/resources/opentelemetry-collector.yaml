@@ -18,8 +18,7 @@ spec:
       otlp:
         protocols:
           grpc:
-          http:
-      opencensus:
+          # http:
       jaeger:
         protocols:
           grpc:
@@ -27,58 +26,64 @@ spec:
           thrift_compact:
           thrift_http:
 
-      filelog:
-        start_at: beginning
-        exclude:
-          - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
-        include:
-          # - /var/log/pods/*/*/*.log
-          - /var/log/pods/test_my-app-*/*/*.log
-        include_file_name: false
-        operators:
-          - type: regex_parser
-            id: regex_parser_init
-            regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<sev>[^ ]*) (?P<uuid>[^ ]*) (?P<log>.*)$'
-            timestamp:
-              parse_from: time
-              layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-            severity:
-              parse_from: sev
-            attributes:
-              - stream
-            resource:
-              - uuid
-            record: log
-          # - id: parser-docker
-          #   output: extract_metadata_from_filepath
-          #   timestamp:
-          #     layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-          #     parse_from: time
-          #   type: json_parser
-          # - id: extract_metadata_from_filepath
-          #   parse_from: $$labels.file_path
-          #   regex: ^\/var\/log\/pods\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[^\/]+)\/(?P<container_name>[^\._]+)\/(?P<run_id>\d+)\.log$
-          #   type: regex_parser
-          # - attributes:
-          #     k8s.container.name: EXPR($.container_name)
-          #     k8s.namespace.name: EXPR($.namespace)
-          #     k8s.pod.name: EXPR($.pod_name)
-          #     k8s.pod.uid: EXPR($.uid)
-          #     run_id: EXPR($.run_id)
-          #     stream: EXPR($.stream)
-          #   resource:
-          #     k8s.pod.uid: EXPR($.uid)
-          #   type: metadata
-          # - id: clean-up-log-record
-          #   ops:
-          #     - remove: logtag
-          #     - remove: stream
-          #     - remove: container_name
-          #     - remove: namespace
-          #     - remove: pod_name
-          #     - remove: run_id
-          #     - remove: uid
-          #   type: restructure
+      # Dummy receiver that's never used, because a pipeline is required to have one.
+      otlp/dummyspanmetrics:
+        protocols:
+          grpc:
+            endpoint: "localhost:12345"
+
+      # filelog:
+      #   start_at: beginning
+      #   exclude:
+      #     - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
+      #   include:
+      #     # - /var/log/pods/*/*/*.log
+      #     - /var/log/pods/test_my-app-*/*/*.log
+      #   include_file_name: false
+      #   operators:
+      #     - type: regex_parser
+      #       id: regex_parser_init
+      #       regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<sev>[^ ]*) (?P<uuid>[^ ]*) (?P<log>.*)$'
+      #       timestamp:
+      #         parse_from: time
+      #         layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+      #       severity:
+      #         parse_from: sev
+      #       attributes:
+      #         - stream
+      #       resource:
+      #         - uuid
+      #       record: log
+      #     - id: parser-docker
+      #       output: extract_metadata_from_filepath
+      #       timestamp:
+      #         layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+      #         parse_from: time
+      #       type: json_parser
+      #     - id: extract_metadata_from_filepath
+      #       parse_from: $$labels.file_path
+      #       regex: ^\/var\/log\/pods\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[^\/]+)\/(?P<container_name>[^\._]+)\/(?P<run_id>\d+)\.log$
+      #       type: regex_parser
+      #     - attributes:
+      #         k8s.container.name: EXPR($.container_name)
+      #         k8s.namespace.name: EXPR($.namespace)
+      #         k8s.pod.name: EXPR($.pod_name)
+      #         k8s.pod.uid: EXPR($.uid)
+      #         run_id: EXPR($.run_id)
+      #         stream: EXPR($.stream)
+      #       resource:
+      #         k8s.pod.uid: EXPR($.uid)
+      #       type: metadata
+      #     - id: clean-up-log-record
+      #       ops:
+      #         - remove: logtag
+      #         - remove: stream
+      #         - remove: container_name
+      #         - remove: namespace
+      #         - remove: pod_name
+      #         - remove: run_id
+      #         - remove: uid
+      #       type: restructure
 
       prometheus:
         config:
@@ -93,16 +98,20 @@ spec:
                   action: drop
     processors:
       batch:
+      spanMetrics:
+        metrics_exporter: prometheus
 
     exporters:
       logging:
         # logLevel: debug
 
-      # prometheus:
-      #   endpoint: prometheus-operator-kube-p-prometheus.monitoring:9090
+      prometheus:
+        endpoint: prometheus-operator-kube-p-prometheus:9090
+        tls:
+          insecure: true
 
       jaeger:
-        endpoint: jaeger-operator-jaeger-collector.monitoring:14250
+        endpoint: jaeger-operator-jaeger-collector:14250
         tls:
           insecure: true
 
@@ -114,7 +123,7 @@ spec:
           insecure: true # for http only endpoint
 
       loki:
-        endpoint: http://loki-loki-distributed-gateway.monitoring/loki/api/v1/push
+        endpoint: http://loki-loki-distributed-gateway/loki/api/v1/push
         # tenant_id: "example"
         tls:
           insecure: true
@@ -140,10 +149,17 @@ spec:
           receivers: [otlp, opencensus, jaeger]
           processors: [batch]
           exporters: [logging, otlphttp/tempo, jaeger]
+
         metrics:
           receivers: [prometheus]
           processors: [batch]
           exporters: [logging]
+        # The exporter name must match the metrics_exporter name.
+        # The receiver is just a dummy and never used; added to pass validation requiring at least one receiver in a pipeline.
+        metrics/spanmetrics:
+          receiver: [otlp/dummyspanmetrics]
+          exporter: [prometheus]
+
         logs:
           receivers: [filelog]
           processors: [batch]
