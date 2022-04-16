@@ -23,15 +23,6 @@ spec:
       jaeger:
         protocols:
           grpc:
-          thrift_binary:
-          thrift_compact:
-          thrift_http:
-
-      # Dummy receiver that's never used, because a pipeline is required to have one.
-      otlp/dummyspanmetrics:
-        protocols:
-          grpc:
-            endpoint: "localhost:12345"
 
       # filelog:
       #   start_at: beginning
@@ -92,7 +83,7 @@ spec:
             - job_name: 'otelcol'
               scrape_interval: 10s
               static_configs:
-              - targets: ['0.0.0.0:8888']
+              - targets: ['0.0.0.0:8881']
               metric_relabel_configs:
                 - source_labels: [ __name__ ]
                   regex: '.*grpc_io.*'
@@ -100,21 +91,18 @@ spec:
     processors:
       batch:
       spanmetrics:
-        metrics_exporter: prometheusremotewrite
+        # this exporter must be defined under exporters and must be in one of the metrics pipeline
+        metrics_exporter: prometheus
 
     exporters:
       logging:
         # logLevel: debug
 
-      # prometheus:
-      #   endpoint: 0.0.0.0:8889
-      #   resource_to_telemetry_conversion: 
-      #     enabled: true
+      prometheus:
+        endpoint: 0.0.0.0:8882
+        resource_to_telemetry_conversion: 
+          enabled: true
 
-      # Data sources: metrics
-      prometheusremotewrite:
-        endpoint: "http://prometheus-operator-kube-p-prometheus:9090/api/prom/push"
-          
       jaeger:
         endpoint: jaeger-operator-jaeger-collector:14250
         tls:
@@ -158,12 +146,7 @@ spec:
         metrics:
           receivers: [prometheus]
           processors: [batch]
-          exporters: [logging]
-        # The exporter name must match the metrics_exporter name.
-        # The receiver is just a dummy and never used; added to pass validation requiring at least one receiver in a pipeline.
-        metrics/spanmetrics:
-          receivers: [otlp/dummyspanmetrics]
-          exporters: [prometheusremotewrite]
+          exporters: [logging, prometheus]
 
         # logs:
         #   receivers: [filelog]
