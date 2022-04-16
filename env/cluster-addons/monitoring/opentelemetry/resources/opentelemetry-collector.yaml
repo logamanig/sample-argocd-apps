@@ -107,8 +107,6 @@ spec:
 
       prometheus:
         endpoint: prometheus-operator-kube-p-prometheus:9090
-        tls:
-          insecure: true
 
       jaeger:
         endpoint: jaeger-operator-jaeger-collector:14250
