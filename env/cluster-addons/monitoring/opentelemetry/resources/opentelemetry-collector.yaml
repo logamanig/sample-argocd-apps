@@ -98,7 +98,7 @@ spec:
                   action: drop
     processors:
       batch:
-      spanMetrics:
+      spanmetrics:
         metrics_exporter: prometheus
 
     exporters:
