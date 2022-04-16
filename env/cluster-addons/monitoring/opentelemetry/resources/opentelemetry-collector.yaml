@@ -106,7 +106,6 @@ spec:
         # logLevel: debug
 
       prometheus:
-        endpoint: prometheus-operator-kube-p-prometheus:9090
 
       jaeger:
         endpoint: jaeger-operator-jaeger-collector:14250
