@@ -100,7 +100,7 @@ spec:
     processors:
       batch:
       spanmetrics:
-        metrics_exporter: prometheus
+        metrics_exporter: prometheusremotewrite
 
     exporters:
       logging:
