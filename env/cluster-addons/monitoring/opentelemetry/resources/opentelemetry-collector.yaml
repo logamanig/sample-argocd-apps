@@ -144,7 +144,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlp, opencensus, jaeger]
+          receivers: [otlp, jaeger]
           processors: [batch]
           exporters: [logging, otlphttp/tempo, jaeger]
 
