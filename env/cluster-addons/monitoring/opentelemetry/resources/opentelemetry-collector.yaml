@@ -106,10 +106,14 @@ spec:
       logging:
         # logLevel: debug
 
-      prometheus:
-        endpoint: 0.0.0.0:8889
-        resource_to_telemetry_conversion: 
-          enabled: true
+      # prometheus:
+      #   endpoint: 0.0.0.0:8889
+      #   resource_to_telemetry_conversion: 
+      #     enabled: true
+
+      # Data sources: metrics
+      prometheusremotewrite:
+        endpoint: "http://prometheus-operator-kube-p-prometheus:9090/api/prom/push"
           
       jaeger:
         endpoint: jaeger-operator-jaeger-collector:14250
