@@ -106,10 +106,10 @@ spec:
         # logLevel: debug
 
       prometheus:
-        endpoint: prometheus-operator-kube-p-prometheus:9090
+        endpoint: prometheus-operator-kube-p-prometheus.monitoring:9090
 
       jaeger:
-        endpoint: jaeger-operator-jaeger-collector:14250
+        endpoint: jaeger-operator-jaeger-collector.monitoring:14250
         tls:
           insecure: true
 
@@ -121,7 +121,7 @@ spec:
           insecure: true # for http only endpoint
 
       loki:
-        endpoint: http://loki-loki-distributed-gateway/loki/api/v1/push
+        endpoint: http://loki-loki-distributed-gateway.monitoring/loki/api/v1/push
         # tenant_id: "example"
         tls:
           insecure: true
