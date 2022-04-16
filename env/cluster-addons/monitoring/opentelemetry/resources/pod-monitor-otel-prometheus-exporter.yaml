@@ -10,4 +10,3 @@ spec:
       app.kubernetes.io/component: opentelemetry-collector
   podMetricsEndpoints:
   - targetPort: 9090
-  - targetPort: 8888
