@@ -5,6 +5,9 @@ metadata:
   labels:
     name: otel-promotheus-exporter
 spec:
+  namespaceSelector:
+    matchNames:
+      - monitoring
   selector:
     matchLabels:
       name: otel-collector-daemonset-collector-monitoring
