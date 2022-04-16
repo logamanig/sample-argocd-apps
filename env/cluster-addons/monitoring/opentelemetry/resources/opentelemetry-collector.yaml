@@ -158,7 +158,7 @@ spec:
           receivers: [otlp/dummyspanmetrics]
           exporters: [prometheus]
 
-        logs:
-          receivers: [filelog]
-          processors: [batch]
-          exporters: [logging]
+        # logs:
+        #   receivers: [filelog]
+        #   processors: [batch]
+        #   exporters: [logging]
