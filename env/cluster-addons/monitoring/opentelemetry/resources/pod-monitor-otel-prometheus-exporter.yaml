@@ -7,6 +7,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/component: opentelemetry-collector
+      "app.kubernetes.io/component": opentelemetry-collector
   podMetricsEndpoints:
-  - targetPort: 9090
+    - port: 9090
