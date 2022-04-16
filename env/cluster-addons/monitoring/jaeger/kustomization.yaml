@@ -12,7 +12,7 @@ helmCharts:
     releaseName: jaeger-operator
     valuesFile: values.yaml
 
-# patchesStrategicMerge:
-#     # TODO: rmeove crd overlay once the crd manifest updated to latest in the helm chart. 
-#     # helm chart doesn't have latest crd manifest as v2.30.0
-#   - "./overlays/jaeger-crd.yaml"
+patchesStrategicMerge:
+    # TODO: rmeove crd overlay once the crd manifest updated to latest in the helm chart. 
+    # helm chart doesn't have latest crd manifest as v2.30.0
+  - "./overlays/jaeger-crd.yaml"
