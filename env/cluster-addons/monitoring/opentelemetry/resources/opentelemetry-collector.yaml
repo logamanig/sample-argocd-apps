@@ -109,6 +109,7 @@ spec:
         endpoint: 0.0.0.0:9090
         resource_to_telemetry_conversion: 
           enabled: true
+          
       jaeger:
         endpoint: jaeger-operator-jaeger-collector:14250
         tls:
