@@ -6,7 +6,7 @@ metadata:
     name: otel-promotheus-exporter
 spec:
   selector:
-    matchNames:
-      - otel-collector-daemonset-collector-monitoring
+    matchLabels:
+      name: otel-collector-daemonset-collector-monitoring
   endpoints:
     - port: monitoring
