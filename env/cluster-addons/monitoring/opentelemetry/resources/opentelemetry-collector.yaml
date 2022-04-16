@@ -163,7 +163,7 @@ spec:
         # The receiver is just a dummy and never used; added to pass validation requiring at least one receiver in a pipeline.
         metrics/spanmetrics:
           receivers: [otlp/dummyspanmetrics]
-          exporters: [prometheus]
+          exporters: [prometheusremotewrite]
 
         # logs:
         #   receivers: [filelog]
