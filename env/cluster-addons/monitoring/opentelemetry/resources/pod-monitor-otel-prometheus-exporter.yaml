@@ -3,7 +3,7 @@ kind: PodMonitor
 metadata:
   name: otel-promotheus-exporter
   labels:
-    name: front-end
+    name: otel-promotheus-exporter
 spec:
   selector:
     matchLabels:
