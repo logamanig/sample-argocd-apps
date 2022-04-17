@@ -7,9 +7,9 @@ jaeger:
     # strategy: production
     allInOne:
       image: jaegertracing/all-in-one:1.33.0
-      options:
-        prometheus:
-          server-url: http://prometheus-operator-kube-p-prometheus:9090
+      # options:
+      #   prometheus:
+      #     server-url: http://prometheus-operator-kube-p-prometheus:9090
       metricsStorage:
         type: prometheus
 
