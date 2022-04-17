@@ -2,7 +2,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: observability/jaeger-operator-serving-cert
+    cert-manager.io/inject-ca-from: monitoring/jaeger-operator-serving-cert
     controller-gen.kubebuilder.io/version: v0.8.0
   labels:
     app.kubernetes.io/name: jaeger-operator
@@ -12864,7 +12864,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: jaeger-operator
-  namespace: observability
+  namespace: monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -12873,7 +12873,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: leader-election-role
-  namespace: observability
+  namespace: monitoring
 rules:
 - apiGroups:
   - ""
@@ -12917,7 +12917,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: prometheus
-  namespace: observability
+  namespace: monitoring
 rules:
 - apiGroups:
   - ""
@@ -13231,7 +13231,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: leader-election-rolebinding
-  namespace: observability
+  namespace: monitoring
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -13239,7 +13239,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: jaeger-operator
-  namespace: observability
+  namespace: monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -13251,7 +13251,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: prometheus
-  namespace: observability
+  namespace: monitoring
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -13275,7 +13275,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: jaeger-operator
-  namespace: observability
+  namespace: monitoring
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -13291,7 +13291,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: jaeger-operator
-  namespace: observability
+  namespace: monitoring
 ---
 apiVersion: v1
 kind: Service
@@ -13301,7 +13301,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: jaeger-operator-metrics
-  namespace: observability
+  namespace: monitoring
 spec:
   ports:
   - name: https
@@ -13319,7 +13319,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: jaeger-operator-webhook-service
-  namespace: observability
+  namespace: monitoring
 spec:
   ports:
   - port: 443
@@ -13336,7 +13336,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: jaeger-operator
-  namespace: observability
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -13434,11 +13434,11 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: jaeger-operator-serving-cert
-  namespace: observability
+  namespace: monitoring
 spec:
   dnsNames:
-  - jaeger-operator-webhook-service.observability.svc
-  - jaeger-operator-webhook-service.observability.svc.cluster.local
+  - jaeger-operator-webhook-service.monitoring.svc
+  - jaeger-operator-webhook-service.monitoring.svc.cluster.local
   issuerRef:
     kind: Issuer
     name: jaeger-operator-selfsigned-issuer
@@ -13454,7 +13454,7 @@ metadata:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
   name: jaeger-operator-selfsigned-issuer
-  namespace: observability
+  namespace: monitoring
 spec:
   selfSigned: {}
 ---
@@ -13462,7 +13462,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: observability/jaeger-operator-serving-cert
+    cert-manager.io/inject-ca-from: monitoring/jaeger-operator-serving-cert
   labels:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
@@ -13473,7 +13473,7 @@ webhooks:
   clientConfig:
     service:
       name: jaeger-operator-webhook-service
-      namespace: observability
+      namespace: monitoring
       path: /mutate-v1-deployment
   failurePolicy: Ignore
   name: deployment.sidecar-injector.jaegertracing.io
@@ -13499,7 +13499,7 @@ webhooks:
   clientConfig:
     service:
       name: jaeger-operator-webhook-service
-      namespace: observability
+      namespace: monitoring
       path: /mutate-jaegertracing-io-v1-jaeger
   failurePolicy: Fail
   name: mjaeger.kb.io
@@ -13519,7 +13519,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: observability/jaeger-operator-serving-cert
+    cert-manager.io/inject-ca-from: monitoring/jaeger-operator-serving-cert
   labels:
     app.kubernetes.io/name: jaeger-operator
     name: jaeger-operator
@@ -13530,7 +13530,7 @@ webhooks:
   clientConfig:
     service:
       name: jaeger-operator-webhook-service
-      namespace: observability
+      namespace: monitoring
       path: /validate-jaegertracing-io-v1-jaeger
   failurePolicy: Fail
   name: vjaeger.kb.io
