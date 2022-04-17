@@ -1,7 +1,7 @@
 apiVersion: jaegertracing.io/v1
 kind: Jaeger
 metadata:
-  name: jaeger
+  name: jaeger-operator-jaeger
 spec:
   strategy: allinone
   allInOne:
