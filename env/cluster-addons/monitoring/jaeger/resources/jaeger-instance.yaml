@@ -3,7 +3,7 @@ kind: Jaeger
 metadata:
   name: jaeger
 spec:
-  strategy: allInOne
+  strategy: allinone
   allInOne:
     image: jaegertracing/all-in-one:1.33
     options:
