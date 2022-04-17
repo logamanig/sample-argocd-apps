@@ -4,7 +4,7 @@
 jaeger:
   create: true
   spec:
-    # strategy: production
+    strategy: allInOne # production
     allInOne:
       image: jaegertracing/all-in-one:1.33.0
       options:
@@ -14,7 +14,9 @@ jaeger:
         type: prometheus
 
     storage:
-      type: badger
+      options:
+        memory:
+          max-traces: 100000
 
     ingress:
       enabled: true
