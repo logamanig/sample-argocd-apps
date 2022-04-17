@@ -6,10 +6,13 @@ jaeger:
   spec:
     strategy: allInOne # production
     allInOne:
-      image: jaegertracing/all-in-one:1.33.0
+      image: jaegertracing/all-in-one:1.31.0
       options:
+        log-level: debug
+        query:
+          base-path: /jaeger
         prometheus:
-          server-url: http://prometheus-operator-kube-p-prometheus:9090
+          server-url: "http://prometheus-operator-kube-p-prometheus:9090"
       metricsStorage:
         type: prometheus
 
