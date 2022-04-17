@@ -12,9 +12,8 @@ spec:
     metricsStorage:
       type: prometheus
   storage:
-    options:
-      memory:
-        max-traces: 100000
+    type: badger
+    
   ingress:
     enabled: true
     hosts:
