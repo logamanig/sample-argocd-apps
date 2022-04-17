@@ -22,7 +22,7 @@ spec:
       opencensus:
       jaeger:
         protocols:
-          grpc:
+          thrift_compact:
 
       # filelog:
       #   start_at: beginning
