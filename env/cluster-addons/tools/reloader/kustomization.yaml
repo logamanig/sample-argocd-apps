@@ -1,0 +1,10 @@
+kind: Kustomization
+
+helmCharts:
+  - repo: https://kubernetes-sigs.github.io/external-dns/
+    name: external-dns
+    version: 1.9.0
+    includeCRDs: true
+    namespace: tools
+    releaseName: external-dns
+    valuesFile: values.yaml
