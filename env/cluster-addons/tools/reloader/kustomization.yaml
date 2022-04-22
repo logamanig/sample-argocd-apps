@@ -1,10 +1,10 @@
 kind: Kustomization
 
 helmCharts:
-  - repo: https://kubernetes-sigs.github.io/external-dns/
-    name: external-dns
-    version: 1.9.0
+  - repo: https://stakater.github.io/stakater-charts
+    name: reloader
+    version: 0.0.110
     includeCRDs: true
     namespace: tools
-    releaseName: external-dns
+    releaseName: reloader
     valuesFile: values.yaml
