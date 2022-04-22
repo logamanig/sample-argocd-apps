@@ -19,7 +19,7 @@ spec:
                   exclude: true # ingress excluded as this sample running on minukube with ingress addon enabled
                 - path: env/cluster-addons/tools/external-dns
                   exclude: true # not required in minikube environment
-                 - path: env/cluster-addons/tools/argo-rollouts
+                - path: env/cluster-addons/tools/argo-rollouts
                   exclude: true # Exlcuded in favour of flagger (add through linkerd argocd app)
                   
           - clusters: {} # all registered clusters in argocd
