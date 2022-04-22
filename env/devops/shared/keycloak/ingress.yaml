@@ -11,7 +11,7 @@ spec:
   # - hosts:
   #   - sso.192.168.64.35.nip.io
   rules:
-  - host: sso.192.168.64.35.nip.io
+  - host: mk.sso.local
     http:
       paths:
       - pathType: Prefix
