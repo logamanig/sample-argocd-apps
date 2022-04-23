@@ -86,7 +86,7 @@ spec:
             - job_name: 'otelcol'
               scrape_interval: 10s
               static_configs:
-              - targets: ['0.0.0.0:8881]
+              - targets: ['0.0.0.0:8881']
               metric_relabel_configs:
                 - source_labels: [ __name__ ]
                   regex: '.*grpc_io.*'
