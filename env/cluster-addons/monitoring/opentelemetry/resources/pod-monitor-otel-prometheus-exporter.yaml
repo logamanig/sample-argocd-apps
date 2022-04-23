@@ -4,6 +4,7 @@ metadata:
   name: otel-promotheus-exporter
   labels:
     name: otel-promotheus-exporter
+    release: prometheus-operator
 spec:
   namespaceSelector:
     matchNames:
