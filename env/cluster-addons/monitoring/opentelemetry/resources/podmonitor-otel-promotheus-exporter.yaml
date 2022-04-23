@@ -5,6 +5,7 @@ metadata:
   labels:
     name: otel-promotheus-exporter
     release: prometheus-operator
+    prometheus: true
 spec:
   namespaceSelector:
     matchNames:
