@@ -34,9 +34,10 @@ spec:
           thrift_http:
       # dummy receiver to add to it metric pipeline for spanmetrics prometheus expoerters as receiver is mandatory 
       # though spanmetrics processor sends to exporter without a receiver
-      otlp/dummymetricreceiver:
+      otlp/dummyspanmetricreceiver:
         protocols:
-          grpc: localhost:12345
+          grpc: 
+            endpoint: localhost:12345
 
       # filelog:
       #   start_at: beginning
@@ -163,7 +164,7 @@ spec:
           exporters: [otlphttp/tempo, jaeger]
 
         metrics:
-          receivers: [otlp/dummymetricreceiver]
+          receivers: [otlp/dummyspanmetricreceiver]
           processors: [batch]
           exporters: [prometheus]
 
