@@ -13,4 +13,4 @@ spec:
     matchLabels:
       app.kubernetes.io/name: otel-collector-daemonset-collector
   podMetricsEndpoints:
-    - port: 8889
+    - targetPort: 8888

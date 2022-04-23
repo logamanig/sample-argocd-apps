@@ -80,10 +80,11 @@ spec:
       #         - remove: uid
       #       type: restructure
       
+      # this receiver pulls metrics from configured jobs
       prometheus:
         config:
           scrape_configs:
-              # job to scrape it's own metrics from it's own container port 8888
+              # job to scrape it's own metrics from it's own metrics port 8888
             - job_name: 'otelcol'
               scrape_interval: 10s
               static_configs:
@@ -102,6 +103,8 @@ spec:
       # logging:
       #   # logLevel: debug
 
+      # this exporter is pull based and listens on the configured endpoint point (8889) 
+      # prometheus to scrape(pull) metrics from this exporter
       prometheus:
         endpoint: 0.0.0.0:8889
         send_timestamps: true
