@@ -1,9 +1,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: otel-promotheus-exporter
+  name: otel-collector
   labels:
-    name: otel-promotheus-exporter
+    name: otel-collector
     release: prometheus-operator
 spec:
   namespaceSelector:
