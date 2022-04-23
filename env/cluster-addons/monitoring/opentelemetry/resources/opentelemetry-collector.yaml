@@ -4,7 +4,13 @@ metadata:
   name: otel-collector-daemonset
 spec:
   mode: daemonset
-
+  # podSecurityContext:
+  # podAnnotations:
+  # maxReplicas: 
+  ports:
+    - name: prometheus-exporter-listener
+      port: 8889
+      targetPort: 8889
   volumes:
     - name: varlog
       hostPath:

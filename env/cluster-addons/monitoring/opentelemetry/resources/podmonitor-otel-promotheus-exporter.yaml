@@ -13,4 +13,4 @@ spec:
     matchLabels:
       app.kubernetes.io/name: otel-collector-daemonset-collector
   podMetricsEndpoints:
-    - targetPort: 8889
+    - port: prometheus-exporter-listener
