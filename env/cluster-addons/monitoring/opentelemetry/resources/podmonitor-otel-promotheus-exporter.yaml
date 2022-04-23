@@ -3,9 +3,8 @@ kind: PodMonitor
 metadata:
   name: otel-promotheus-exporter
   labels:
-    name: otel-promotheus-exporter
+    app.kubernetes.io/name: otel-collector-daemonset-collector
     release: prometheus-operator
-    prometheus: true
 spec:
   namespaceSelector:
     matchNames:
@@ -14,4 +13,4 @@ spec:
     matchLabels:
       app.kubernetes.io/name: otel-collector-daemonset-collector
   podMetricsEndpoints:
-    - targetPort: 8888
+    - targetPort: 8889
