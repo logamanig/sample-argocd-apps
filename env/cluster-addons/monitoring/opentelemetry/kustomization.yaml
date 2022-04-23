@@ -2,7 +2,7 @@ kind: Kustomization
 
 resources:
   - "./resources/opentelemetry-collector.yaml"
-  - "./resources/servicemonitor-otelcol-metrics.yaml"
+  - "./resources/podmonitor-otel-promotheus-exporter.yaml"
 
 helmCharts:
   - repo: https://open-telemetry.github.io/opentelemetry-helm-charts
