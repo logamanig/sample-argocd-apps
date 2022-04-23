@@ -145,14 +145,14 @@ spec:
         traces:
           receivers: [otlp, jaeger]
           processors: [batch]
-          exporters: [logging, otlphttp/tempo, jaeger]
+          exporters: [otlphttp/tempo, jaeger]
 
         metrics:
           receivers: [prometheus]
           processors: [batch]
-          exporters: [logging, prometheus]
+          exporters: [prometheus]
 
         # logs:
         #   receivers: [filelog]
         #   processors: [batch]
-        #   exporters: [logging]
+        #   exporters: []
