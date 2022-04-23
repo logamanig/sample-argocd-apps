@@ -158,7 +158,7 @@ spec:
           exporters: [otlphttp/tempo, jaeger]
 
         metrics:
-          receivers: [prometheus]
+          receivers: [otlp]
           processors: [batch]
           exporters: [prometheus]
 
