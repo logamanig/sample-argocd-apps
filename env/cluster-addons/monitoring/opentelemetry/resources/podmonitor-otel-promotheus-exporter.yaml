@@ -3,7 +3,7 @@ kind: PodMonitor
 metadata:
   name: otel-promotheus-exporter
   labels:
-    app.kubernetes.io/name: otel-collector-daemonset-collector
+    name: otel-promotheus-exporter
     release: prometheus-operator
 spec:
   namespaceSelector:
