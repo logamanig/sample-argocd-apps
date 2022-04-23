@@ -26,6 +26,10 @@ spec:
           thrift_binary:
           thrift_compact:
           thrift_http:
+      # this dummy receiver to be used with prometheus exporter in metrice pipleline
+      otlp/dummyreceiver:
+        protocols:
+          grpc: localhost:12345
 
       # filelog:
       #   start_at: beginning
@@ -80,17 +84,6 @@ spec:
       #         - remove: uid
       #       type: restructure
 
-      prometheus:
-        config:
-          scrape_configs:
-            - job_name: 'otelcol'
-              scrape_interval: 10s
-              static_configs:
-              - targets: ['0.0.0.0:8881']
-              metric_relabel_configs:
-                - source_labels: [ __name__ ]
-                  regex: '.*grpc_io.*'
-                  action: drop
     processors:
       batch:
       spanmetrics:
@@ -148,7 +141,7 @@ spec:
           exporters: [otlphttp/tempo, jaeger]
 
         metrics:
-          receivers: [prometheus]
+          receivers: [otlp/dummyreceiver]
           processors: [batch]
           exporters: [prometheus]
 
