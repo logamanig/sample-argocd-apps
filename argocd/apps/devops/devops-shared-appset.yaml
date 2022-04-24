@@ -16,7 +16,7 @@ spec:
       name: '{{path.basename}}'
       namespace: argocd
       labels:
-        appset-name: devops-shared-appset
+        appset: devops-shared-appset
     spec:
       project: devops
       source:

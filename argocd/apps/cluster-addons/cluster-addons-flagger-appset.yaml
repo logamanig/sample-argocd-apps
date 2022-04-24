@@ -18,7 +18,7 @@ spec:
       name: "flagger-{{name}}"
       namespace: argocd
       labels:
-        appset-name: cluster-addons-flagger-appset
+        appset: cluster-addons-flagger-appset
     spec:
       project: cluster-addons
       source:

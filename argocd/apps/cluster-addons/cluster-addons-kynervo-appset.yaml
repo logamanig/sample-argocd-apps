@@ -18,7 +18,7 @@ spec:
       name: "kynervo-{{name}}"
       namespace: argocd
       labels:
-        appset-name: cluster-addons-kynervo-appset
+        appset: cluster-addons-kynervo-appset
     spec:
       project: cluster-addons
       source:

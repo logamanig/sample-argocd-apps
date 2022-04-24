@@ -22,7 +22,7 @@ spec:
       name: '{{path.basename}}-{{name}}'
       namespace: argocd
       labels:
-        appset-name: cluster-addons-monitoring-appset
+        appset: cluster-addons-monitoring-appset
     spec:
       project: cluster-addons
       source:

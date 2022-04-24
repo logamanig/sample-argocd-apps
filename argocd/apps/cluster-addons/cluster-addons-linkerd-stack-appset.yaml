@@ -22,7 +22,7 @@ spec:
       name: '{{path.basename}}-{{name}}'
       namespace: argocd
       labels:
-        appset-name: cluster-addons-linkerd-stack-appset
+        appset: cluster-addons-linkerd-stack-appset
     spec:
       project: cluster-addons
       source:
