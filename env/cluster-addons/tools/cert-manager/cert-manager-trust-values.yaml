@@ -16,9 +16,9 @@ app:
         prometheusInstance: prometheus-operator-kube-p-prometheus
         interval: 1m
         scrapeTimeout: 5s
-        # labels:
-        #   # required for prometheus-operator
-        #   release: prometheus-operator
+        labels:
+          # required for prometheus-operator
+          release: prometheus-operator
 
   trust:
     # -- Namespace used as trust source. Must be same as namespace where cert-manager installed
