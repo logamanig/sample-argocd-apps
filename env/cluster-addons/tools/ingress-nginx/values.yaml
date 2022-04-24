@@ -55,6 +55,7 @@
       additionalLabels:
         ## The label to use to retrieve the job name from.
         jobLabel: "app.kubernetes.io/name"
+        # required for prometheus-operator
         release: prometheus-operator
       namespace: ""
       namespaceSelector: {}

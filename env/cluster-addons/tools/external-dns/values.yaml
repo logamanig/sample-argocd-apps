@@ -10,6 +10,7 @@
 serviceMonitor:
   enabled: true
   additionalLabels:
+    # required for prometheus-operator
     release: prometheus-operator
   interval: 1m
   scrapeTimeout: 10s
