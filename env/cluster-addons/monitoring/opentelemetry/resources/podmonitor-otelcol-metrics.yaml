@@ -1,5 +1,5 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: otel-collector
   labels:
@@ -12,5 +12,5 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: otel-collector-daemonset-collector
-  endpoints:
-    - port: prometheus-exporter-listener
+  podMetricsEndpoints:
+    - targetPort: 8889
