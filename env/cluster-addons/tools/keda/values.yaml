@@ -10,7 +10,9 @@ prometheus:
       interval:
       scrapeTimeout:
       namespace:
-      additionalLabels: {}
+      additionalLabels:
+        # required for prometheus-operator
+        release: prometheus-operator
   operator:
     enabled: true
     port: 8080
@@ -21,7 +23,9 @@ prometheus:
       interval:
       scrapeTimeout:
       namespace:
-      additionalLabels: {}
+      additionalLabels:
+        # required for prometheus-operator
+        release: prometheus-operator
     prometheusRules:
       # Enables PrometheusRules creation for the Prometheus Operator
       enabled: true
