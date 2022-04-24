@@ -1,9 +1,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: otel-collector
+  name: otel-collector-self-metrics
   labels:
-    name: otel-collector
+    name: otel-collector-self-metrics
     release: prometheus-operator
 spec:
   namespaceSelector:
@@ -11,6 +11,6 @@ spec:
       - monitoring
   selector:
     matchLabels:
-      app.kubernetes.io/name: otel-collector-daemonset-collector
+      app.kubernetes.io/name: otel-collector-daemonset-collector-monitoring
   endpoints:
-    - port: prometheus-exporter-listener
+    - port: monitoring
