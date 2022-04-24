@@ -164,7 +164,7 @@ spec:
           exporters: [otlphttp/tempo, jaeger]
 
         metrics:
-          receivers: [otlp/dummyspanmetricreceiver]
+          receivers: [prometheus]
           processors: [batch]
           exporters: [prometheus]
 
