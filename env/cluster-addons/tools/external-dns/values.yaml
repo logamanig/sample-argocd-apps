@@ -9,8 +9,9 @@
 
 serviceMonitor:
   enabled: true
-  # additionalLabels: {}
-  # interval: 1m
-  # scrapeTimeout: 10s
+  additionalLabels:
+    release: prometheus-operator
+  interval: 1m
+  scrapeTimeout: 10s
 
 provider: azure

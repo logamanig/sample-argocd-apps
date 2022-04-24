@@ -28,11 +28,12 @@ reloader:
     # Enabling this requires service to be enabled as well, or no endpoints will be found
     enabled: false
     # Set the namespace the ServiceMonitor should be deployed
-    # namespace: monitoring
+    namespace: monitoring
     # Set how frequently Prometheus should scrape
-    # interval: 30s
+    interval: 1m
     # Set labels for the ServiceMonitor, use this to define your scrape label for Prometheus Operator
-    # labels:
+    labels:
+      release: prometheus-operator
     # Set timeout for scrape
     # timeout: 10s
 

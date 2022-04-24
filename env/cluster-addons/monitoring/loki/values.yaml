@@ -54,6 +54,8 @@ memcachedIndexWrites:
 serviceMonitor:
   # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
   enabled: true
+  labels:
+    prometheus: true
 
 # Rules for the Prometheus Operator
 prometheusRule:

@@ -43,6 +43,7 @@ metrics:
       # -- Enable a prometheus ServiceMonitor
       enabled: true
       # -- Labels to be added to the ServiceMonitor
-      additionalLabels: {}
+      additionalLabels: 
+        release: prometheus-operator
       # -- Annotations to be added to the ServiceMonitor
       additionalAnnotations: {}
