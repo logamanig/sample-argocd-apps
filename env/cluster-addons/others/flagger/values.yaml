@@ -30,10 +30,12 @@ msteams:
   url:
 
 podMonitor:
-  enabled: false
+  enabled: true
   namespace:
   interval: 15s
-  additionalLabels: {}
+  additionalLabels: 
+    # required for prometheus-operator
+    release: prometheus-operator
 
 
 #env:

@@ -1,0 +1,17 @@
+serviceMonitor:
+  # -- Create a `ServiceMonitor` to collect Prometheus metrics.
+  enabled: true
+  # -- Additional labels
+  additionalLabels:
+    # required for prometheus-operator
+    release: prometheus-operator
+  # -- Override namespace (default is the same as kyverno)
+  namespace:
+  # --  Interval to scrape metrics
+  interval: 30s
+  # -- Timeout if metrics can't be retrieved in given time interval
+  scrapeTimeout: 25s
+  # -- Is TLS required for endpoint
+  secure: false
+  # -- TLS Configuration for endpoint
+  tlsConfig: {}

@@ -6,17 +6,19 @@
 app:
   # logLevel: 1 # 1-5
 
-  # metrics:
-  #   port: 9402
-  #   service:
-  #     enabled: true
-  #     type: ClusterIP
-  #     servicemonitor:
-  #       enabled: false
-  #       prometheusInstance: default
-  #       interval: 10s
-  #       scrapeTimeout: 5s
-  #       labels: {}
+  metrics:
+    port: 9402
+    service:
+      enabled: true
+      type: ClusterIP
+      servicemonitor:
+        enabled: true
+        prometheusInstance: default
+        interval: 10s
+        scrapeTimeout: 5s
+        # labels:
+        #   # required for prometheus-operator
+        #   release: prometheus-operator
 
   trust:
     # -- Namespace used as trust source. Must be same as namespace where cert-manager installed
