@@ -27,7 +27,7 @@ prometheus:
   enabled: true
   servicemonitor:
     enabled: true
-    prometheusInstance: default
+    prometheusInstance: prometheus-operator-kube-p-prometheus
     targetPort: 9402
     path: /metrics
     interval: 60s

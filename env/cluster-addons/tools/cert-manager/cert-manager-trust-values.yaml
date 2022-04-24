@@ -13,8 +13,8 @@ app:
       type: ClusterIP
       servicemonitor:
         enabled: true
-        prometheusInstance: default
-        interval: 10s
+        prometheusInstance: prometheus-operator-kube-p-prometheus
+        interval: 1m
         scrapeTimeout: 5s
         # labels:
         #   # required for prometheus-operator
