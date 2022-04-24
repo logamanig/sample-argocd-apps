@@ -121,9 +121,9 @@ traces:
 serviceMonitor:
   # -- If enabled, ServiceMonitor resources for Prometheus Operator are created
   enabled: true
-  annotations:
+  # annotations: {}
+  labels:
     prometheus: true
-  # labels:
     # required for prometheus-operator
     # release: prometheus-operator
 
