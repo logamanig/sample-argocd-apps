@@ -123,9 +123,8 @@ serviceMonitor:
   enabled: true
   # annotations: {}
   labels:
-    prometheus: true
     # required for prometheus-operator
-    # release: prometheus-operator
+    release: prometheus-operator
 
 # Rules for the Prometheus Operator
 prometheusRule:
