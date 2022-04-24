@@ -10,7 +10,7 @@ spec:
     matchNames:
       - monitoring
   selector:
-    matchLabels:
-      app.kubernetes.io/name: otel-collector-daemonset-collector-headless
+    matchNames:
+      - otel-collector-daemonset-collector
   endpoints:
     - port: prometheus-exporter-listener
