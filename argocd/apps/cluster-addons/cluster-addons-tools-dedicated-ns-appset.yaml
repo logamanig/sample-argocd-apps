@@ -21,6 +21,8 @@
 #     metadata:
 #       name: '{{path.basename}}-{{name}}'
 #       namespace: argocd
+#       labels:
+#         appset-name: cluster-addons-dedicated-ns-appset
 #     spec:
 #       project: cluster-addons
 #       source:

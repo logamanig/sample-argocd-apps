@@ -18,6 +18,8 @@ spec:
     metadata:
       name: '{{path.basename}}'
       namespace: argocd
+      labels:
+        appset-name: devops-tools-appset
     spec:
       project: devops
       source:

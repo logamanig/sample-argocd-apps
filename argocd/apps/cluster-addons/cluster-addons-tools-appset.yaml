@@ -30,6 +30,8 @@ spec:
     metadata:
       name: '{{path.basename}}-{{name}}'
       namespace: argocd
+      labels:
+        appset-name: cluster-addons-tools-appset
     spec:
       project: cluster-addons
       source:
