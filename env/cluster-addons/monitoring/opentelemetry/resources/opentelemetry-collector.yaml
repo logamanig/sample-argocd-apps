@@ -165,7 +165,7 @@ spec:
 
         metrics:
           receivers: [prometheus]
-          processors: [batch]
+          # processors: [batch]
           exporters: [prometheus]
 
         # logs:
