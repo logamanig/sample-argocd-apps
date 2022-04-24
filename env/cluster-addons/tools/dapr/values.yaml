@@ -1,6 +1,6 @@
 global:
   registry: docker.io/daprio
-  tag: 1.7.0
+  # tag: 1.7.0 # Comment out to use chart appVersion
   dnsSuffix: ".cluster.local"
   logAsJson: false
   imagePullPolicy: IfNotPresent
