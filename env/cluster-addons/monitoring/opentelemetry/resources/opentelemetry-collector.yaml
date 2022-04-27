@@ -9,8 +9,8 @@ spec:
   # maxReplicas: 
   ports:
     - name: prometheus-exporter-listener
-      port: 8889
-      targetPort: 8889
+      port: 8080
+      targetPort: 8080
   volumes:
     - name: varlog
       hostPath:
@@ -26,6 +26,7 @@ spec:
           grpc:
           # http:
       opencensus:
+        endpoint: 0.0.0.0:55678
       jaeger:
         protocols:
           grpc:
@@ -124,10 +125,10 @@ spec:
       # logging:
       #   # logLevel: debug
 
-      # this exporter is pull based and listens on the configured endpoint point (8889) 
+      # this exporter is pull based and listens on the configured endpoint point (8080) 
       # prometheus to scrape(pull) metrics from this exporter
       prometheus:
-        endpoint: 0.0.0.0:8889
+        endpoint: 0.0.0.0:8080
         send_timestamps: true
         resource_to_telemetry_conversion: 
           #  If enabled is true, all the resource attributes will be converted to metric labels by default.
