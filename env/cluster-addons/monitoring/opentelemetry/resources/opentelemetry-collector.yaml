@@ -8,7 +8,7 @@ spec:
   # podAnnotations:
   # maxReplicas: 
   ports:
-    - name: prometheus-exporter-listener
+    - name: otel-prometheus-exporter
       port: 8080
       targetPort: 8080
   volumes:
@@ -113,12 +113,12 @@ spec:
         metrics_exporter: prometheus
         # default latency_histogram_buckets
         # latency_histogram_buckets: [2ms, 4ms, 6ms, 8ms, 10ms, 50ms, 100ms, 200ms, 400ms, 800ms, 1s, 1400ms, 2s, 5s, 10s, 15s]
-        # dimensions:
-        #   - name: http.method
-        #     default: GET
-        #   - name: http.status_code
-        # # dimensions_cache_size: 1000
-        # aggregation_temporality: "AGGREGATION_TEMPORALITY_DELTA"
+        dimensions:
+          - name: http.method
+            default: GET
+          - name: http.status_code
+        dimensions_cache_size: 1500
+        aggregation_temporality: "AGGREGATION_TEMPORALITY_DELTA"
 
     exporters:
       # if logging enabled, info is default logLevel
