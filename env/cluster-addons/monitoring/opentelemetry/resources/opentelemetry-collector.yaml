@@ -11,6 +11,9 @@ spec:
     - name: otel-prometheus-exporter
       port: 8080
       targetPort: 8080
+    - name: otel-opencensus
+      port: 55678
+      targetPort: 55678
   volumes:
     - name: varlog
       hostPath:
