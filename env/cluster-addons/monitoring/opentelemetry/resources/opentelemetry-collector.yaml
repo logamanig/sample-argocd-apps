@@ -11,9 +11,6 @@ spec:
     - name: otel-prometheus-exporter
       port: 8080
       targetPort: 8080
-    - name: otel-opencensus
-      port: 55678
-      targetPort: 55678
   volumes:
     - name: varlog
       hostPath:
@@ -29,7 +26,6 @@ spec:
           grpc:
           # http:
       opencensus:
-        endpoint: 0.0.0.0:55678
       jaeger:
         protocols:
           grpc:
@@ -173,7 +169,7 @@ spec:
     service:
       pipelines:
         traces:
-          receivers: [otlp, jaeger]
+          receivers: [otlp, opencensus, jaeger]
           processors: [spanmetrics, batch]
           exporters: [otlphttp/tempo, jaeger]
 
