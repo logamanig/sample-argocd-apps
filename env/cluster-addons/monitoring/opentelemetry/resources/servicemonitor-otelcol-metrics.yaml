@@ -14,3 +14,10 @@ spec:
       app.kubernetes.io/name: otel-collector-daemonset-collector
   endpoints:
     - port: otel-prometheus-exporter
+      relabelings:
+        - sourceLabels:
+            - "service"
+          regex: 'otel-collector-daemonset-collector-headless'
+          action: drop
+
+    

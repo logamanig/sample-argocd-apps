@@ -3,6 +3,7 @@ global:
     repository: quay.io/argoproj/argocd
     tag: ""
     imagePullPolicy: IfNotPresent
+
   securityContext:
    runAsUser: 999
    runAsGroup: 999
@@ -14,6 +15,21 @@ global:
     defaultDenyIngress: false
 
 controller:
+  containerSecurityContext:
+    capabilities:
+      drop:
+        - all
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+
+  # resources:
+  #  limits:
+  #    cpu: 500m
+  #    memory: 512Mi
+  #  requests:
+  #    cpu: 250m
+  #    memory: 256Mi
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -63,6 +79,20 @@ controller:
         release: prometheus-operator
 
 dex:
+  containerSecurityContext:
+    capabilities:
+      drop:
+        - all
+    readOnlyRootFilesystem: true
+
+  # resources: 
+  #  limits:
+  #    cpu: 50m
+  #    memory: 64Mi
+  #  requests:
+  #    cpu: 10m
+  #    memory: 32Mi
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -81,6 +111,20 @@ dex:
 
 redis:
   enabled: true
+  containerSecurityContext:
+    capabilities:
+      drop:
+        - all
+    readOnlyRootFilesystem: true
+  
+  # resources:
+  #  limits:
+  #    cpu: 200m
+  #    memory: 128Mi
+  #  requests:
+  #    cpu: 100m
+  #    memory: 64Mi
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -128,10 +172,32 @@ server:
     targetMemoryUtilizationPercentage: 50
 
   config:
+    # Argo CD's externally facing base URL (optional). Required when configuring SSO
     url: mk.argocd.local
 
     # To enable helm install through kustomize in argocd
     kustomize.buildOptions: --enable-helm
+
+  # rbacConfig:
+  # {}
+  # policy.csv is a file containing user-defined RBAC policies and role definitions (optional).
+  # Policy rules are in the form:
+  #   p, subject, resource, action, object, effect
+  # Role definitions and bindings are in the form:
+  #   g, subject, inherited-subject
+  # See https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md for additional information.
+  # policy.csv: |
+  #   # Grant all members of the group 'my-org:team-alpha; the ability to sync apps in 'my-project'
+  #   p, my-org:team-alpha, applications, sync, my-project/*, allow
+  #   # Grant all members of 'my-org:team-beta' admins
+  #   g, my-org:team-beta, role:admin
+  # policy.default is the name of the default role which Argo CD will falls back to, when
+  # authorizing API requests (optional). If omitted or empty, users may be still be able to login,
+  # but will see no apps, projects, etc...
+  # policy.default: role:readonly
+  # scopes controls which OIDC scopes to examine during rbac enforcement (in addition to `sub` scope).
+  # If omitted, defaults to: '[groups]'. The scope value can be a string, or a list of strings.
+  # scopes: '[cognito:groups, email]'
           
   ingress:
     enabled: true
@@ -146,6 +212,39 @@ server:
       - hosts:
           - mk.argocd.local
   
+  containerSecurityContext:
+    capabilities:
+      drop:
+        - all
+    readOnlyRootFilesystem: true
+
+  resources:
+   limits:
+     cpu: 100m
+     memory: 128Mi
+   requests:
+     cpu: 50m
+     memory: 64Mi
+
+  # certificate:
+  #   # -- Deploy a Certificate resource (requires cert-manager)
+  #   enabled: false
+  #   # -- Certificate primary domain (commonName)
+  #   domain: argocd.example.com
+  #   # -- The requested 'duration' (i.e. lifetime) of the Certificate. Value must be in units accepted by Go time.ParseDuration
+  #   duration: ""
+  #   # -- How long before the currently issued certificate's expiry cert-manager should renew the certificate. Value must be in units accepted by Go time.ParseDuration
+  #   renewBefore: ""
+  #   issuer:
+  #     # -- Certificate issuer kind. Either `Issuer` or `ClusterIssuer`
+  #     kind: ""
+  #     # -- Certificate isser name. Eg. `letsencrypt`
+  #     name: ""
+  #   # -- Certificate manager additional hosts
+  #   additionalHosts: []
+  #   # -- The name of the Secret that will be automatically created and managed by this Certificate resource
+  #   secretName: argocd-server-tls
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -207,6 +306,8 @@ applicationSet:
         release: prometheus-operator
 
 notifications:
+  argocdUrl: mk.argocd.local
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -223,5 +324,6 @@ notifications:
       additionalLabels:
         release: prometheus-operator
 
-config:
+configs:
+
   clusterCredentials: []

@@ -3,6 +3,8 @@ kind: ApplicationSet
 metadata:
   name: cluster-addons-tools-appset
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   generators:
     - matrix:
@@ -32,6 +34,8 @@ spec:
       namespace: argocd
       labels:
         appset: cluster-addons-tools-appset
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
     spec:
       project: cluster-addons
       source:

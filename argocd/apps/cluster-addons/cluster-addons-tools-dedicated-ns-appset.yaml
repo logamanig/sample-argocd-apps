@@ -3,6 +3,8 @@
 # metadata:
 #   name: cluster-addons-dedicated-ns-appset
 #   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
 # spec:
 #   generators:
 #     - matrix:
@@ -23,6 +25,8 @@
 #       namespace: argocd
 #       labels:
 #         appset: cluster-addons-dedicated-ns-appset
+#       finalizers:
+#         - resources-finalizer.argocd.argoproj.io
 #     spec:
 #       project: cluster-addons
 #       source:
