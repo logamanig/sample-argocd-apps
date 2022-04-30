@@ -1,6 +1,11 @@
 # Manage only PROMETHEUS resources on cluster-addon 
 # and disable Grafana as part of this cluster addon 
 # as grafana to be deployed in DevOps cluster as centralized service
+global:
+  serviceMonitor:
+    interval: ""
+    selfMonitor: true
+
 alertmanager:
   enabled: false
 

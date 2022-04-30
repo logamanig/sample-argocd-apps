@@ -2,6 +2,11 @@
 # Manage ONLY GRAFANA resources as part of this kustomize deployment
 # and disable all other resources related to Prometheus and metrics
 # as those other resources to be deployed in all clusters as part of cluster addon argocd applicationset
+global:
+  serviceMonitor:
+    interval: ""
+    selfMonitor: true
+    
 defaultRules:
   create: false
 
