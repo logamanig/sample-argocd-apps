@@ -7,9 +7,9 @@
       ## apiVersion changes with keda 1.x vs 2.x
       ## 2.x = keda.sh/v1alpha1
       ## 1.x = keda.k8s.io/v1alpha1
-      enabled: false
-      minReplicas: 3
-      maxReplicas: 11
+      enabled: true
+      minReplicas: 0
+      maxReplicas: 1
       pollingInterval: 30
       cooldownPeriod: 300
       restoreToOriginalReplicaCount: false
@@ -31,24 +31,25 @@
     # if this port is changed, change healthz-port: in extraArgs: accordingly
     enabled: true
 
-    service:
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "10254"
+    # service:
+    #   enabled: false
+    #   annotations: {}
+    #     # prometheus.io/scrape: "true"
+    #     # prometheus.io/port: "10254"
 
-      # clusterIP: ""
+    #   # clusterIP: ""
 
-      # -- List of IP addresses at which the stats-exporter service is available
-      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-      ##
-      externalIPs: []
+    #   # -- List of IP addresses at which the stats-exporter service is available
+    #   ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    #   ##
+    #   externalIPs: []
 
-      # loadBalancerIP: ""
-      loadBalancerSourceRanges: []
-      servicePort: 10254
-      type: ClusterIP
-      # externalTrafficPolicy: ""
-      # nodePort: ""
+    #   # loadBalancerIP: ""
+    #   loadBalancerSourceRanges: []
+    #   servicePort: 10254
+    #   type: ClusterIP
+    #   # externalTrafficPolicy: ""
+    #   # nodePort: ""
 
     serviceMonitor:
       enabled: true

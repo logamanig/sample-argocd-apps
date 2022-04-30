@@ -4,7 +4,7 @@ manager:
     tag: v0.49.0 # comment out to use chart appVersion
   collectorImage:
     repository: otel/opentelemetry-collector-contrib
-    tag: 0.48.0
+    tag: 0.50.0
   # resources:
   #   limits:
   #     cpu: 150m
