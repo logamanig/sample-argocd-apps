@@ -118,6 +118,66 @@ grafana:
       createPrometheusReplicasDatasources: false
       label: grafana_datasource
       labelValue: "1"
+
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: "default"
+          orgId: 1
+          folder: ""
+          type: file
+          disableDeletion: true
+          editable: false
+          options:
+            path: /var/lib/grafana/dashboards/default
+
+  ## Configure grafana dashboard to import
+  ## NOTE: To use dashboards, must also enable/configure dashboardProviders
+  ## ref: https://grafana.com/dashboards
+  ##
+  ## dashboards per provider, use provider name as key.
+  ##
+  dashboards:
+    # default is the dasboard provider name defined under dashboardProviders 
+    default:
+      kubernetes-calico:
+        gnetId: 3244
+        datasource: DevOps-Prometheus
+      nginx-ingress-controller:
+        gnetId: 9614
+        datasource: DevOps-Prometheus
+      prometheus-stats:
+        gnetId: 2
+        datasource: DevOps-Prometheus
+      argoworkflow-metrics:
+        gnetId: 13927
+        datasource: DevOps-Prometheus
+      argocd:
+        gnetId: 14584
+        datasource: DevOps-Prometheus
+      cert-manager:
+        gnetId: 11001
+        datasource: DevOps-Prometheus
+      keycloak-metrics:
+        gnetId: 10441
+        datasource: DevOps-Prometheus
+      linkerd-multicluster:
+        gnetId: 15488
+        datasource: DevOps-Prometheus
+      linkerd-authority:
+        gnetId: 15482
+        datasource: DevOps-Prometheus
+      linkerd-cronjob:
+        gnetId: 15483
+        datasource: DevOps-Prometheus
+      linkerd-daemonset:
+        gnetId: 15484
+        datasource: DevOps-Prometheus
+      linkerd-deployment:
+        gnetId: 15485
+        datasource: DevOps-Prometheus
+
   serviceMonitor:
     labels:
       release: prometheus-operator
