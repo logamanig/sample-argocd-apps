@@ -162,21 +162,21 @@ grafana:
       keycloak-metrics:
         gnetId: 10441
         datasource: DevOps-Prometheus
-      linkerd-multicluster:
-        gnetId: 15488
-        datasource: DevOps-Prometheus
-      linkerd-authority:
-        gnetId: 15482
-        datasource: DevOps-Prometheus
-      linkerd-cronjob:
-        gnetId: 15483
-        datasource: DevOps-Prometheus
-      linkerd-daemonset:
-        gnetId: 15484
-        datasource: DevOps-Prometheus
-      linkerd-deployment:
-        gnetId: 15485
-        datasource: DevOps-Prometheus
+      # linkerd-multicluster:
+      #   gnetId: 15488
+      #   datasource: DevOps-Prometheus
+      # linkerd-authority:
+      #   gnetId: 15482
+      #   datasource: DevOps-Prometheus
+      # linkerd-cronjob:
+      #   gnetId: 15483
+      #   datasource: DevOps-Prometheus
+      # linkerd-daemonset:
+      #   gnetId: 15484
+      #   datasource: DevOps-Prometheus
+      # linkerd-deployment:
+      #   gnetId: 15485
+      #   datasource: DevOps-Prometheus
 
   serviceMonitor:
     labels:
