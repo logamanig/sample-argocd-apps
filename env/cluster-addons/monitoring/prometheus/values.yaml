@@ -25,6 +25,18 @@ prometheus:
   service:
     port: 9090
   
+  promtheusSpec:
+    # image:
+    #   repository: quay.io/prometheus/prometheus
+    #   tag: v2.35.0
+    #   sha: ""
+
+    additionalAlertManagerConfigs:
+      - static_configs:
+        - targets: 
+            - mk.alertmanager.local
+            - grafana-kube-prometheus-st-alertmanager:9093
+
   ingress:
     enabled: true
     hosts:
