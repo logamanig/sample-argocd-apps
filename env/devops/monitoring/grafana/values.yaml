@@ -126,40 +126,40 @@ grafana:
     default:
       kubernetes-calico:
         gnetId: 3244
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       nginx-ingress-controller:
         gnetId: 9614
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       prometheus-stats:
         gnetId: 2
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       argoworkflow-metrics:
         gnetId: 13927
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       argocd:
         gnetId: 14584
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       cert-manager:
         gnetId: 11001
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       keycloak-metrics:
         gnetId: 10441
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       linkerd-multicluster:
         gnetId: 15488
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       linkerd-authority:
         gnetId: 15482
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       linkerd-cronjob:
         gnetId: 15483
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       linkerd-daemonset:
         gnetId: 15484
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
       linkerd-deployment:
         gnetId: 15485
-        datasource: DevOps-Prometheus
+        datasource: devops-prometheus
 
 
   ingress:
