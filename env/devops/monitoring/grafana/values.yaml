@@ -38,24 +38,7 @@ nodeExporter:
 grafana:
   enabled: true
 
-  ingress:
-    enabled: true
-
-    ingressClassName: nginx
-    annotations: {}
-    labels: {}
-
-    hosts:
-      - mk.grafana.local
-
-    path: /
-
-    tls:
-      - hosts:
-          - mk.grafana.local
-    # - secretName: grafana-tls
-    #   hosts:
-    #   - mk.grafana.local
+  defaultDashboardsTimezone: browser
 
   grafana.ini:
     analytics:
@@ -143,40 +126,60 @@ grafana:
     default:
       kubernetes-calico:
         gnetId: 3244
-        datasource: DevOps-Prometheus
+        datasource: Prometheus
       nginx-ingress-controller:
         gnetId: 9614
-        datasource: DevOps-Prometheus
+        datasource: Prometheus
       prometheus-stats:
         gnetId: 2
-        datasource: DevOps-Prometheus
+        datasource: Prometheus
       argoworkflow-metrics:
         gnetId: 13927
-        datasource: DevOps-Prometheus
+        datasource: Prometheus
       argocd:
         gnetId: 14584
-        datasource: DevOps-Prometheus
+        datasource: Prometheus
       cert-manager:
         gnetId: 11001
-        datasource: DevOps-Prometheus
+        datasource: Prometheus
       keycloak-metrics:
         gnetId: 10441
-        datasource: DevOps-Prometheus
-      # linkerd-multicluster:
-      #   gnetId: 15488
-      #   datasource: DevOps-Prometheus
-      # linkerd-authority:
-      #   gnetId: 15482
-      #   datasource: DevOps-Prometheus
-      # linkerd-cronjob:
-      #   gnetId: 15483
-      #   datasource: DevOps-Prometheus
-      # linkerd-daemonset:
-      #   gnetId: 15484
-      #   datasource: DevOps-Prometheus
-      # linkerd-deployment:
-      #   gnetId: 15485
-      #   datasource: DevOps-Prometheus
+        datasource: Prometheus
+      linkerd-multicluster:
+        gnetId: 15488
+        datasource: Prometheus
+      linkerd-authority:
+        gnetId: 15482
+        datasource: Prometheus
+      linkerd-cronjob:
+        gnetId: 15483
+        datasource: Prometheus
+      linkerd-daemonset:
+        gnetId: 15484
+        datasource: Prometheus
+      linkerd-deployment:
+        gnetId: 15485
+        datasource: Prometheus
+
+
+  ingress:
+    enabled: true
+
+    ingressClassName: nginx
+    annotations: {}
+    labels: {}
+
+    hosts:
+      - mk.grafana.local
+
+    path: /
+
+    tls:
+      - hosts:
+          - mk.grafana.local
+    # - secretName: grafana-tls
+    #   hosts:
+    #   - mk.grafana.local
 
   serviceMonitor:
     labels:
