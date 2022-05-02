@@ -32,12 +32,6 @@ spec:
           thrift_binary:
           thrift_compact:
           thrift_http:
-      # dummy receiver to add to it metric pipeline for spanmetrics prometheus expoerters as receiver is mandatory 
-      # though spanmetrics processor sends to exporter without a receiver
-      otlp/dummyspanmetricreceiver:
-        protocols:
-          grpc: 
-            endpoint: localhost:12345
 
       # filelog:
       #   start_at: beginning
@@ -121,7 +115,7 @@ spec:
 
     exporters:
       # if logging enabled, info is default logLevel
-      # logging:
+      logging:
       #   # logLevel: debug
 
       # this exporter is pull based and listens on the configured endpoint point (8080) 
@@ -171,13 +165,13 @@ spec:
         traces:
           receivers: [otlp, opencensus, jaeger]
           processors: [spanmetrics, batch]
-          exporters: [otlphttp/tempo, jaeger]
+          exporters: [logging, otlphttp/tempo, jaeger]
 
         metrics:
           receivers: [prometheus]
-          exporters: [prometheus]
+          exporters: [logging, prometheus]
 
-        # logs:
-        #   receivers: [filelog]
-        #   processors: [batch]
-        #   exporters: []
+        logs:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [logging, loki]
