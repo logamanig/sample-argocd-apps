@@ -175,7 +175,6 @@ spec:
         - health_check
 
       pipelines:
-        exte
         traces:
           receivers: [otlp, opencensus, jaeger]
           processors: [spanmetrics, batch]
