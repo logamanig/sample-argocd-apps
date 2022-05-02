@@ -33,58 +33,58 @@ spec:
           thrift_compact:
           thrift_http:
 
-      # filelog:
-      #   start_at: beginning
-      #   exclude:
-      #     - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
-      #   include:
-      #     # - /var/log/pods/*/*/*.log
-      #     - /var/log/pods/test_my-app-*/*/*.log
-      #   include_file_name: false
-      #   operators:
-      #     - type: regex_parser
-      #       id: regex_parser_init
-      #       regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<sev>[^ ]*) (?P<uuid>[^ ]*) (?P<log>.*)$'
-      #       timestamp:
-      #         parse_from: time
-      #         layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-      #       severity:
-      #         parse_from: sev
-      #       attributes:
-      #         - stream
-      #       resource:
-      #         - uuid
-      #       record: log
-      #     - id: parser-docker
-      #       output: extract_metadata_from_filepath
-      #       timestamp:
-      #         layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-      #         parse_from: time
-      #       type: json_parser
-      #     - id: extract_metadata_from_filepath
-      #       parse_from: $$labels.file_path
-      #       regex: ^\/var\/log\/pods\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[^\/]+)\/(?P<container_name>[^\._]+)\/(?P<run_id>\d+)\.log$
-      #       type: regex_parser
-      #     - attributes:
-      #         k8s.container.name: EXPR($.container_name)
-      #         k8s.namespace.name: EXPR($.namespace)
-      #         k8s.pod.name: EXPR($.pod_name)
-      #         k8s.pod.uid: EXPR($.uid)
-      #         run_id: EXPR($.run_id)
-      #         stream: EXPR($.stream)
-      #       resource:
-      #         k8s.pod.uid: EXPR($.uid)
-      #       type: metadata
-      #     - id: clean-up-log-record
-      #       ops:
-      #         - remove: logtag
-      #         - remove: stream
-      #         - remove: container_name
-      #         - remove: namespace
-      #         - remove: pod_name
-      #         - remove: run_id
-      #         - remove: uid
-      #       type: restructure
+      filelog:
+        start_at: beginning
+        exclude:
+          - /var/log/pods/default_otel-opentelemetry-collector-agent-*_*/opentelemetry-collector/*.log
+        include:
+          # - /var/log/pods/*/*/*.log
+          - /var/log/pods/test_my-app-*/*/*.log
+        include_file_name: false
+        operators:
+          - type: regex_parser
+            id: regex_parser_init
+            regex: '^(?P<time>[^ ^Z]+Z) (?P<stream>stdout|stderr) (?P<sev>[^ ]*) (?P<uuid>[^ ]*) (?P<log>.*)$'
+            timestamp:
+              parse_from: time
+              layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+            severity:
+              parse_from: sev
+            attributes:
+              - stream
+            resource:
+              - uuid
+            record: log
+          - id: parser-docker
+            output: extract_metadata_from_filepath
+            timestamp:
+              layout: '%Y-%m-%dT%H:%M:%S.%LZ'
+              parse_from: time
+            type: json_parser
+          - id: extract_metadata_from_filepath
+            parse_from: $$labels.file_path
+            regex: ^\/var\/log\/pods\/(?P<namespace>[^_]+)_(?P<pod_name>[^_]+)_(?P<uid>[^\/]+)\/(?P<container_name>[^\._]+)\/(?P<run_id>\d+)\.log$
+            type: regex_parser
+          - attributes:
+              k8s.container.name: EXPR($.container_name)
+              k8s.namespace.name: EXPR($.namespace)
+              k8s.pod.name: EXPR($.pod_name)
+              k8s.pod.uid: EXPR($.uid)
+              run_id: EXPR($.run_id)
+              stream: EXPR($.stream)
+            resource:
+              k8s.pod.uid: EXPR($.uid)
+            type: metadata
+          - id: clean-up-log-record
+            ops:
+              - remove: logtag
+              - remove: stream
+              - remove: container_name
+              - remove: namespace
+              - remove: pod_name
+              - remove: run_id
+              - remove: uid
+            type: restructure
       
       # this receiver pulls metrics from configured jobs
       prometheus:
@@ -172,6 +172,6 @@ spec:
           exporters: [logging, prometheus]
 
         logs:
-          receivers: [otlp]
+          receivers: [filelog]
           processors: [batch]
           exporters: [logging, loki]
