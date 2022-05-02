@@ -170,7 +170,12 @@ spec:
           #   traceID: "traceid"
 
     service:
+      extensions:
+        - memory_ballast
+        - health_check
+
       pipelines:
+        exte
         traces:
           receivers: [otlp, opencensus, jaeger]
           processors: [spanmetrics, batch]
