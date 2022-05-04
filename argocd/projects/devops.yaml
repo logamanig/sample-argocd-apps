@@ -8,7 +8,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # Project description
-  description: Project for DevOps Tools
+  description: Project for DevOps system-addons
 
   # Allow manifests to deploy from any Git repos
   sourceRepos:

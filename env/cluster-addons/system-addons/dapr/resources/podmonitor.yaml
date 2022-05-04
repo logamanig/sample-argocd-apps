@@ -8,7 +8,7 @@ metadata:
 spec:
   namespaceSelector:
     matchNames:
-      - "tools"
+      - "system-addons"
   podMetricsEndpoints:
     - port: metrics
   selector:

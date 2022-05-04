@@ -10,4 +10,4 @@ helmCharts:
     releaseName: dapr
     valuesFile: values.yaml
     includeCRDs: true
-    namespace: tools
+    namespace: system-addons

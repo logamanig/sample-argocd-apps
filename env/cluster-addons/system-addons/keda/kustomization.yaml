@@ -5,6 +5,6 @@ helmCharts:
     name: keda
     version: 2.6.2
     includeCRDs: true
-    namespace: tools
+    namespace: system-addons
     releaseName: keda
     valuesFile: values.yaml

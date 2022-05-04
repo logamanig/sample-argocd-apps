@@ -2,7 +2,7 @@
     "yaml.schemas": {
         "file:///Users/nsearch-logamani/.vscode/extensions/atlassian.atlascode-2.10.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
         "file:///Users/nsearch-logamani/.vscode/extensions/atlassian.atlascode-2.10.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
-        "https://json.schemastore.org/yamllint.json": "file:///Users/nsearch-logamani/repos/GitHub/sample-argocd-apps/argocd/projects/tools/tools-argocd-project.yaml",
+        "https://json.schemastore.org/yamllint.json": "file:///Users/nsearch-logamani/repos/GitHub/sample-argocd-apps/argocd/projects/system-addons/system-addons-argocd-project.yaml",
         "kubernetes://schema/opentelemetry.io/v1alpha1@instrumentation": "file:///Users/nsearch-logamani/repos/GitHub/sample-argocd-apps/env/test/jaeger-create-span-app/auto-instrumentation.yaml"
     }
 }

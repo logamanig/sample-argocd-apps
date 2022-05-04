@@ -22,7 +22,7 @@ app:
 
   trust:
     # -- Namespace used as trust source. Must be same as namespace where cert-manager installed
-    namespace: tools
+    namespace: system-addons
 
     # webhook:
     # host: 0.0.0.0

@@ -5,6 +5,6 @@ helmCharts:
     name: external-dns
     version: 1.9.0
     includeCRDs: true
-    namespace: tools
+    namespace: system-addons
     releaseName: external-dns
     valuesFile: values.yaml

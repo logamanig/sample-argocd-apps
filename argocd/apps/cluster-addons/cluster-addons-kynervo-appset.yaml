@@ -1,4 +1,4 @@
-# Kynervo is not part of the tools-appset due to special addition of ignoreDifferences 
+# Kynervo is not part of the system-addons-appset due to special addition of ignoreDifferences 
 # for autogen rules from kynervo policies
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
@@ -31,7 +31,7 @@ spec:
         path: "env/cluster-addons/others/kynervo"
       destination:
         server: "{{server}}"
-        namespace: tools
+        namespace: system-addons
       syncPolicy:
         automated:
           prune: true

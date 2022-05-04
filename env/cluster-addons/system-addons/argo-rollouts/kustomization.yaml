@@ -5,6 +5,6 @@ helmCharts:
     name: argo-rollouts
     version: 2.14.0
     includeCRDs: true
-    namespace: tools
+    namespace: system-addons
     releaseName: argo-rollouts
     valuesFile: values.yaml

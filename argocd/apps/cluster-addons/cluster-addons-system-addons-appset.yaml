@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons-tools-appset
+  name: cluster-addons-system-addons-appset
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -13,15 +13,15 @@ spec:
               repoURL: https://github.com/logamanig/sample-argocd-apps
               revision: master
               directories:
-                - path: env/cluster-addons/tools/*
+                - path: env/cluster-addons/system-addons/*
 
-                - path: env/cluster-addons/tools/external-secrets
+                - path: env/cluster-addons/system-addons/external-secrets
                   exclude: true
-                - path: env/cluster-addons/tools/ingress-nginx
+                - path: env/cluster-addons/system-addons/ingress-nginx
                   exclude: true # ingress excluded as this sample running on minukube with ingress addon enabled
-                - path: env/cluster-addons/tools/external-dns
+                - path: env/cluster-addons/system-addons/external-dns
                   exclude: true # not required in minikube environment
-                - path: env/cluster-addons/tools/argo-rollouts
+                - path: env/cluster-addons/system-addons/argo-rollouts
                   exclude: true # Exlcuded in favour of flagger (add through linkerd argocd app)
                   
           - clusters: {} # all registered clusters in argocd
@@ -33,7 +33,7 @@ spec:
       name: '{{path.basename}}-{{name}}'
       namespace: argocd
       labels:
-        appset: cluster-addons-tools-appset
+        appset: cluster-addons-system-addons-appset
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
@@ -44,7 +44,7 @@ spec:
         path: '{{path}}'
       destination:
         server: '{{server}}'
-        namespace: tools
+        namespace: system-addons
       syncPolicy:
         automated:
           prune: true

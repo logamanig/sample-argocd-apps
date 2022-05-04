@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: devops-tools-appset
+  name: devops-system-addons-appset
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,9 +11,9 @@ spec:
         repoURL: https://github.com/logamanig/sample-argocd-apps
         revision: master
         directories:
-          - path: env/devops/tools/*
+          - path: env/devops/system-addons/*
 
-          - path: env/devops/tools/vault
+          - path: env/devops/system-addons/vault
             exclude: true # vault excluded as it's not required in test env 
 
   template:
@@ -21,7 +21,7 @@ spec:
       name: '{{path.basename}}'
       namespace: argocd
       labels:
-        appset: devops-tools-appset
+        appset: devops-system-addons-appset
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
@@ -32,7 +32,7 @@ spec:
         path: '{{path}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: tools
+        namespace: system-addons
       syncPolicy:
         automated:
           prune: true

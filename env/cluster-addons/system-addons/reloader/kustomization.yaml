@@ -5,6 +5,6 @@ helmCharts:
     name: reloader
     version: 0.0.110
     includeCRDs: true
-    namespace: tools
+    namespace: system-addons
     releaseName: reloader
     valuesFile: values.yaml

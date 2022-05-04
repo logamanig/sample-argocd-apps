@@ -5,5 +5,5 @@ helmCharts:
     name: ingress-nginx
     version: 4.1.0
     releaseName: nginx-ingress
-    namespace: tools
+    namespace: system-addons
     valuesFile: values.yaml
