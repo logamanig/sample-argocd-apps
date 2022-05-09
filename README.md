@@ -5,3 +5,4 @@ tools to include:
 3. https://falco.org/
 4. https://github.com/andrew-waters/linkerd2-mixin
 5. https://falco.org/
+6. semgrep
