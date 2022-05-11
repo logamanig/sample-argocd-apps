@@ -182,10 +182,10 @@ server:
     # can apply this to other required apps using "syncPolicy.syncOptions: - RespectIgnoreDifferences=true" in argocd app
     resource.customizations.ignoreDifferences.admissionregistration.k8s.io_MutatingWebhookConfiguration: |
       jqPathExpressions:
-      - '.webhooks[]?.clientConfig.caBundle'
+        - '.webhooks[]?.clientConfig.caBundle'
     resource.customizations.ignoreDifferences.admissionregistration.k8s.io_ValidatingWebhookConfiguration: |
       jqPathExpressions:
-      - '.webhooks[]?.clientConfig.caBundle'
+        - '.webhooks[]?.clientConfig.caBundle'
 
 
   # rbacConfig:

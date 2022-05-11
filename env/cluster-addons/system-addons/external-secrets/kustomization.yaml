@@ -1,13 +1,10 @@
 kind: Kustomization
-namespace: system-addons
-
-resources:
-  - "./resources/cluster-secret-store.yaml"
 
 helmCharts:
   - repo: https://charts.external-secrets.io
     name: external-secrets
     version: 0.5.2
     releaseName: external-secrets
+    namespace: system-addons
     valuesFile: values.yaml
     includeCRDs: true

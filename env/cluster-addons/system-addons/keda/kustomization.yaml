@@ -3,7 +3,7 @@ kind: Kustomization
 helmCharts:
   - repo: https://kedacore.github.io/charts
     name: keda
-    version: 2.7.0
+    version: 2.7.1
     includeCRDs: true
     namespace: system-addons
     releaseName: keda
