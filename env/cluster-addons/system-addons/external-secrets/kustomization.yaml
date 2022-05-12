@@ -3,7 +3,7 @@ kind: Kustomization
 helmCharts:
   - repo: https://charts.external-secrets.io
     name: external-secrets
-    version: 0.5.2
+    version: 0.5.3
     releaseName: external-secrets
     namespace: system-addons
     valuesFile: values.yaml
