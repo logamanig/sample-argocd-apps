@@ -510,3 +510,11 @@ notifications:
 configs:
 
   clusterCredentials: []
+
+  repositories:
+    sample-argocd-apps:
+      name: sample-argocd-apps
+      url: https://github.com/logamanig/sample-argocd-apps.git
+      type: git
+      # username: <to be set in k8s secrets directly or merge using external secret>
+      # password: <to be set in k8s secrets directly or merge using external secret>
