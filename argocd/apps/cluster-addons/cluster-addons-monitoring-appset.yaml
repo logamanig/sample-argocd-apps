@@ -10,7 +10,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: https://github.com/logamanig/sample-argocd-apps.git
+              repoURL: https://github.com/logamanig/sample-argocd-apps
               revision: master
               directories:
                 - path: env/cluster-addons/monitoring/*
@@ -30,7 +30,7 @@ spec:
     spec:
       project: cluster-addons
       source:
-        repoURL: https://github.com/logamanig/sample-argocd-apps.git
+        repoURL: https://github.com/logamanig/sample-argocd-apps
         targetRevision: master
         path: '{{path}}'
       destination:

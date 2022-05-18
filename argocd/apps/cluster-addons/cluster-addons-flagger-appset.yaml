@@ -26,7 +26,7 @@ spec:
     spec:
       project: cluster-addons
       source:
-        repoURL: https://github.com/logamanig/sample-argocd-apps.git
+        repoURL: https://github.com/logamanig/sample-argocd-apps
         targetRevision: master
         path: "env/cluster-addons/others/flagger"
       destination:
