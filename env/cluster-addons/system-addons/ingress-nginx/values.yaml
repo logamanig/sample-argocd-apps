@@ -1,55 +1,45 @@
-# controller:
-#   podAnnotations:
-#     linkerd.io/inject: enabled
+revisionHistoryLimit: 3
+
+controller:
+  image:
+    chroot: true
+    registry: k8s.gcr.io
+    image: ingress-nginx/controller
+    # tag: ""
+    # digest:
+    # digestChroot:
+  podAnnotations:
+    linkerd.io/inject: enabled
 
   keda:
-      apiVersion: "keda.sh/v1alpha1"
-      ## apiVersion changes with keda 1.x vs 2.x
-      ## 2.x = keda.sh/v1alpha1
-      ## 1.x = keda.k8s.io/v1alpha1
-      enabled: true
-      minReplicas: 0
-      maxReplicas: 1
-      pollingInterval: 30
-      cooldownPeriod: 300
-      restoreToOriginalReplicaCount: false
-      scaledObject:
-        annotations: {}
-        # Custom annotations for ScaledObject resource
-        #  annotations:
-        # key: value
-      triggers:
-       - type: prometheus
-         metadata:
-           serverAddress: http://prometheus-operator-kube-p-prometheus.monitoring:9090
-           metricName: http_requests_total
-           threshold: '100'
-           query: sum(rate(http_requests_total{deployment="my-deployment"}[2m]))
+    apiVersion: "keda.sh/v1alpha1"
+    ## apiVersion changes with keda 1.x vs 2.x
+    ## 2.x = keda.sh/v1alpha1
+    ## 1.x = keda.k8s.io/v1alpha1
+    enabled: true
+    minReplicas: 0
+    maxReplicas: 1
+    pollingInterval: 30
+    cooldownPeriod: 300
+    restoreToOriginalReplicaCount: false
+    scaledObject:
+      annotations: {}
+      # Custom annotations for ScaledObject resource
+      #  annotations:
+      # key: value
+    triggers:
+      - type: prometheus
+        metadata:
+          serverAddress: http://prometheus-operator-kube-p-prometheus.monitoring:9090
+          metricName: http_requests_total
+          threshold: "100"
+          # TODO: deployment name needs to be updated
+          query: sum(rate(http_requests_total{deployment="my-deployment"}[2m]))
 
   metrics:
     port: 10254
     # if this port is changed, change healthz-port: in extraArgs: accordingly
     enabled: true
-
-    # service:
-    #   enabled: false
-    #   annotations: {}
-    #     # prometheus.io/scrape: "true"
-    #     # prometheus.io/port: "10254"
-
-    #   # clusterIP: ""
-
-    #   # -- List of IP addresses at which the stats-exporter service is available
-    #   ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
-    #   ##
-    #   externalIPs: []
-
-    #   # loadBalancerIP: ""
-    #   loadBalancerSourceRanges: []
-    #   servicePort: 10254
-    #   type: ClusterIP
-    #   # externalTrafficPolicy: ""
-    #   # nodePort: ""
 
     serviceMonitor:
       enabled: true

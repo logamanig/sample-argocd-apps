@@ -25,10 +25,10 @@ controller:
   # resources:
   #  limits:
   #    cpu: 500m
-  #    memory: 512Mi
+  #    memory: 1.25Gi
   #  requests:
   #    cpu: 250m
-  #    memory: 256Mi
+  #    memory: 1Gi
 
   metrics:
     enabled: true
@@ -144,6 +144,8 @@ redis:
 
 redis-ha:
   enabled: false
+  persistentVolume:
+    enabled: false
   metrics:
     enabled: true
     serviceMonitor:
@@ -175,6 +177,8 @@ server:
     # Argo CD's externally facing base URL (optional). Required when configuring SSO
     url: mk.argocd.local
 
+    # admin.enabled: "false"
+
     # To enable helm install through kustomize in argocd
     kustomize.buildOptions: --enable-helm
 
@@ -187,6 +191,11 @@ server:
       jqPathExpressions:
         - '.webhooks[]?.clientConfig.caBundle'
 
+    # oidc.config: |
+    #   name: Keycloak
+    #   issuer: https://sso.mk.local
+    #   clientID: argocd
+    #   requestedScopes: ["openid", "profile", "email", "groups"]
 
   # rbacConfig:
   # {}
@@ -208,6 +217,17 @@ server:
   # scopes controls which OIDC scopes to examine during rbac enforcement (in addition to `sub` scope).
   # If omitted, defaults to: '[groups]'. The scope value can be a string, or a list of strings.
   # scopes: '[cognito:groups, email]'
+
+  # sample
+    # policy.default: role:readonly
+    # policy.csv: |
+    #   p, role:developer, applications, action/apps/Deployment/restart, dev/*, allow
+    #   p, role:developer, applications, sync, dev/*, allow
+    #   p, role:developer, applications, sync, uat/*, allow
+    #   g, role:developer, role:readonly
+    #   g, dev, role:developer
+    #   g, argocd-admins, role:admin
+    #   g, argocd-devs, role:developer
           
   ingress:
     enabled: true
@@ -228,13 +248,13 @@ server:
         - all
     readOnlyRootFilesystem: true
 
-  resources:
-   limits:
-     cpu: 100m
-     memory: 128Mi
-   requests:
-     cpu: 50m
-     memory: 64Mi
+  # resources:
+  #  limits:
+  #    cpu: 100m
+  #    memory: 128Mi
+  #  requests:
+  #    cpu: 50m
+  #    memory: 64Mi
 
   # certificate:
   #   # -- Deploy a Certificate resource (requires cert-manager)
@@ -282,6 +302,12 @@ repoServer:
     targetCPUUtilizationPercentage: 50
     targetMemoryUtilizationPercentage: 50
   
+  containerSecurityContext:
+    capabilities:
+      drop:
+        - all
+    readOnlyRootFilesystem: true
+
   metrics:
     enabled: true
     serviceMonitor:
@@ -299,6 +325,25 @@ repoServer:
         release: prometheus-operator
 
 applicationSet:
+  podSecurityContext: 
+    fsGroup: 2000
+
+  securityContext:
+    capabilities:
+      drop:
+      - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 1000
+  
+  # resources:
+  #   limits:
+  #     cpu: 250m
+  #     memory: 0.25Gi
+  #   requests:
+  #     cpu: 250m
+  #     memory: 0.25Gi
+      
   metrics:
     enabled: true
     serviceMonitor:
@@ -318,6 +363,134 @@ applicationSet:
 notifications:
   argocdUrl: mk.argocd.local
 
+  notifiers: 
+    service.slack: |
+      token: $slack-token
+    service.webhook.cicd-alerts: |
+      url: <slack_webhook_endpoint>
+
+  subscriptions:
+    - recipients:
+        - cicd-alerts
+      triggers:
+        - on-deployed
+        - on-health-degraded
+  
+
+  triggers:
+    trigger.on-deployed: |
+      - description: Application is synced and healthy. Triggered once per commit.
+        oncePer: app.status.operationState.syncResult.revision
+        send:
+          - app-deployed
+        when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+    trigger.on-health-degraded: |
+      - description: Application has degraded
+        send:
+          - app-health-degraded
+        when: app.status.health.status == 'Degraded'
+
+  templates:
+      template.app-deployed: >
+        message: Application {{.app.metadata.name}} is now running new version of
+        deployments manifests.
+
+        webhook:
+          cicd-alerts:
+            method: POST
+            body: |
+              {
+                "username": "Argo CD",
+                "icon_url": "https://avatars.githubusercontent.com/u/30269780?s=200&v=4",
+                "attachments":
+                [{
+                  "title": "{{ .app.metadata.name}}",
+                  "title_link":"{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+                  "color": "#18be52",
+                  "fields": [
+                  {
+                    "title": "Sync Status",
+                    "value": "{{.app.status.sync.status}}",
+                    "short": true
+                  },
+                  {
+                    "title": "Repository",
+                    "value": "{{.app.spec.source.repoURL}}",
+                    "short": true
+                  },
+                  {
+                    "title": "Revision",
+                    "value": "{{.app.status.sync.revision}}",
+                    "short": true
+                  }
+                  {{range $index, $c := .app.status.conditions}}
+                  {{if not $index}},{{end}}
+                  {{if $index}},{{end}}
+                  {
+                    "title": "{{$c.type}}",
+                    "value": "{{$c.message}}",
+                    "short": true
+                  }
+                  {{end}}
+                  ]
+                }]
+              }
+      template.app-health-degraded: |
+        message: |
+          {{if eq .serviceType "slack"}}:exclamation:{{end}} Application {{.app.metadata.name}} has degraded.
+          Application details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}.
+        webhook:
+          cicd-alerts:
+            method: "POST"
+            body: |
+              {
+              "username": "Argo CD",
+              "icon_url": "https://avatars.githubusercontent.com/u/30269780?s=200&v=4",
+              "attachments": [{
+                "title": "{{ .app.metadata.name}}",
+                "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+                "color": "#f4c030",
+                "fields": [
+                  {
+                    "title": "Sync Status",
+                    "value": "{{.app.status.sync.status}}",
+                    "short": true
+                  },
+                  {
+                    "title": "Repository",
+                    "value": "{{.app.spec.source.repoURL}}",
+                    "short": true
+                  }
+                  {{range $index, $c := .app.status.conditions}}
+                  {{if not $index}},{{end}}
+                  {{if $index}},{{end}}
+                  {
+                    "title": "{{$c.type}}",
+                    "value": "{{$c.message}}",
+                    "short": true
+                  }
+                  {{end}}
+                  ]
+                }]
+              }
+
+  securityContext:
+    runAsNonRoot: true
+
+  containerSecurityContext:
+    capabilities:
+      drop:
+        - all
+    readOnlyRootFilesystem: true
+
+  # resources:
+  #   limits:
+  #     cpu: 250m
+  #     memory: 0.25Gi
+  #   requests:
+  #     cpu: 250m
+  #     memory: 0.25Gi
+      
   metrics:
     enabled: true
     serviceMonitor:
