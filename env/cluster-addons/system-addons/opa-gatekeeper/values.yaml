@@ -1,0 +1,4 @@
+replicas: 1
+
+controllerManager:
+  port: 9443

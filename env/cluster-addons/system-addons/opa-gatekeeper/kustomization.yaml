@@ -1,0 +1,10 @@
+kind: Kustomization
+
+helmCharts:
+  - name: gatekeeper
+    repo: https://open-policy-agent.github.io/gatekeeper/charts
+    namespace: system-addons
+    includeCRDs: true
+    version: 3.9.0-beta.0
+    releaseName: opa-gatekeeper
+    valuesFile: values.yaml

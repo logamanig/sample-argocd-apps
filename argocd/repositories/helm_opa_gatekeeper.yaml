@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: kyverno-helm-repo
+  name: opa-gatekeeper-helm-repo
   namespace: argocd
   labels:
     argocd.argoproj.io/secret-type: repository
 stringData:
-  url: https://kyverno.github.io/kyverno/
-  name: kyverno
+  url: https://open-policy-agent.github.io/gatekeeper/charts
+  name: opa-gatekeeper
   type: helm
