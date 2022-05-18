@@ -10,7 +10,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: https://github.com/logamanig/sample-argocd-apps
+              repoURL: https://github.com/logamanig/sample-argocd-apps.git
               revision: master
               directories:
                 - path: env/devops/monitoring/*
@@ -30,7 +30,7 @@ spec:
     spec:
       project: devops
       source:
-        repoURL: https://github.com/logamanig/sample-argocd-apps
+        repoURL: https://github.com/logamanig/sample-argocd-apps.git
         targetRevision: master
         path: '{{path}}'
       destination:

@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: argocd
-    repoURL: 'https://github.com/logamanig/sample-argocd-apps'
+    repoURL: 'https://github.com/logamanig/sample-argocd-apps.git'
     targetRevision: master
     directory:
       recurse: true

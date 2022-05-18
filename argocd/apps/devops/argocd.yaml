@@ -12,7 +12,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: env/devops/argocd
-    repoURL: 'https://github.com/logamanig/sample-argocd-apps'
+    repoURL: 'https://github.com/logamanig/sample-argocd-apps.git'
     targetRevision: master
   project: devops
   syncPolicy:

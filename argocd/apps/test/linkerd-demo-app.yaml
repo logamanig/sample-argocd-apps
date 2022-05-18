@@ -10,7 +10,7 @@
 #     server: "https://kubernetes.default.svc"
 #   source:
 #     path: env/test/linkerd-demo-app
-#     repoURL: "https://github.com/logamanig/sample-argocd-apps"
+#     repoURL: "https://github.com/logamanig/sample-argocd-apps.git"
 #     targetRevision: master
 #   project: default
 #   syncPolicy:
