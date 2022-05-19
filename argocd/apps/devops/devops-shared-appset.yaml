@@ -8,7 +8,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/logamanig/sample-argocd-apps
+        repoURL: https://github.com/logamanig/sample-argocd-apps.git
         revision: master
         directories:
           - path: env/devops/shared/*
@@ -24,7 +24,7 @@ spec:
     spec:
       project: devops
       source:
-        repoURL: https://github.com/logamanig/sample-argocd-apps
+        repoURL: https://github.com/logamanig/sample-argocd-apps.git
         targetRevision: master
         path: '{{path}}'
       destination:

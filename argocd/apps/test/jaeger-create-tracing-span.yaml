@@ -10,7 +10,7 @@ spec:
     server: "https://kubernetes.default.svc"
   source:
     path: env/test/jaeger-create-span-app
-    repoURL: "https://github.com/logamanig/sample-argocd-apps"
+    repoURL: "https://github.com/logamanig/sample-argocd-apps.git"
     targetRevision: master
   project: default
   syncPolicy:
