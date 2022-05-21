@@ -177,7 +177,7 @@ spec:
         traces:
           receivers: [otlp, opencensus, jaeger]
           processors: [spanmetrics, batch]
-          exporters: [otlphttp/tempo, jaeger]
+          exporters: [otlp/tempo, jaeger]
 
         metrics:
           receivers: [prometheus]
