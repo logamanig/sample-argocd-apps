@@ -14,9 +14,8 @@ tempo:
     capabilities:
       drop:
         - ALL
-    # Compactor, querier and query-frontend services require root file system with write access 
-    readOnlyRootFilesystem: false
-    runAsNonRoot: false
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
     runAsUser: 1000
 
 ingester:
