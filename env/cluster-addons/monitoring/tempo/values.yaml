@@ -149,7 +149,7 @@ traces:
     grpc: 
       enabled: true
   opencensus: 
-      enabled: false
+      enabled: true # for linkerd
   # -- Enable Tempo to ingest traces from Kafka. Reference: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/kafkareceiver
   kafka: {}
 
