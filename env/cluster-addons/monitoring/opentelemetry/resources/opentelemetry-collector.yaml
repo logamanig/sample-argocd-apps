@@ -141,9 +141,8 @@ spec:
         tls:
           insecure: true
 
-      otlphttp/tempo:
-        # endpoint: http://mk.tempo.192.168.64.35.nip.io/otlp # Public URL
-        endpoint: http://tempo-tempo-distributed-distributor:55681
+      otlp/tempo:
+        endpoint: tempo-tempo-distributed-distributor
         tls:
           # insecure_skip_verify: true # for HTTPS with invalid cert
           insecure: true # for http only endpoint
