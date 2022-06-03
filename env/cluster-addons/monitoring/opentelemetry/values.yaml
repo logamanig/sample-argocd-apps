@@ -1,10 +1,10 @@
 manager:
   image:
     # repository: 
-    # tag:  # comment out to use chart appVersion
+    tag: v0.51.0 # comment out to use chart appVersion
   collectorImage:
     repository: otel/opentelemetry-collector-contrib
-    tag: 0.52.0
+    tag: 0.51.0
   # resources:
   #   limits:
   #     cpu: 150m
