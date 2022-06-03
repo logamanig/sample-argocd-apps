@@ -3,7 +3,7 @@ kind: Kustomization
 helmCharts:
   - repo: https://grafana.github.io/helm-charts
     name: loki-distributed
-    version: 0.48.3
+    version: 0.48.4
     namespace: monitoring
     includeCRDs: true
     releaseName: loki

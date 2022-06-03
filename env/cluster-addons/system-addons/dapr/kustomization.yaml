@@ -6,7 +6,7 @@ resources:
 helmCharts:
   - repo: https://dapr.github.io/helm-charts/
     name: dapr
-    version: 1.7.3
+    version: 1.7.4
     releaseName: dapr
     valuesFile: values.yaml
     includeCRDs: true

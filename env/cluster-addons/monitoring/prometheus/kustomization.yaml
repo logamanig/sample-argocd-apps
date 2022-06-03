@@ -6,7 +6,7 @@ kind: Kustomization
 helmCharts:
   - repo: https://prometheus-community.github.io/helm-charts
     name: kube-prometheus-stack
-    version: 35.2.0
+    version: 35.5.1
     includeCRDs: true
     namespace: monitoring
     releaseName: prometheus-operator
