@@ -1,5 +1,5 @@
-# image:
-#   tag: # commented out to use chart appVersion as Jaeger Operator image version
+image:
+  tag: 1.34.1
 
 jaeger:
   create: true
