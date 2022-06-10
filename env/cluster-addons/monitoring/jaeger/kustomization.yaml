@@ -1,5 +1,8 @@
 kind: Kustomization
 
+patchesStrategicMerge:
+  - "./overlays/jaeger-crd.yaml"
+
 helmCharts:
   - repo: https://jaegertracing.github.io/helm-charts
     name: jaeger-operator
