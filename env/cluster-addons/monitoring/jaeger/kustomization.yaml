@@ -1,11 +1,5 @@
 kind: Kustomization
 
-resources:
-  - "./resources/leader-election-role.yaml"
-  
-patchesStrategicMerge:
-  - "./overlays/jaeger-crd.yaml"
-
 helmCharts:
   - repo: https://jaegertracing.github.io/helm-charts
     name: jaeger-operator
