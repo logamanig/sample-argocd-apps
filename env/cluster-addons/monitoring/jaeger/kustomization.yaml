@@ -1,26 +1,10 @@
-# kind: Kustomization
-
-# helmCharts:
-#   - repo: https://jaegertracing.github.io/helm-charts
-#     name: jaeger-operator
-
-#     # TODO: rmeove crd overlay once the crd manifest updated to latest in the helm chart. 
-#     # helm chart doesn't have latest crd manifest as v2.30.0
-#     version: 2.29.0
-#     includeCRDs: true
-#     namespace: monitoring
-#     releaseName: jaeger-operator
-#     valuesFile: values.yaml
-
-# patchesStrategicMerge:
-#     # TODO: rmeove crd overlay once the crd manifest updated to latest in the helm chart. 
-#     # helm chart doesn't have latest crd manifest as v2.30.0
-#   - "./overlays/jaeger-crd.yaml"
-
-
 kind: Kustomization
-namespace: monitoring
 
-resources:
-  - "./resources/jaeger-operator-install.yaml"
-  - "./resources/jaeger-instance.yaml"
+helmCharts:
+  - repo: https://jaegertracing.github.io/helm-charts
+    name: jaeger-operator
+    version: 2.29.0
+    includeCRDs: true
+    namespace: monitoring
+    releaseName: jaeger-operator
+    valuesFile: values.yaml
