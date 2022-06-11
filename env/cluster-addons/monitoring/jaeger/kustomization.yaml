@@ -1,13 +1,13 @@
 kind: Kustomization
 
-resources:
-  - "./resources/jaeger-operator-cr.yaml"
-  - "./resources/jaeger-operator-crb.yaml"
+# resources:
+#   - "./resources/jaeger-operator-cr.yaml"
+#   - "./resources/jaeger-operator-crb.yaml"
   
 helmCharts:
   - repo: https://jaegertracing.github.io/helm-charts
     name: jaeger-operator
-    version: 2.32.1
+    version: 2.32.2
     includeCRDs: true
     namespace: monitoring
     releaseName: jaeger-operator
