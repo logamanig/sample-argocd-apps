@@ -1,8 +1,8 @@
 kind: Kustomization
 
-# resources:
-#   - "./resources/jaeger-operator-cr.yaml"
-#   - "./resources/jaeger-operator-crb.yaml"
+resources:
+  - "./resources/jaeger-operator-cr.yaml"
+  - "./resources/jaeger-operator-crb.yaml"
   
 helmCharts:
   - repo: https://jaegertracing.github.io/helm-charts
